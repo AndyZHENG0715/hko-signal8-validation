@@ -1,0 +1,98 @@
+{
+  "id": "yagi",
+  "name": "Yagi",
+  "name_zh": "摩羯",
+  "year": 2024,
+  "date_range": "2024-09-05 to 2024-09-06",
+  "severity": "No Signal 8",
+  "official_signal8": {
+    "issued": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
+  },
+  "algorithm_detection": {
+    "detected": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
+  },
+  "timing_analysis": {
+    "start_delta_min": null,
+    "coverage_percent": 0,
+    "assessment": "consistent",
+    "verdict": "No Signal 8 issued, no persistent gales detected",
+    "verdict_zh": "未發出8號信號，未檢測到持續烈風"
+  },
+  "station_summary": [
+    {
+      "name": "Cheung Chau",
+      "observations": 148,
+      "mean_wind_kmh": 48.5,
+      "p90_wind_kmh": 59.0,
+      "max_wind_kmh": 69.0,
+      "max_gust_kmh": 107.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 148,
+      "mean_wind_kmh": 33.9,
+      "p90_wind_kmh": 43.0,
+      "max_wind_kmh": 52.0,
+      "max_gust_kmh": 89.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 147,
+      "mean_wind_kmh": 31.0,
+      "p90_wind_kmh": 39.0,
+      "max_wind_kmh": 45.0,
+      "max_gust_kmh": 78.0
+    },
+    {
+      "name": "Lau Fau Shan",
+      "observations": 148,
+      "mean_wind_kmh": 24.3,
+      "p90_wind_kmh": 29.3,
+      "max_wind_kmh": 33.0,
+      "max_gust_kmh": 63.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 148,
+      "mean_wind_kmh": 23.1,
+      "p90_wind_kmh": 29.0,
+      "max_wind_kmh": 35.0,
+      "max_gust_kmh": 75.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 148,
+      "mean_wind_kmh": 16.2,
+      "p90_wind_kmh": 20.0,
+      "max_wind_kmh": 27.0,
+      "max_gust_kmh": 60.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 148,
+      "mean_wind_kmh": 15.9,
+      "p90_wind_kmh": 21.0,
+      "max_wind_kmh": 26.0,
+      "max_gust_kmh": 65.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 148,
+      "mean_wind_kmh": 14.8,
+      "p90_wind_kmh": 19.0,
+      "max_wind_kmh": 27.0,
+      "max_gust_kmh": 53.0
+    }
+  ],
+  "validation_report": "reports/yagi_validation/",
+  "figures": {
+    "timeline": "reports/figs/yagi_timeline.png",
+    "heatmap": "reports/figs/yagi_station_heatmap.png"
+  }
+}

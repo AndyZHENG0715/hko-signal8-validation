@@ -1,0 +1,11 @@
+# HKO official reference anemometer network (as of 2024)
+# Source: Hong Kong Observatory — tcsignal3_ref.htm
+# Notes: Lau Fau Shan replaced Wetland Park in 2013; Chek Lap Kok station relocated in 2024.
+Chek Lap Kok
+Lau Fau Shan
+Ta Kwu Ling
+Sha Tin
+Sai Kung
+Kai Tak
+Tsing Yi
+Cheung Chau

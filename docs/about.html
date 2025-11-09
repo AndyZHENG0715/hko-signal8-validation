@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - HKO Signal 8 Transparency Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
+        <button id="lang-zh" onclick="switchLanguage('zh')">中</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <a href="index.html" class="nav-back">← <span data-en="Back to Home" data-zh="返回主頁">Back to Home</span></a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 data-en="About This Project" data-zh="關於本項目">About This Project</h1>
+            <p data-en="Independent validation for transparency and public understanding" data-zh="旨在透明度和公眾理解的獨立驗證">
+                Independent validation for transparency and public understanding
+            </p>
+        </div>
+    </section>
+
+    <!-- Project Purpose -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-card">
+                <h2 data-en="🎯 Project Purpose" data-zh="🎯 項目目的">🎯 Project Purpose</h2>
+                <p data-en="This project provides independent, data-driven validation of Hong Kong Observatory's (HKO) Signal No. 8 issuance timing during tropical cyclone events. Our goal is to enhance transparency and public understanding of how typhoon warnings work, not to criticize HKO operations." data-zh="本項目提供對香港天文台（HKO）在熱帶氣旋事件期間發出八號風球時機的獨立、數據驅動驗證。我們的目標是提高颱風警報如何運作的透明度和公眾理解，而非批評天文台的運作。">
+                    This project provides independent, data-driven validation of Hong Kong Observatory's (HKO) Signal No. 8 issuance timing during tropical cyclone events. Our goal is to enhance transparency and public understanding of how typhoon warnings work, not to criticize HKO operations.
+                </p>
+                <p data-en="By comparing official signal periods with observation-based detection algorithms, we demonstrate the value of forecast-based early warning systems and validate that HKO follows published standards appropriately." data-zh="通過比較官方信號期間與基於觀測的檢測演算法，我們展示了基於預報的預警系統的價值，並驗證天文台適當地遵守已公布的標準。">
+                    By comparing official signal periods with observation-based detection algorithms, we demonstrate the value of forecast-based early warning systems and validate that HKO follows published standards appropriately.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h2 data-en="🔬 Methodology" data-zh="🔬 方法論">🔬 Methodology</h2>
+                <p data-en="We analyze HKO's publicly available 10-minute mean wind speed data from 8 reference stations during typhoon events. Our algorithm applies simple criteria: Signal 8 conditions are detected when ≥4 stations simultaneously report sustained winds ≥63 km/h for ≥2 consecutive 10-minute periods." data-zh="我們分析天文台在颱風事件期間從8個參考測站公開提供的10分鐘平均風速數據。我們的演算法應用簡單標準：當≥4個測站同時報告持續風力≥63 km/h持續≥2個連續10分鐘期間時，檢測到8號風球條件。">
+                    We analyze HKO's publicly available 10-minute mean wind speed data from 8 reference stations during typhoon events. Our algorithm applies simple criteria: Signal 8 conditions are detected when ≥4 stations simultaneously report sustained winds ≥63 km/h for ≥2 consecutive 10-minute periods.
+                </p>
+                <p data-en="This retrospective, observation-only approach intentionally differs from HKO's operational forecast-based system to highlight the value of early warning lead time." data-zh="這種回顧性、僅基於觀測的方法有意與天文台基於預報的業務系統不同，以突出預警提前時間的價值。">
+                    This retrospective, observation-only approach intentionally differs from HKO's operational forecast-based system to highlight the value of early warning lead time.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h2 data-en="⚖️ Limitations" data-zh="⚖️ 局限性">⚖️ Limitations</h2>
+                <ul>
+                    <li data-en="Our algorithm does NOT incorporate forecast data, cyclone track predictions, or nowcasting" data-zh="我們的演算法不包含預報數據、氣旋路徑預測或臨近預報">
+                        Our algorithm does NOT incorporate forecast data, cyclone track predictions, or nowcasting
+                    </li>
+                    <li data-en="We exclude high-ground and offshore stations that HKO considers for operational decisions" data-zh="我們排除了天文台在業務決策中考慮的高地和離岸測站">
+                        We exclude high-ground and offshore stations that HKO considers for operational decisions
+                    </li>
+                    <li data-en="Eye passage continuity is not modeled, causing detection failures for direct-hit typhoons" data-zh="未建模風眼通過的連續性，導致直接襲擊颱風的檢測失敗">
+                        Eye passage continuity is not modeled, causing detection failures for direct-hit typhoons
+                    </li>
+                    <li data-en="This is validation research only—not a forecasting or real-time warning system" data-zh="這僅是驗證研究——不是預報或實時警報系統">
+                        This is validation research only—not a forecasting or real-time warning system
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2 data-en="✅ Key Findings" data-zh="✅ 主要發現">✅ Key Findings</h2>
+                <ul>
+                    <li data-en="HKO's Signal 8 issuances are appropriate and consistent with published standards" data-zh="天文台的8號風球發出是適當的，並與已公布的標準一致">
+                        HKO's Signal 8 issuances are appropriate and consistent with published standards
+                    </li>
+                    <li data-en="Timing differences reflect valuable forecast-based early warning lead time (avg. 330 min for Talim 2023)" data-zh="時間差反映了有價值的基於預報的預警提前時間（泰利2023年平均330分鐘）">
+                        Timing differences reflect valuable forecast-based early warning lead time (avg. 330 min for Talim 2023)
+                    </li>
+                    <li data-en="Non-detection in some events (Tapah, Toraji) consistent with localized/offshore wind patterns" data-zh="某些事件（塔巴、潭美）中的未檢測與局部/離岸風模式一致">
+                        Non-detection in some events (Tapah, Toraji) consistent with localized/offshore wind patterns
+                    </li>
+                    <li data-en="Algorithm failures (Wipha eye passage) highlight limitations of simple observation-only logic" data-zh="演算法失敗（韋帕風眼通過）突顯了簡單僅基於觀測邏輯的局限性">
+                        Algorithm failures (Wipha eye passage) highlight limitations of simple observation-only logic
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2 data-en="🔄 Last Updated" data-zh="🔄 最後更新">🔄 Last Updated</h2>
+                <p><strong id="last-updated">2025-11-09</strong></p>
+                <p data-en="Analysis includes 5 tropical cyclone events from 2023-2025: Talim, Tapah, Yagi, Toraji, and Wipha." data-zh="分析包括2023-2025年的5個熱帶氣旋事件：泰利、塔巴、摩羯、潭美和韋帕。">
+                    Analysis includes 5 tropical cyclone events from 2023-2025: Talim, Tapah, Yagi, Toraji, and Wipha.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h2 data-en="📧 Contact & Feedback" data-zh="📧 聯繫與反饋">📧 Contact & Feedback</h2>
+                <p data-en="This is an educational research project. We welcome feedback, suggestions, and corrections." data-zh="這是一個教育研究項目。我們歡迎反饋、建議和更正。">
+                    This is an educational research project. We welcome feedback, suggestions, and corrections.
+                </p>
+                <p>
+                    <strong data-en="GitHub:" data-zh="GitHub:">GitHub:</strong> 
+                    <a href="https://github.com/AndyZHENG0715/GCAP3226" target="_blank">github.com/AndyZHENG0715/GCAP3226</a>
+                </p>
+                <p data-en="Please note: This project is not affiliated with or endorsed by the Hong Kong Observatory." data-zh="請注意：本項目與香港天文台無關聯或認可。">
+                    Please note: This project is not affiliated with or endorsed by the Hong Kong Observatory.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h2 data-en="🙏 Acknowledgments" data-zh="🙏 致謝">🙏 Acknowledgments</h2>
+                <ul>
+                    <li data-en="Hong Kong Observatory for maintaining public archives of wind data" data-zh="香港天文台維護風速數據的公開檔案">
+                        Hong Kong Observatory for maintaining public archives of wind data
+                    </li>
+                    <li data-en="Open-source software communities (Python, Chart.js, etc.)" data-zh="開源軟體社群（Python、Chart.js等）">
+                        Open-source software communities (Python, Chart.js, etc.)
+                    </li>
+                    <li data-en="Hong Kong residents interested in weather transparency" data-zh="對天氣透明度感興趣的香港居民">
+                        Hong Kong residents interested in weather transparency
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-en="Quick Links" data-zh="快速連結">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-en="Home" data-zh="主頁">Home</a></li>
+                        <li><a href="methodology.html" data-en="Methodology" data-zh="方法論">Methodology</a></li>
+                        <li><a href="data.html" data-en="Data Download" data-zh="數據下載">Data Download</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-en="© 2025 HKO Signal 8 Transparency Portal. Educational research project." data-zh="© 2025 天文台八號風球透明度門戶。教育研究項目。">
+                    © 2025 HKO Signal 8 Transparency Portal. Educational research project.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/language.js"></script>
+    <script>
+        // Update last updated date
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('data/events/summary.json');
+                const data = await response.json();
+                const date = new Date(data.generated_at);
+                document.getElementById('last-updated').textContent = date.toISOString().split('T')[0];
+            } catch (error) {
+                console.error('Error loading date:', error);
+            }
+        });
+    </script>
+</body>
+</html>

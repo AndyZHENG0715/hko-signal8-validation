@@ -1,0 +1,100 @@
+{
+  "id": "talim",
+  "name": "Talim",
+  "name_zh": "泰利",
+  "year": 2023,
+  "date_range": "2023-07-17",
+  "severity": "T8",
+  "official_signal8": {
+    "issued": true,
+    "start": "2023-07-17 00:40",
+    "end": "2023-07-17 16:20",
+    "duration_min": 940
+  },
+  "algorithm_detection": {
+    "detected": true,
+    "start": "2023-07-17 06:10:00",
+    "end": "2023-07-17 16:30:00",
+    "duration_min": 290,
+    "peak_stations": 8,
+    "mean_wind_peak": 38.0
+  },
+  "timing_analysis": {
+    "start_delta_min": 330,
+    "coverage_percent": 30.9,
+    "assessment": "appropriate",
+    "verdict": "Appropriate issuance with 330 min forecast lead time",
+    "verdict_zh": "適當發佈，預報提前 330 分鐘"
+  },
+  "station_summary": [
+    {
+      "name": "Cheung Chau",
+      "observations": 498,
+      "mean_wind_kmh": 64.2,
+      "p90_wind_kmh": 78.0,
+      "max_wind_kmh": 87.0,
+      "max_gust_kmh": 110.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 498,
+      "mean_wind_kmh": 39.3,
+      "p90_wind_kmh": 48.0,
+      "max_wind_kmh": 55.0,
+      "max_gust_kmh": 83.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 498,
+      "mean_wind_kmh": 34.4,
+      "p90_wind_kmh": 41.0,
+      "max_wind_kmh": 51.0,
+      "max_gust_kmh": 92.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 498,
+      "mean_wind_kmh": 28.2,
+      "p90_wind_kmh": 36.0,
+      "max_wind_kmh": 39.0,
+      "max_gust_kmh": 69.0
+    },
+    {
+      "name": "Lau Fau Shan",
+      "observations": 498,
+      "mean_wind_kmh": 26.7,
+      "p90_wind_kmh": 37.0,
+      "max_wind_kmh": 41.0,
+      "max_gust_kmh": 77.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 498,
+      "mean_wind_kmh": 23.0,
+      "p90_wind_kmh": 30.3,
+      "max_wind_kmh": 36.0,
+      "max_gust_kmh": 78.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 498,
+      "mean_wind_kmh": 20.4,
+      "p90_wind_kmh": 28.0,
+      "max_wind_kmh": 31.0,
+      "max_gust_kmh": 63.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 498,
+      "mean_wind_kmh": 15.4,
+      "p90_wind_kmh": 20.3,
+      "max_wind_kmh": 22.0,
+      "max_gust_kmh": 60.0
+    }
+  ],
+  "validation_report": "reports/talim_validation/",
+  "figures": {
+    "timeline": "reports/figs/talim_timeline.png",
+    "heatmap": "reports/figs/talim_station_heatmap.png"
+  }
+}

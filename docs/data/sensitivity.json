@@ -1,0 +1,62 @@
+{
+  "talim": [
+    {
+      "persistence_periods": 1,
+      "start_delay_min": 260.0,
+      "end_lag_min": 10.0,
+      "duration_min": 690,
+      "detected": true
+    },
+    {
+      "persistence_periods": 2,
+      "start_delay_min": 330.0,
+      "end_lag_min": 10.0,
+      "duration_min": 620,
+      "detected": true
+    },
+    {
+      "persistence_periods": 3,
+      "start_delay_min": 390.0,
+      "end_lag_min": 10.0,
+      "duration_min": 560,
+      "detected": true
+    },
+    {
+      "persistence_periods": 4,
+      "start_delay_min": 400.0,
+      "end_lag_min": 10.0,
+      "duration_min": 550,
+      "detected": true
+    }
+  ],
+  "tapah": [
+    {
+      "persistence_periods": 1,
+      "start_delay_min": null,
+      "end_lag_min": null,
+      "duration_min": 0,
+      "detected": false
+    },
+    {
+      "persistence_periods": 2,
+      "start_delay_min": null,
+      "end_lag_min": null,
+      "duration_min": 0,
+      "detected": false
+    },
+    {
+      "persistence_periods": 3,
+      "start_delay_min": null,
+      "end_lag_min": null,
+      "duration_min": 0,
+      "detected": false
+    },
+    {
+      "persistence_periods": 4,
+      "start_delay_min": null,
+      "end_lag_min": null,
+      "duration_min": 0,
+      "detected": false
+    }
+  ]
+}

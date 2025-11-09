@@ -1,0 +1,98 @@
+{
+  "id": "wipha",
+  "name": "Wipha",
+  "name_zh": "韋帕",
+  "year": 2025,
+  "date_range": "2025-07-19 to 2025-07-20",
+  "severity": "T10",
+  "official_signal8": {
+    "issued": true,
+    "start": "2025-07-20 00:20",
+    "end": "2025-07-20 19:40",
+    "duration_min": 1160
+  },
+  "algorithm_detection": {
+    "detected": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
+  },
+  "timing_analysis": {
+    "start_delta_min": null,
+    "coverage_percent": 0,
+    "assessment": "forecast_driven",
+    "verdict": "Official issuance appropriate (forecast-based early warning)",
+    "verdict_zh": "官方發佈適當（基於預報的預警）"
+  },
+  "station_summary": [
+    {
+      "name": "Cheung Chau",
+      "observations": 155,
+      "mean_wind_kmh": 53.7,
+      "p90_wind_kmh": 103.2,
+      "max_wind_kmh": 117.0,
+      "max_gust_kmh": 173.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 155,
+      "mean_wind_kmh": 38.5,
+      "p90_wind_kmh": 63.6,
+      "max_wind_kmh": 85.0,
+      "max_gust_kmh": 121.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 155,
+      "mean_wind_kmh": 32.8,
+      "p90_wind_kmh": 58.6,
+      "max_wind_kmh": 89.0,
+      "max_gust_kmh": 134.0
+    },
+    {
+      "name": "Lau Fau Shan",
+      "observations": 155,
+      "mean_wind_kmh": 29.7,
+      "p90_wind_kmh": 53.0,
+      "max_wind_kmh": 72.0,
+      "max_gust_kmh": 109.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 155,
+      "mean_wind_kmh": 27.1,
+      "p90_wind_kmh": 42.6,
+      "max_wind_kmh": 55.0,
+      "max_gust_kmh": 122.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 155,
+      "mean_wind_kmh": 21.5,
+      "p90_wind_kmh": 34.6,
+      "max_wind_kmh": 42.0,
+      "max_gust_kmh": 95.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 155,
+      "mean_wind_kmh": 18.5,
+      "p90_wind_kmh": 35.6,
+      "max_wind_kmh": 47.0,
+      "max_gust_kmh": 96.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 155,
+      "mean_wind_kmh": 15.9,
+      "p90_wind_kmh": 28.0,
+      "max_wind_kmh": 40.0,
+      "max_gust_kmh": 87.0
+    }
+  ],
+  "validation_report": "reports/wipha_validation/",
+  "figures": {
+    "timeline": "reports/figs/wipha_timeline.png",
+    "heatmap": "reports/figs/wipha_station_heatmap.png"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "id": "toraji",
+  "name": "Toraji",
+  "name_zh": "潭美",
+  "year": 2024,
+  "date_range": "2024-11-13 to 2024-11-14",
+  "severity": "T8",
+  "official_signal8": {
+    "issued": true,
+    "start": "2024-11-13 23:10",
+    "end": "2024-11-14 10:20",
+    "duration_min": 670
+  },
+  "algorithm_detection": {
+    "detected": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
+  },
+  "timing_analysis": {
+    "start_delta_min": null,
+    "coverage_percent": 0,
+    "assessment": "forecast_driven",
+    "verdict": "Official issuance appropriate (forecast-based early warning)",
+    "verdict_zh": "官方發佈適當（基於預報的預警）"
+  },
+  "station_summary": [
+    {
+      "name": "Cheung Chau",
+      "observations": 105,
+      "mean_wind_kmh": 42.1,
+      "p90_wind_kmh": 50.0,
+      "max_wind_kmh": 55.0,
+      "max_gust_kmh": 74.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 105,
+      "mean_wind_kmh": 31.4,
+      "p90_wind_kmh": 40.0,
+      "max_wind_kmh": 45.0,
+      "max_gust_kmh": 66.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 105,
+      "mean_wind_kmh": 21.9,
+      "p90_wind_kmh": 26.0,
+      "max_wind_kmh": 30.0,
+      "max_gust_kmh": 44.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 105,
+      "mean_wind_kmh": 17.9,
+      "p90_wind_kmh": 26.0,
+      "max_wind_kmh": 29.0,
+      "max_gust_kmh": 64.0
+    },
+    {
+      "name": "Lau Fau Shan",
+      "observations": 105,
+      "mean_wind_kmh": 16.3,
+      "p90_wind_kmh": 23.0,
+      "max_wind_kmh": 29.0,
+      "max_gust_kmh": 43.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 105,
+      "mean_wind_kmh": 13.6,
+      "p90_wind_kmh": 18.0,
+      "max_wind_kmh": 24.0,
+      "max_gust_kmh": 60.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 105,
+      "mean_wind_kmh": 9.8,
+      "p90_wind_kmh": 16.0,
+      "max_wind_kmh": 22.0,
+      "max_gust_kmh": 57.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 105,
+      "mean_wind_kmh": 8.4,
+      "p90_wind_kmh": 15.0,
+      "max_wind_kmh": 19.0,
+      "max_gust_kmh": 41.0
+    }
+  ],
+  "validation_report": "reports/toraji_validation/",
+  "figures": {
+    "timeline": "reports/figs/toraji_timeline.png",
+    "heatmap": "reports/figs/toraji_station_heatmap.png"
+  }
+}

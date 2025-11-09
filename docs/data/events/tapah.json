@@ -1,0 +1,98 @@
+{
+  "id": "tapah",
+  "name": "Tapah",
+  "name_zh": "塔巴",
+  "year": 2025,
+  "date_range": "2025-09-07 to 2025-09-08",
+  "severity": "T8",
+  "official_signal8": {
+    "issued": true,
+    "start": "2025-09-07 21:20",
+    "end": "2025-09-08 13:10",
+    "duration_min": 950
+  },
+  "algorithm_detection": {
+    "detected": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
+  },
+  "timing_analysis": {
+    "start_delta_min": null,
+    "coverage_percent": 0,
+    "assessment": "forecast_driven",
+    "verdict": "Official issuance appropriate (forecast-based early warning)",
+    "verdict_zh": "官方發佈適當（基於預報的預警）"
+  },
+  "station_summary": [
+    {
+      "name": "Cheung Chau",
+      "observations": 102,
+      "mean_wind_kmh": 60.4,
+      "p90_wind_kmh": 80.0,
+      "max_wind_kmh": 95.0,
+      "max_gust_kmh": 124.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 102,
+      "mean_wind_kmh": 38.2,
+      "p90_wind_kmh": 51.0,
+      "max_wind_kmh": 64.0,
+      "max_gust_kmh": 94.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 102,
+      "mean_wind_kmh": 34.2,
+      "p90_wind_kmh": 55.0,
+      "max_wind_kmh": 69.0,
+      "max_gust_kmh": 94.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 101,
+      "mean_wind_kmh": 30.5,
+      "p90_wind_kmh": 46.0,
+      "max_wind_kmh": 60.0,
+      "max_gust_kmh": 228.0
+    },
+    {
+      "name": "Lau Fau Shan",
+      "observations": 102,
+      "mean_wind_kmh": 26.4,
+      "p90_wind_kmh": 42.0,
+      "max_wind_kmh": 53.0,
+      "max_gust_kmh": 87.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 102,
+      "mean_wind_kmh": 25.0,
+      "p90_wind_kmh": 44.9,
+      "max_wind_kmh": 51.0,
+      "max_gust_kmh": 86.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 102,
+      "mean_wind_kmh": 17.0,
+      "p90_wind_kmh": 27.0,
+      "max_wind_kmh": 35.0,
+      "max_gust_kmh": 73.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 102,
+      "mean_wind_kmh": 15.7,
+      "p90_wind_kmh": 26.9,
+      "max_wind_kmh": 32.0,
+      "max_gust_kmh": 68.0
+    }
+  ],
+  "validation_report": "reports/tapah_validation/",
+  "figures": {
+    "timeline": "reports/figs/tapah_timeline.png",
+    "heatmap": "reports/figs/tapah_station_heatmap.png"
+  }
+}

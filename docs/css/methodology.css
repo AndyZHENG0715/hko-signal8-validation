@@ -1,0 +1,250 @@
+/* Methodology Page Styles */
+
+.nav-bar {
+    background: var(--bg-white);
+    padding: 15px 0;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-back {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+}
+
+.nav-back:hover {
+    color: var(--primary-color);
+}
+
+.page-header {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #003366 100%);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.page-header p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+/* Process Section */
+.process-section {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.process-column {
+    background: var(--bg-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.process-header {
+    padding: 30px;
+    color: white;
+    text-align: center;
+}
+
+.process-header.hko {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #ff8c5a 100%);
+}
+
+.process-header.algo {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #0066b3 100%);
+}
+
+.process-header h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.process-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.process-steps {
+    padding: 30px;
+}
+
+.process-step {
+    padding: 25px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.process-step:last-child {
+    border-bottom: none;
+}
+
+.step-number {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.process-step h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.process-step p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-light);
+}
+
+.key-difference {
+    background: var(--accent-color);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.key-difference h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.key-difference p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--text-dark);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 80px 0;
+    background: var(--bg-white);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.faq-item {
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.faq-item h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.faq-item p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-light);
+}
+
+/* Stations Info */
+.stations-info {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.stations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.station-info-card {
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.station-info-card h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.station-info-card .station-name-zh {
+    font-size: 16px;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.station-info-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.station-info-card .station-meta {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 32px;
+    }
+    
+    .page-header p {
+        font-size: 16px;
+    }
+    
+    .process-steps {
+        padding: 20px;
+    }
+    
+    .key-difference {
+        padding: 25px;
+    }
+    
+    .key-difference h2 {
+        font-size: 22px;
+    }
+    
+    .key-difference p {
+        font-size: 16px;
+    }
+}

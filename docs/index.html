@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data-driven validation of Hong Kong Observatory Signal No. 8 timing - Independent analysis of typhoon warning accuracy">
+    <title>HKO Signal 8 Transparency Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
+        <button id="lang-zh" onclick="switchLanguage('zh')">中</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-en="Are Typhoon Signals Issued Too Early?" data-zh="颱風信號是否過早發出？">
+                    Are Typhoon Signals Issued Too Early?
+                </h1>
+                <p class="hero-subtitle" data-en="Data-driven validation of Hong Kong Observatory Signal No. 8 timing" data-zh="香港天文台八號風球發出時機的數據驗證">
+                    Data-driven validation of Hong Kong Observatory Signal No. 8 timing
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics Dashboard -->
+    <section class="metrics-dashboard">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">🌪️</div>
+                    <div class="metric-value" id="total-typhoons">5</div>
+                    <div class="metric-label" data-en="Typhoons Analyzed" data-zh="已分析颱風">Typhoons Analyzed</div>
+                    <div class="metric-sublabel" data-en="2023-2025" data-zh="2023-2025年">2023-2025</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">⏱️</div>
+                    <div class="metric-value" id="avg-lead-time">330 <span class="metric-unit">min</span></div>
+                    <div class="metric-label" data-en="Average Lead Time" data-zh="平均提前時間">Average Lead Time</div>
+                    <div class="metric-sublabel" data-en="Forecast advantage" data-zh="預報優勢">Forecast advantage</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🎯</div>
+                    <div class="metric-value" id="coverage-percent">64.9<span class="metric-unit">%</span></div>
+                    <div class="metric-label" data-en="Peak Coverage" data-zh="最高覆蓋率">Peak Coverage</div>
+                    <div class="metric-sublabel" data-en="Talim 2023" data-zh="泰利 2023">Talim 2023</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">📍</div>
+                    <div class="metric-value" id="station-count">8</div>
+                    <div class="metric-label" data-en="Reference Stations" data-zh="參考測站">Reference Stations</div>
+                    <div class="metric-sublabel" data-en="HKO network" data-zh="天文台網絡">HKO network</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Cards -->
+    <section class="cta-cards">
+        <div class="container">
+            <div class="cta-grid">
+                <div class="cta-card" onclick="scrollToTimeline()">
+                    <div class="cta-icon">🌪️</div>
+                    <h3 data-en="Explore Typhoon Events" data-zh="探索颱風事件">Explore Typhoon Events</h3>
+                    <p data-en="Interactive timeline of 5 analyzed typhoons from 2023-2025" data-zh="2023-2025年五個已分析颱風的互動時間軸">Interactive timeline of 5 analyzed typhoons from 2023-2025</p>
+                </div>
+                <div class="cta-card" onclick="location.href='methodology.html'">
+                    <div class="cta-icon">📊</div>
+                    <h3 data-en="Understanding the Science" data-zh="理解科學原理">Understanding the Science</h3>
+                    <p data-en="Learn how signals are issued and how our validation algorithm works" data-zh="了解信號如何發出及我們的驗證演算法如何運作">Learn how signals are issued and how our validation algorithm works</p>
+                </div>
+                <div class="cta-card" onclick="location.href='data.html'">
+                    <div class="cta-icon">💾</div>
+                    <h3 data-en="Download Data" data-zh="下載數據">Download Data</h3>
+                    <p data-en="Access raw wind data, analysis results, and source code" data-zh="存取原始風速數據、分析結果及原始碼">Access raw wind data, analysis results, and source code</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typhoon Timeline -->
+    <section class="typhoon-timeline" id="timeline">
+        <div class="container">
+            <h2 class="section-title" data-en="Typhoon Event Timeline" data-zh="颱風事件時間軸">Typhoon Event Timeline</h2>
+            <p class="section-subtitle" data-en="Click on any event to view detailed analysis" data-zh="點擊任何事件查看詳細分析">Click on any event to view detailed analysis</p>
+            
+            <div class="timeline-container" id="typhoon-events">
+                <!-- Events will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-en="About This Project" data-zh="關於本項目">About This Project</h4>
+                    <p data-en="Independent validation study of HKO Signal 8 timing. Not official, for transparency and education." data-zh="天文台八號風球時機的獨立驗證研究。非官方，旨在提高透明度和教育。">
+                        Independent validation study of HKO Signal 8 timing. Not official, for transparency and education.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Quick Links" data-zh="快速連結">Quick Links</h4>
+                    <ul>
+                        <li><a href="methodology.html" data-en="Methodology" data-zh="方法論">Methodology</a></li>
+                        <li><a href="data.html" data-en="Data Download" data-zh="數據下載">Data Download</a></li>
+                        <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+                        <li><a href="https://github.com/yourusername/hko-signal8-validation" data-en="GitHub" data-zh="GitHub">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Transparency" data-zh="透明度">Transparency</h4>
+                    <p data-en="All data and code are open source. Last updated: " data-zh="所有數據和代碼均為開源。最後更新：">
+                        All data and code are open source.<br>
+                        <span class="last-updated" id="last-updated">Last updated: 2025-11-09</span>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-en="© 2025 HKO Signal 8 Transparency Portal. Educational research project." data-zh="© 2025 天文台八號風球透明度門戶。教育研究項目。">
+                    © 2025 HKO Signal 8 Transparency Portal. Educational research project.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

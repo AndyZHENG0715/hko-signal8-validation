@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology - HKO Signal 8 Validation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/methodology.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
+        <button id="lang-zh" onclick="switchLanguage('zh')">中</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <a href="index.html" class="nav-back">← <span data-en="Back to Home" data-zh="返回主頁">Back to Home</span></a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 data-en="Understanding the Science" data-zh="理解科學原理">Understanding the Science</h1>
+            <p data-en="How typhoon signals are issued and how our validation works" data-zh="颱風信號如何發出及我們的驗證如何運作">
+                How typhoon signals are issued and how our validation works
+            </p>
+        </div>
+    </section>
+
+    <!-- Process Comparison -->
+    <section class="process-section">
+        <div class="container">
+            <div class="process-grid">
+                <!-- HKO Official Process -->
+                <div class="process-column">
+                    <div class="process-header hko">
+                        <h2 data-en="HKO OFFICIAL PROCESS" data-zh="天文台官方程序">HKO OFFICIAL PROCESS</h2>
+                        <p class="process-subtitle" data-en="Forecast-based early warning" data-zh="基於預報的預警">Forecast-based early warning</p>
+                    </div>
+                    
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1️⃣</div>
+                            <h3 data-en="Typhoon Track Forecast" data-zh="颱風路徑預報">Typhoon Track Forecast</h3>
+                            <p data-en="Predict typhoon path and intensity 12-24 hours ahead using numerical models and satellite data" data-zh="使用數值模型和衛星數據預測未來12-24小時颱風路徑和強度">
+                                Predict typhoon path and intensity 12-24 hours ahead using numerical models and satellite data
+                            </p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="step-number">2️⃣</div>
+                            <h3 data-en="Wind Speed Prediction" data-zh="風速預測">Wind Speed Prediction</h3>
+                            <p data-en="Expected sustained winds ≥63 km/h at reference stations based on forecast track and intensity" data-zh="根據預測路徑和強度，預期參考測站持續風力≥63 km/h">
+                                Expected sustained winds ≥63 km/h at reference stations based on forecast track and intensity
+                            </p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="step-number">3️⃣</div>
+                            <h3 data-en="Reference Station Check" data-zh="參考測站檢查">Reference Station Check</h3>
+                            <p data-en="Expect ≥4 of 8 reference stations to reach gale-force winds, considering exposure and terrain" data-zh="考慮暴露和地形，預計8個參考測站中≥4個達到烈風">
+                                Expect ≥4 of 8 reference stations to reach gale-force winds, considering exposure and terrain
+                            </p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="step-number">4️⃣</div>
+                            <h3 data-en="Signal 8 Issued" data-zh="發出8號信號">Signal 8 Issued</h3>
+                            <p data-en="Public warning issued with lead time for preparation: secure property, cancel activities, seek shelter" data-zh="發出公眾警告並提供準備時間：固定物品、取消活動、尋找庇護">
+                                Public warning issued with lead time for preparation: secure property, cancel activities, seek shelter
+                            </p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="step-number">5️⃣</div>
+                            <h3 data-en="Monitor & Update" data-zh="監測及更新">Monitor & Update</h3>
+                            <p data-en="Continuous monitoring and signal updates as conditions change; cancel when gales no longer expected" data-zh="持續監測，隨情況變化更新信號；當不再預期烈風時取消">
+                                Continuous monitoring and signal updates as conditions change; cancel when gales no longer expected
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Algorithm Process -->
+                <div class="process-column">
+                    <div class="process-header algo">
+                        <h2 data-en="OUR ALGORITHM" data-zh="我們的演算法">OUR ALGORITHM</h2>
+                        <p class="process-subtitle" data-en="Observation-only validation" data-zh="僅基於觀測的驗證">Observation-only validation</p>
+                    </div>
+                    
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1️⃣</div>
+                            <h3 data-en="Observe Actual Wind Readings" data-zh="觀測實際風速讀數">Observe Actual Wind Readings</h3>
+                            <p data-en="Real-time 10-minute mean wind speeds collected every 10 minutes from all reference stations" data-zh="每10分鐘從所有參考測站收集實時10分鐘平均風速">
+                                Real-time 10-minute mean wind speeds collected every 10 minutes from all reference stations
+                            </p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="step-number">2️⃣</div>
+                            <h3 data-en="Count Stations ≥63 km/h" data-zh="計數≥63 km/h的測站">Count Stations ≥63 km/h</h3>
+                            <p data-en="Check how many of 8 reference stations currently experiencing sustained gale-force winds (observed data only)" data-zh="檢查8個參考測站中有多少正經歷持續烈風（僅觀測數據）">
+                                Check how many of 8 reference stations currently experiencing sustained gale-force winds (observed data only)
+                            </p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="step-number">3️⃣</div>
+                            <h3 data-en="Check Persistence" data-zh="檢查持續性">Check Persistence</h3>
+                            <p data-en="Require ≥4 stations ≥63 km/h for ≥2 consecutive 10-min periods to filter out transient spikes" data-zh="要求≥4個測站≥63 km/h持續≥2個連續10分鐘期間以過濾瞬時峰值">
+                                Require ≥4 stations ≥63 km/h for ≥2 consecutive 10-min periods to filter out transient spikes
+                            </p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="step-number">4️⃣</div>
+                            <h3 data-en="Retrospective Validation" data-zh="回顧驗證">Retrospective Validation</h3>
+                            <p data-en="Compare algorithm detection timing with official signal periods; measure lead time and coverage" data-zh="比較演算法檢測時間與官方信號期間；測量提前時間和覆蓋率">
+                                Compare algorithm detection timing with official signal periods; measure lead time and coverage
+                            </p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="step-number">5️⃣</div>
+                            <h3 data-en="Generate Report" data-zh="生成報告">Generate Report</h3>
+                            <p data-en="Create validation report with timing deltas, station summaries, and assessment of appropriateness" data-zh="創建包含時間差、測站摘要和適當性評估的驗證報告">
+                                Create validation report with timing deltas, station summaries, and assessment of appropriateness
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Difference -->
+            <div class="key-difference">
+                <h2 data-en="KEY DIFFERENCE: Forecast vs. Observation" data-zh="關鍵區別：預報與觀測">KEY DIFFERENCE: Forecast vs. Observation</h2>
+                <p data-en="HKO issues signals based on what is expected to happen (forecast), while our algorithm validates using what actually happened (observation). This fundamental difference explains timing gaps and is intentional for public safety." data-zh="天文台根據預期情況（預報）發出信號，而我們的演算法使用實際發生的情況（觀測）進行驗證。這一根本差異解釋了時間差異，並且是出於公眾安全的考慮而有意為之。">
+                    HKO issues signals based on what is <strong>expected to happen</strong> (forecast), while our algorithm validates using what <strong>actually happened</strong> (observation). This fundamental difference explains timing gaps and is intentional for public safety.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Frequently Asked Questions" data-zh="常見問題">Frequently Asked Questions</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 data-en="Why is the algorithm always later?" data-zh="為什麼演算法總是較晚？">❓ Why is the algorithm always later?</h3>
+                    <p data-en="Because HKO uses forecast data while our algorithm only validates using observed data. The time difference represents valuable early warning lead time, not premature issuance." data-zh="因為天文台使用預報數據，而我們的演算法僅使用觀測數據進行驗證。時間差代表寶貴的預警提前時間，而非過早發出。">
+                        Because HKO uses forecast data while our algorithm only validates using observed data. The time difference represents valuable early warning lead time, not premature issuance.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 data-en="Does this mean HKO issues signals too early?" data-zh="這是否意味著天文台過早發出信號？">❓ Does this mean HKO issues signals too early?</h3>
+                    <p data-en="No. The lead time demonstrates appropriate forecast-based early warning. Our findings validate that HKO follows published standards. Timing differences are expected and beneficial for public safety." data-zh="不是。提前時間展示了適當的基於預報的預警。我們的發現驗證了天文台遵守已公布的標準。時間差異是預期的，對公眾安全有益。">
+                        No. The lead time demonstrates appropriate forecast-based early warning. Our findings validate that HKO follows published standards. Timing differences are expected and beneficial for public safety.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 data-en="What about Tapah showing zero detection?" data-zh="為何塔巴顯示零檢測？">❓ What about Tapah showing zero detection?</h3>
+                    <p data-en="Some typhoons produce localized or offshore gales that don't meet our lowland multi-station criteria, but still justify Signal 8 based on exposure, high-ground winds, and forecast conditions." data-zh="某些颱風產生局部或離岸烈風，不符合我們的低地多站標準，但基於暴露、高地風速和預報條件仍有理由發出8號信號。">
+                        Some typhoons produce localized or offshore gales that don't meet our lowland multi-station criteria, but still justify Signal 8 based on exposure, high-ground winds, and forecast conditions.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 data-en="Can I use this to predict the next typhoon?" data-zh="我能否用這個預測下一個颱風？">❓ Can I use this to predict the next typhoon?</h3>
+                    <p data-en="No. This is retrospective validation only, not a forecasting tool. HKO's operational forecasts incorporate far more data (radar, satellite, models) than our simple observation-based algorithm." data-zh="不能。這僅是回顧驗證，不是預報工具。天文台的業務預報整合了遠比我們簡單的基於觀測的演算法更多的數據（雷達、衛星、模型）。">
+                        No. This is retrospective validation only, not a forecasting tool. HKO's operational forecasts incorporate far more data (radar, satellite, models) than our simple observation-based algorithm.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 data-en="Where does the data come from?" data-zh="數據來自哪裡？">❓ Where does the data come from?</h3>
+                    <p data-en="All wind data comes from HKO's public archives of 10-minute mean wind speeds at reference stations. We process this data using our validation algorithm. Source code and raw data are openly available." data-zh="所有風速數據來自天文台公開的參考測站10分鐘平均風速檔案。我們使用驗證演算法處理這些數據。原始碼和原始數據公開可用。">
+                        All wind data comes from HKO's public archives of 10-minute mean wind speeds at reference stations. We process this data using our validation algorithm. Source code and raw data are openly available.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 data-en="Is this official?" data-zh="這是官方的嗎？">❓ Is this official?</h3>
+                    <p data-en="No. This is an independent citizen analysis for transparency and education. It is not endorsed by or affiliated with HKO. Our goal is validation and public understanding, not criticism." data-zh="不是。這是一項獨立的公民分析，旨在提高透明度和教育。它未經天文台認可或與其有關聯。我們的目標是驗證和公眾理解，而非批評。">
+                        No. This is an independent citizen analysis for transparency and education. It is not endorsed by or affiliated with HKO. Our goal is validation and public understanding, not criticism.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reference Stations Map Info -->
+    <section class="stations-info">
+        <div class="container">
+            <h2 class="section-title" data-en="Reference Station Network" data-zh="參考測站網絡">Reference Station Network</h2>
+            <p class="section-subtitle" data-en="8 stations representing Hong Kong's varied terrain and exposure" data-zh="代表香港多樣地形和暴露的8個測站">
+                8 stations representing Hong Kong's varied terrain and exposure
+            </p>
+            
+            <div class="stations-grid" id="stations-grid">
+                <!-- Stations will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-en="About This Project" data-zh="關於本項目">About This Project</h4>
+                    <p data-en="Independent validation study of HKO Signal 8 timing. Not official, for transparency and education." data-zh="天文台八號風球時機的獨立驗證研究。非官方，旨在提高透明度和教育。">
+                        Independent validation study of HKO Signal 8 timing. Not official, for transparency and education.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Quick Links" data-zh="快速連結">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-en="Home" data-zh="主頁">Home</a></li>
+                        <li><a href="data.html" data-en="Data Download" data-zh="數據下載">Data Download</a></li>
+                        <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/language.js"></script>
+    <script src="js/methodology.js"></script>
+</body>
+</html>

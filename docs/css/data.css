@@ -1,0 +1,179 @@
+/* Data & Downloads Page Styles */
+
+.nav-bar {
+    background: var(--bg-white);
+    padding: 15px 0;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-back {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+}
+
+.nav-back:hover {
+    color: var(--primary-color);
+}
+
+.page-header {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #003366 100%);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.page-header p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+/* Downloads Section */
+.downloads-section {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.download-category {
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.category-icon {
+    font-size: 42px;
+}
+
+.category-header h2 {
+    font-size: 24px;
+    color: var(--text-dark);
+}
+
+.download-category > p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.download-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.download-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--bg-light);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.download-item:hover {
+    background: #e9ecef;
+    border-left-color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.download-name {
+    font-weight: 600;
+    color: var(--secondary-color);
+    font-size: 15px;
+}
+
+.download-meta {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.license-info {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.license-info code {
+    display: block;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 13px;
+    overflow-x: auto;
+}
+
+/* API Section */
+.api-section {
+    padding: 80px 0;
+    background: var(--bg-white);
+}
+
+.api-preview {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.api-preview pre {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 25px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.api-preview code {
+    font-family: 'Courier New', monospace;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .downloads-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-header h1 {
+        font-size: 32px;
+    }
+    
+    .download-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}

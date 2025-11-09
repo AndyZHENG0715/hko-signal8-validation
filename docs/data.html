@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data & Downloads - HKO Signal 8 Validation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/data.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
+        <button id="lang-zh" onclick="switchLanguage('zh')">中</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <a href="index.html" class="nav-back">← <span data-en="Back to Home" data-zh="返回主頁">Back to Home</span></a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 data-en="Data & Downloads" data-zh="數據與下載">Data & Downloads</h1>
+            <p data-en="Complete transparency: all data and code openly available" data-zh="完全透明：所有數據和代碼公開可用">
+                Complete transparency: all data and code openly available
+            </p>
+        </div>
+    </section>
+
+    <!-- Download Categories -->
+    <section class="downloads-section">
+        <div class="container">
+            <div class="downloads-grid">
+                <!-- Event Data -->
+                <div class="download-category">
+                    <div class="category-header">
+                        <div class="category-icon">📊</div>
+                        <h2 data-en="Event Analysis Data" data-zh="事件分析數據">Event Analysis Data</h2>
+                    </div>
+                    <p data-en="Processed validation results for each typhoon event in JSON format" data-zh="每個颱風事件的處理驗證結果（JSON格式）">
+                        Processed validation results for each typhoon event in JSON format
+                    </p>
+                    
+                    <div class="download-list" id="event-downloads">
+                        <!-- Will be dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Raw Wind Data -->
+                <div class="download-category">
+                    <div class="category-header">
+                        <div class="category-icon">🌬️</div>
+                        <h2 data-en="Raw Wind Data" data-zh="原始風速數據">Raw Wind Data</h2>
+                    </div>
+                    <p data-en="Original 10-minute mean wind speed CSV files from HKO stations" data-zh="來自天文台測站的原始10分鐘平均風速CSV文件">
+                        Original 10-minute mean wind speed CSV files from HKO stations
+                    </p>
+                    
+                    <div class="download-list">
+                        <a href="../typhoon_data/" class="download-item">
+                            <span class="download-name">📁 typhoon_data/</span>
+                            <span class="download-meta" data-en="All event data folders" data-zh="所有事件數據資料夾">All event data folders</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Validation Reports -->
+                <div class="download-category">
+                    <div class="category-header">
+                        <div class="category-icon">📄</div>
+                        <h2 data-en="Validation Reports" data-zh="驗證報告">Validation Reports</h2>
+                    </div>
+                    <p data-en="Detailed analysis reports and summary statistics" data-zh="詳細分析報告和摘要統計">
+                        Detailed analysis reports and summary statistics
+                    </p>
+                    
+                    <div class="download-list">
+                        <a href="../reports/HKO_Signal8_Validation_Report.md" class="download-item">
+                            <span class="download-name">📄 HKO_Signal8_Validation_Report.md</span>
+                            <span class="download-meta" data-en="Complete validation report" data-zh="完整驗證報告">Complete validation report</span>
+                        </a>
+                        <a href="../reports/persistence_sensitivity_analysis.csv" class="download-item">
+                            <span class="download-name">📊 persistence_sensitivity_analysis.csv</span>
+                            <span class="download-meta" data-en="Sensitivity analysis results" data-zh="敏感性分析結果">Sensitivity analysis results</span>
+                        </a>
+                        <a href="data/events/summary.json" class="download-item">
+                            <span class="download-name">🔗 summary.json</span>
+                            <span class="download-meta" data-en="All events summary (JSON)" data-zh="所有事件摘要（JSON）">All events summary (JSON)</span>
+                        </a>
+                        <a href="data/stations.json" class="download-item">
+                            <span class="download-name">📍 stations.json</span>
+                            <span class="download-meta" data-en="Reference stations metadata" data-zh="參考測站元數據">Reference stations metadata</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Analysis Figures -->
+                <div class="download-category">
+                    <div class="category-header">
+                        <div class="category-icon">📈</div>
+                        <h2 data-en="Analysis Figures" data-zh="分析圖表">Analysis Figures</h2>
+                    </div>
+                    <p data-en="Timeline comparisons and station heatmaps for each event" data-zh="每個事件的時間對比和測站熱力圖">
+                        Timeline comparisons and station heatmaps for each event
+                    </p>
+                    
+                    <div class="download-list">
+                        <a href="../reports/figs/" class="download-item">
+                            <span class="download-name">📁 reports/figs/</span>
+                            <span class="download-meta" data-en="All analysis figures" data-zh="所有分析圖表">All analysis figures</span>
+                        </a>
+                        <a href="../reports/persistence_sensitivity_plot.png" class="download-item">
+                            <span class="download-name">📊 persistence_sensitivity_plot.png</span>
+                            <span class="download-meta" data-en="Sensitivity plot" data-zh="敏感性分析圖">Sensitivity plot</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Source Code -->
+                <div class="download-category">
+                    <div class="category-header">
+                        <div class="category-icon">💻</div>
+                        <h2 data-en="Source Code" data-zh="原始碼">Source Code</h2>
+                    </div>
+                    <p data-en="Python analysis scripts and web portal code" data-zh="Python分析腳本和網頁門戶代碼">
+                        Python analysis scripts and web portal code
+                    </p>
+                    
+                    <div class="download-list">
+                        <a href="https://github.com/yourusername/hko-signal8-validation" class="download-item" target="_blank">
+                            <span class="download-name">🔗 GitHub Repository</span>
+                            <span class="download-meta" data-en="Full source code" data-zh="完整原始碼">Full source code</span>
+                        </a>
+                        <a href="../analyze_typhoon.py" class="download-item">
+                            <span class="download-name">🐍 analyze_typhoon.py</span>
+                            <span class="download-meta" data-en="Main analysis script" data-zh="主要分析腳本">Main analysis script</span>
+                        </a>
+                        <a href="../export_web_data.py" class="download-item">
+                            <span class="download-name">🐍 export_web_data.py</span>
+                            <span class="download-meta" data-en="Data export script" data-zh="數據導出腳本">Data export script</span>
+                        </a>
+                        <a href="../requirements.txt" class="download-item">
+                            <span class="download-name">📦 requirements.txt</span>
+                            <span class="download-meta" data-en="Python dependencies" data-zh="Python依賴">Python dependencies</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- License -->
+                <div class="download-category">
+                    <div class="category-header">
+                        <div class="category-icon">⚖️</div>
+                        <h2 data-en="License & Attribution" data-zh="許可與歸屬">License & Attribution</h2>
+                    </div>
+                    <p data-en="Data usage terms and attribution requirements" data-zh="數據使用條款和歸屬要求">
+                        Data usage terms and attribution requirements
+                    </p>
+                    
+                    <div class="license-info">
+                        <p data-en="All data is provided as-is for educational and research purposes. Wind data sourced from Hong Kong Observatory public archives. Please cite this project if using the analysis results or methodology." data-zh="所有數據按原樣提供，用於教育和研究目的。風速數據來源於香港天文台公開檔案。如使用分析結果或方法論，請引用本項目。">
+                            All data is provided as-is for educational and research purposes. Wind data sourced from Hong Kong Observatory public archives. Please cite this project if using the analysis results or methodology.
+                        </p>
+                        <p><strong data-en="Suggested Citation:" data-zh="建議引用：">Suggested Citation:</strong><br>
+                        <code>HKO Signal 8 Transparency Portal (2025). Validation of Tropical Cyclone Signal No. 8 Timing. https://[your-domain]/</code>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Info (Future) -->
+    <section class="api-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Developer API (Coming Soon)" data-zh="開發者API（即將推出）">Developer API (Coming Soon)</h2>
+            <p class="section-subtitle" data-en="Programmatic access to validation data and analysis results" data-zh="對驗證數據和分析結果的程式化存取">
+                Programmatic access to validation data and analysis results
+            </p>
+            
+            <div class="api-preview">
+                <pre><code>// Example: Fetch event summary
+fetch('https://[your-domain]/data/events/summary.json')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+// Example: Get specific event details
+fetch('https://[your-domain]/data/events/talim.json')
+  .then(response => response.json())
+  .then(data => console.log(data));</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-en="About This Project" data-zh="關於本項目">About This Project</h4>
+                    <p data-en="Independent validation study of HKO Signal 8 timing. Not official, for transparency and education." data-zh="天文台八號風球時機的獨立驗證研究。非官方，旨在提高透明度和教育。">
+                        Independent validation study of HKO Signal 8 timing. Not official, for transparency and education.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Quick Links" data-zh="快速連結">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-en="Home" data-zh="主頁">Home</a></li>
+                        <li><a href="methodology.html" data-en="Methodology" data-zh="方法論">Methodology</a></li>
+                        <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/language.js"></script>
+    <script src="js/data.js"></script>
+</body>
+</html>

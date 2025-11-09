@@ -1,0 +1,77 @@
+{
+  "total_stations": 8,
+  "stations": [
+    {
+      "id": "chek_lap_kok",
+      "name": "Chek Lap Kok",
+      "name_zh": "赤鱲角",
+      "description": "Airport station, coastal exposure",
+      "elevation_m": 5,
+      "latitude": 22.3089,
+      "longitude": 113.9179
+    },
+    {
+      "id": "lau_fau_shan",
+      "name": "Lau Fau Shan",
+      "name_zh": "流浮山",
+      "description": "Northwestern coastal station",
+      "elevation_m": 5,
+      "latitude": 22.4692,
+      "longitude": 113.9883
+    },
+    {
+      "id": "ta_kwu_ling",
+      "name": "Ta Kwu Ling",
+      "name_zh": "打鼓嶺",
+      "description": "Northeastern inland station",
+      "elevation_m": 35,
+      "latitude": 22.5289,
+      "longitude": 114.1536
+    },
+    {
+      "id": "sha_tin",
+      "name": "Sha Tin",
+      "name_zh": "沙田",
+      "description": "Sheltered valley station",
+      "elevation_m": 7,
+      "latitude": 22.4031,
+      "longitude": 114.2103
+    },
+    {
+      "id": "sai_kung",
+      "name": "Sai Kung",
+      "name_zh": "西貢",
+      "description": "Eastern coastal station",
+      "elevation_m": 4,
+      "latitude": 22.3814,
+      "longitude": 114.2742
+    },
+    {
+      "id": "kai_tak",
+      "name": "Kai Tak",
+      "name_zh": "啟德",
+      "description": "Urban harbor-side station",
+      "elevation_m": 6,
+      "latitude": 22.3078,
+      "longitude": 114.2194
+    },
+    {
+      "id": "tsing_yi",
+      "name": "Tsing Yi",
+      "name_zh": "青衣",
+      "description": "Sheltered harbor station",
+      "elevation_m": 8,
+      "latitude": 22.3508,
+      "longitude": 114.105
+    },
+    {
+      "id": "cheung_chau",
+      "name": "Cheung Chau",
+      "name_zh": "長洲",
+      "description": "Island station, high exposure",
+      "elevation_m": 72,
+      "latitude": 22.2019,
+      "longitude": 114.0264
+    }
+  ]
+}

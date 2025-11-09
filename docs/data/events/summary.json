@@ -1,0 +1,77 @@
+{
+  "generated_at": "2025-11-09T16:16:19.451438",
+  "statistics": {
+    "total_events": 5,
+    "signal8_issued": 4,
+    "algorithm_detected": 1,
+    "avg_lead_time_min": 330,
+    "reference_stations": 8
+  },
+  "events": [
+    {
+      "id": "talim",
+      "name": "Talim",
+      "name_zh": "泰利",
+      "year": 2023,
+      "date_range": "2023-07-17",
+      "severity": "T8",
+      "official_issued": true,
+      "algorithm_detected": true,
+      "timing_delta_min": 330,
+      "assessment": "appropriate",
+      "verdict": "Appropriate issuance with 330 min forecast lead time"
+    },
+    {
+      "id": "yagi",
+      "name": "Yagi",
+      "name_zh": "摩羯",
+      "year": 2024,
+      "date_range": "2024-09-05 to 2024-09-06",
+      "severity": "No Signal 8",
+      "official_issued": false,
+      "algorithm_detected": false,
+      "timing_delta_min": null,
+      "assessment": "consistent",
+      "verdict": "No Signal 8 issued, no persistent gales detected"
+    },
+    {
+      "id": "toraji",
+      "name": "Toraji",
+      "name_zh": "潭美",
+      "year": 2024,
+      "date_range": "2024-11-13 to 2024-11-14",
+      "severity": "T8",
+      "official_issued": true,
+      "algorithm_detected": false,
+      "timing_delta_min": null,
+      "assessment": "forecast_driven",
+      "verdict": "Official issuance appropriate (forecast-based early warning)"
+    },
+    {
+      "id": "tapah",
+      "name": "Tapah",
+      "name_zh": "塔巴",
+      "year": 2025,
+      "date_range": "2025-09-07 to 2025-09-08",
+      "severity": "T8",
+      "official_issued": true,
+      "algorithm_detected": false,
+      "timing_delta_min": null,
+      "assessment": "forecast_driven",
+      "verdict": "Official issuance appropriate (forecast-based early warning)"
+    },
+    {
+      "id": "wipha",
+      "name": "Wipha",
+      "name_zh": "韋帕",
+      "year": 2025,
+      "date_range": "2025-07-19 to 2025-07-20",
+      "severity": "T10",
+      "official_issued": true,
+      "algorithm_detected": false,
+      "timing_delta_min": null,
+      "assessment": "forecast_driven",
+      "verdict": "Official issuance appropriate (forecast-based early warning)"
+    }
+  ]
+}

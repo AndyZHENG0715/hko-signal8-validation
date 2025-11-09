@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Detail - HKO Signal 8 Validation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/event.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
+        <button id="lang-zh" onclick="switchLanguage('zh')">中</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <a href="index.html" class="nav-back">← <span data-en="Back to Timeline" data-zh="返回時間軸">Back to Timeline</span></a>
+        </div>
+    </nav>
+
+    <!-- Event Header -->
+    <section class="event-detail-header">
+        <div class="container">
+            <div class="event-icon-large" id="event-icon">🌪️</div>
+            <h1 class="event-detail-title" id="event-title">Loading...</h1>
+            <p class="event-detail-date" id="event-date"></p>
+        </div>
+    </section>
+
+    <!-- Executive Summary -->
+    <section class="executive-summary">
+        <div class="container">
+            <div class="summary-panel">
+                <h2 data-en="Executive Summary" data-zh="執行摘要">Executive Summary</h2>
+                <div class="verdict-box" id="verdict-box">
+                    <div class="verdict-icon" id="verdict-icon">✅</div>
+                    <div class="verdict-content">
+                        <h3 class="verdict-title" id="verdict-title">Loading...</h3>
+                        <p class="verdict-text" id="verdict-text"></p>
+                    </div>
+                </div>
+                
+                <div class="summary-stats" id="summary-stats">
+                    <!-- Stats will be dynamically loaded -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Comparison Chart -->
+    <section class="chart-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Timeline Comparison" data-zh="時間對比">Timeline Comparison</h2>
+            <p class="section-subtitle" data-en="Official Signal 8 period vs. Algorithm detection" data-zh="官方八號風球期間與演算法檢測對比">
+                Official Signal 8 period vs. Algorithm detection
+            </p>
+            
+            <div class="chart-container">
+                <canvas id="timeline-chart"></canvas>
+            </div>
+            
+            <div class="chart-legend">
+                <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(255, 107, 53, 0.3);"></span>
+                    <span data-en="Official Signal 8 Period" data-zh="官方八號風球期間">Official Signal 8 Period</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(0, 78, 137, 0.3);"></span>
+                    <span data-en="Algorithm Persistent T8 Detection" data-zh="演算法持續烈風檢測">Algorithm Persistent T8 Detection</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(220, 53, 69, 1); width: 20px; height: 2px;"></span>
+                    <span data-en="T8 Threshold (63 km/h)" data-zh="八號風球門檻 (63 km/h)">T8 Threshold (63 km/h)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Station Wind Data -->
+    <section class="station-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Station Wind Summary" data-zh="測站風速摘要">Station Wind Summary</h2>
+            <p class="section-subtitle" data-en="Peak wind speeds recorded at reference stations" data-zh="參考測站記錄的最高風速">
+                Peak wind speeds recorded at reference stations
+            </p>
+            
+            <div class="station-grid" id="station-grid">
+                <!-- Station cards will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Explanation Section -->
+    <section class="explanation-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Why the Time Difference?" data-zh="為何有時間差？">Why the Time Difference?</h2>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(0)">
+                        <span data-en="🔮 Forecast vs. Observation" data-zh="🔮 預報與觀測">🔮 Forecast vs. Observation</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p data-en="HKO issues signals based on expected conditions (forecast), not just current observations. This allows for early warning and public preparation time before dangerous conditions materialize." data-zh="天文台根據預期情況（預報）而非僅當前觀測發出信號。這允許在危險情況出現前提供預警和公眾準備時間。">
+                            HKO issues signals based on expected conditions (forecast), not just current observations. 
+                            This allows for early warning and public preparation time before dangerous conditions materialize.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(1)">
+                        <span data-en="📡 Early Warning Value" data-zh="📡 預警價值">📡 Early Warning Value</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p data-en="The lead time between signal issuance and observed gale conditions represents valuable preparation time for residents to secure property, cancel outdoor activities, and seek shelter." data-zh="信號發出與觀測到烈風之間的提前時間代表居民準備的寶貴時間，包括固定物品、取消戶外活動及尋找庇護所。">
+                            The lead time between signal issuance and observed gale conditions represents valuable 
+                            preparation time for residents to secure property, cancel outdoor activities, and seek shelter.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(2)">
+                        <span data-en="🗺️ Spatial Coverage Differences" data-zh="🗺️ 空間覆蓋差異">🗺️ Spatial Coverage Differences</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p data-en="HKO considers high-ground and offshore stations not included in our reference network. Exposed hilltops and coastal areas often experience stronger winds before lowland urban areas." data-zh="天文台考慮我們參考網絡未包含的高地及離岸測站。暴露的山頂及沿岸地區通常在低地市區之前經歷較強風力。">
+                            HKO considers high-ground and offshore stations not included in our reference network. 
+                            Exposed hilltops and coastal areas often experience stronger winds before lowland urban areas.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(3)">
+                        <span data-en="✅ Conclusion" data-zh="✅ 結論">✅ Conclusion</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p data-en="Time differences between official signals and algorithm detection are expected and appropriate. They reflect forecast-based early warning rather than premature issuance. This study validates HKO's adherence to published standards." data-zh="官方信號與演算法檢測之間的時間差是預期且適當的。它們反映基於預報的預警而非過早發出。本研究驗證天文台遵守已公布的標準。">
+                            Time differences between official signals and algorithm detection are expected and appropriate. 
+                            They reflect forecast-based early warning rather than premature issuance. This study validates 
+                            HKO's adherence to published standards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- View Figures -->
+    <section class="figures-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Detailed Analysis Figures" data-zh="詳細分析圖表">Detailed Analysis Figures</h2>
+            
+            <div class="figures-grid">
+                <div class="figure-card">
+                    <h3 data-en="Timeline Comparison" data-zh="時間對比">Timeline Comparison</h3>
+                    <img id="timeline-figure" src="" alt="Timeline comparison chart" onerror="this.style.display='none'">
+                </div>
+                <div class="figure-card">
+                    <h3 data-en="Station Heatmap" data-zh="測站熱力圖">Station Heatmap</h3>
+                    <img id="heatmap-figure" src="" alt="Station wind heatmap" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-en="About This Project" data-zh="關於本項目">About This Project</h4>
+                    <p data-en="Independent validation study of HKO Signal 8 timing. Not official, for transparency and education." data-zh="天文台八號風球時機的獨立驗證研究。非官方，旨在提高透明度和教育。">
+                        Independent validation study of HKO Signal 8 timing. Not official, for transparency and education.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Quick Links" data-zh="快速連結">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-en="Home" data-zh="主頁">Home</a></li>
+                        <li><a href="methodology.html" data-en="Methodology" data-zh="方法論">Methodology</a></li>
+                        <li><a href="data.html" data-en="Data Download" data-zh="數據下載">Data Download</a></li>
+                        <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Navigation" data-zh="導航">Navigation</h4>
+                    <p><a href="index.html" style="color: var(--accent-color);" data-en="← Back to Timeline" data-zh="← 返回時間軸">← Back to Timeline</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/language.js"></script>
+    <script src="js/event.js"></script>
+</body>
+</html>

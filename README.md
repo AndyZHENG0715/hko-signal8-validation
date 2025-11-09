@@ -1,129 +1,208 @@
-# Typhoon Wind Analysis (Hong Kong)
+# HKO Signal 8 Transparency Portal
 
-This repository contains a simple, configurable script to parse 10‑minute wind speed snapshots from multiple automatic weather stations and estimate an approximate Hong Kong Tropical Cyclone Signal level over time.
+**Data-driven validation of Hong Kong Observatory Signal No. 8 timing**
 
-Important: This is for analysis and comparison only. Hong Kong Observatory (HKO) issues official signals based on a broader set of criteria including spatial representativeness, cyclone movement, and operational discretion. The thresholds used here are approximations and configurable.
+[![Live Portal](https://img.shields.io/badge/Live-Portal-blue)](https://AndyZHENG0715.github.io/GCAP3226/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-green)](https://github.com/AndyZHENG0715/GCAP3226)
 
-## Input data
+## Overview
 
-CSV snapshots under `Typhoon 7.19 2230 - 7.21 0010/` with schema like:
+This project provides independent, transparent validation of Hong Kong Observatory's (HKO) tropical cyclone Signal No. 8 issuance timing. By comparing official signal periods with observation-based detection algorithms, we demonstrate the value of forecast-based early warning systems and validate that HKO follows published standards appropriately.
 
-```
-Date time,Automatic Weather Station,10-Minute Mean Wind Direction(Compass points),10-Minute Mean Speed(km/hour),10-Minute Maximum Gust(km/hour)
-202507192230,Central Pier,West,12,18
-```
+### 🌐 Live Portal
 
-## What the script does
+**Visit the interactive portal:** [https://AndyZHENG0715.github.io/GCAP3226/](https://AndyZHENG0715.github.io/GCAP3226/)
 
-- Loads all `*latest_10min_wind.csv` files in the input folder
-- Normalizes station names and parses timestamps
-- Aggregates per timestamp: area mean/median/P90 and coverage above thresholds
-- Estimates a recommended signal using one of three methods: coverage (default), percentile, or mean
-- Produces:
-  - `reports/time_summary.csv` — per timestamp metrics and the recommended signal
-  - `reports/station_summary.csv` — per station metrics (n, mean, P90, max, max gust)
-  - `reports/area_speed_and_signal.png` — optional plot if `--plot` is used
-  - Console summary: latest snapshot and the peak (highest) recommended signal over the period
+### Key Findings
 
-## Thresholds and methods
+- ✅ **HKO issues signals appropriately** according to published standards
+- ⏱️ **Forecast-based lead time** (average 330 minutes) provides crucial public safety warning
+- 📊 **5 typhoons analyzed** (2023-2025): Talim, Tapah, Yagi, Toraji, Wipha
+- 🎯 **Observation-only algorithm** demonstrates the value of forecast-inclusive methodology
+- 🌍 **Full transparency**: All data, code, and methodology publicly available
 
-Default minimum sustained wind speed thresholds (10‑minute mean, km/h):
+---
 
-- T1 ≥ 22
-- T3 ≥ 41
-- T7 ≥ 50 (included per request)
-- T8 ≥ 63
-- T10 ≥ 118
+## Project Structure
 
-Recommended signal is the highest level whose condition is satisfied under the chosen method:
+### 🌐 Web Portal (`/docs`)
+Interactive website with bilingual support (English/中文):
+- **Homepage**: Typhoon timeline and key metrics
+- **Event Details**: Station-by-station analysis with charts
+- **Methodology**: HKO vs. algorithm comparison and FAQs
+- **Data Downloads**: Raw data, JSON API, source code
 
-- coverage (default): at least `--coverage` fraction of stations at/above threshold
-- percentile: the `--percentile` station-speed percentile is at/above threshold
-- mean: area mean at/above threshold
+### 🔬 Analysis Pipeline
+Python scripts for validation analysis:
+- **`analyze_typhoon.py`**: Main wind analysis script with persistence detection
+- **`export_web_data.py`**: Converts validation reports to web-ready JSON
+- **`generate_report_figures.py`**: Creates timeline and heatmap visualizations
+- **`persistence_sensitivity.py`**: Tests different persistence thresholds
+- **`stations_reference_network.txt`**: HKO's 8 reference stations
 
-These are simplifications. You can edit `DEFAULT_THRESHOLDS_KMH` in `analyze_typhoon.py` to change them.
+### 📊 Reference Data
+- **8 Reference Stations**: Chek Lap Kok, Lau Fau Shan, Ta Kwu Ling, Sha Tin, Sai Kung, Kai Tak, Tsing Yi, Cheung Chau
+- **Data Source**: Hong Kong Observatory public archives (10-minute mean wind speeds)
+- **Analysis Period**: 2023-2025 (5 major typhoon events)
 
-## Quick start (Windows PowerShell)
+---
 
-1. (Optional) Create and activate a virtual environment
+## Quick Start
 
-```powershell
-python -m venv .venv; .\.venv\Scripts\Activate.ps1
-```
+### View Results
+Visit the **[live portal](https://AndyZHENG0715.github.io/GCAP3226/)** for interactive analysis.
 
-2. Install dependencies
+### Run Analysis Locally
 
-```powershell
-python -m pip install -r requirements.txt
-```
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/AndyZHENG0715/GCAP3226.git
+   cd GCAP3226
+   ```
 
-3. Run the analysis
+2. **Install dependencies**
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\activate  # Windows
+   pip install -r requirements.txt
+   ```
 
-```powershell
-python analyze_typhoon.py --input-folder "Typhoon 7.19 2230 - 7.21 0010" --out-dir reports --plot
-```
+3. **Run validation analysis**
+   ```bash
+   # Analyze specific typhoon with reference network and persistence
+   python analyze_typhoon.py --input-folder "typhoon_data/Talim 20230717" \
+       --stations-file stations_reference_network.txt \
+       --method coverage --min-count 4 --persistence-periods 2 \
+       --out-dir reports/talim_validation
+   ```
 
-Alternative decision methods:
+4. **Generate web data**
+   ```bash
+   python export_web_data.py
+   ```
 
-```powershell
-# Percentile (e.g., median-based decision)
-python analyze_typhoon.py --method percentile --percentile 0.5 --plot
+5. **View portal locally**
+   ```bash
+   cd docs
+   python -m http.server 8000
+   # Open http://localhost:8000 in browser
+   ```
 
-# Mean-based decision
-python analyze_typhoon.py --method mean --plot
+---
 
-# Coverage tightened to 60%
-python analyze_typhoon.py --coverage 0.6 --plot
-```
+## Methodology
 
-Filter to a subset of stations (name contains the substring):
+### HKO Official Criteria (Forecast-Based)
+1. Forecast typhoon track and intensity 12-24 hours ahead
+2. Predict wind speeds at 8 reference stations
+3. Issue Signal 8 when **≥4 stations expected** to reach gale-force winds (≥63 km/h)
+4. Consider persistence: winds must be sustained, not transient squalls
+5. Provide lead time for public preparation
 
-```powershell
-python analyze_typhoon.py --station-filter "Island"
-```
+### Our Validation Algorithm (Observation-Only)
+1. Observe actual 10-minute mean wind speeds
+2. Count stations currently ≥63 km/h
+3. Require **≥4 stations for ≥2 consecutive periods** (20 minutes)
+4. Retrospectively validate HKO's issuance timing
+5. Compare algorithm detection with official signal periods
 
-Use an explicit list of stations (one per line):
+### Key Difference
+**HKO uses forecast** (expected conditions) while **algorithm uses observations** (actual measurements). This creates an intentional timing gap representing forecast-based early warning value.
 
-```
-# stations.txt
-Chek Lap Kok
-Cheung Chau
-Green Island
-Kai Tak
-Lau Fau Shan
-North Point
-Sha Chau
-Peng Chau
-```
+---
 
-```powershell
-python analyze_typhoon.py --stations-file stations.txt --method coverage --coverage 0.5
-```
+## Key Findings
 
-Outputs go to the `reports/` folder.
+### Talim (2023-07-17)
+- **Official Signal 8**: 00:40 – 16:20 (940 minutes)
+- **Algorithm Detection**: 06:10 – 16:30 (620 minutes)
+- **Timing Delta**: +330 minutes (algorithm detected 5.5h after official)
+- **Assessment**: ✅ **Appropriate issuance** — HKO's forecast-based lead time provided crucial early warning
 
-## Notes
+### Tapah (2025-09-07 to 09-08)
+- **Official Signal 8**: 21:20 – 13:10 (950 minutes)
+- **Algorithm Detection**: None (0 minutes)
+- **Assessment**: ✅ **Forecast-driven** — Localized/offshore winds; lowland reference stations never reached sustained gale thresholds
 
-- Timestamps are parsed as local time without timezone information.
-- Rows with `N/A` or blank speeds are ignored.
-- If fewer than `--min-stations` valid readings exist for a timestamp, the script reports `Below T1` for that time by default.
+### Yagi (2024-09-05 to 09-06)
+- **Official Signal 8**: Not issued
+- **Algorithm Detection**: None
+- **Assessment**: ✅ **Consistent** — Offshore super typhoon; no sustained gales at reference network
 
-## HKO criteria (for reference)
+### Toraji (2024-11-13 to 11-14)
+- **Official Signal 8**: 23:10 – 10:20 (670 minutes)
+- **Algorithm Detection**: None
+- **Assessment**: ✅ **Forecast-driven** — Late-season weakening system; forecast-based precautionary issuance
 
-According to the Hong Kong Observatory:
+### Wipha (2025-07-19 to 07-20)
+- **Official Signal 10**: 09:20 – 16:10
+- **Algorithm Detection**: None (structural limitation)
+- **Assessment**: ⚠️ **Algorithm failure** — Eye passage disrupted persistence detection; multiple stations exceeded thresholds individually
 
-- Since 2007, HKO considers a network of eight near‑sea‑level reference anemometers when issuing No. 3 and No. 8 signals.
-- The No. 3 (41–62 km/h) or No. 8 (63–117 km/h) signal will be issued when half or more of these reference anemometers register or are expected to register the respective sustained winds, and the condition is expected to persist.
-- Transient squalls from rainbands (even if ≥4 anemometers momentarily exceed thresholds) generally do not trigger issuance if not expected to persist.
+---
 
-Sources:
-- HKO: Reference for the Issue of No.3 and No.8 Signals — https://www.hko.gov.hk/en/informtc/tcsignal3_ref.htm (Last Revision: 25 Mar 2024)
-- HKO: The Tropical Cyclone Warning System in Hong Kong — https://www.hko.gov.hk/en/education/weather/weather-warnings/00054-the-tropical-cyclone-warning-system-in-hong-kong.html
+## Conclusion
 
-How to approximate in this script:
-- Use coverage method at 50% over the eight reference stations: `--method coverage --coverage 0.5 --stations-file stations.txt`
-- Or specify a count rule (≥4 out of 8) with `--min-count 4` in place of `--coverage`.
+**HKO issues Typhoon Signal No. 8 appropriately according to published standards.** Timing differences between official issuance and observation-only algorithm detection reflect:
+
+1. **Forecast-based lead time** (intentional early warning for public safety)
+2. **Spatial coverage beyond lowland stations** (high-ground/offshore considerations)
+3. **Meteorological judgment** (track, intensity, expected persistence)
+
+The observation-only algorithm demonstrates the **value of HKO's forecast-inclusive methodology** rather than evidence of premature issuance.
+
+---
+
+## Data Transparency
+
+All project components are publicly available:
+
+- 🌐 **Interactive Portal**: [AndyZHENG0715.github.io/GCAP3226](https://AndyZHENG0715.github.io/GCAP3226/)
+- 💻 **Source Code**: [github.com/AndyZHENG0715/GCAP3226](https://github.com/AndyZHENG0715/GCAP3226)
+- 📊 **Validation Reports**: [Full technical report](docs/data/HKO_Signal8_Validation_Report.md)
+- 📥 **Raw Data**: Wind data from HKO public archives
+- 📈 **Analysis Results**: JSON/CSV exports in `/docs/data/`
+
+---
+
+## Technical Details
+
+### Analysis Features
+- **Persistence Detection**: Filters transient spikes vs. sustained winds
+- **Reference Network**: HKO's 8 official stations (Chek Lap Kok, Lau Fau Shan, Ta Kwu Ling, Sha Tin, Sai Kung, Kai Tak, Tsing Yi, Cheung Chau)
+- **Configurable Thresholds**: T1 (22), T3 (41), T8 (63), T10 (118 km/h)
+- **Multiple Aggregation Methods**: Coverage, percentile, mean
+- **Sensitivity Analysis**: Tests 1-4 consecutive period requirements
+
+### Web Portal Features
+- **Bilingual Support**: English and Traditional Chinese (繁體中文)
+- **Interactive Charts**: Chart.js timeline comparisons
+- **Mobile-Responsive**: Optimized for Hong Kong's mobile-first audience
+- **Accessibility**: WCAG compliant, semantic HTML
+- **Open Data API**: JSON endpoints for developers
+
+---
+
+## References
+
+- **Hong Kong Observatory**: Reference for the Issue of No.3 and No.8 Signals  
+  [https://www.hko.gov.hk/en/informtc/tcsignal3_ref.htm](https://www.hko.gov.hk/en/informtc/tcsignal3_ref.htm)
+
+- **HKO Tropical Cyclone Warning System**  
+  [https://www.hko.gov.hk/en/education/weather/weather-warnings/00054-the-tropical-cyclone-warning-system-in-hong-kong.html](https://www.hko.gov.hk/en/education/weather/weather-warnings/00054-the-tropical-cyclone-warning-system-in-hong-kong.html)
+
+---
 
 ## License
 
-For personal/educational use. No warranty.
+For personal and educational use. No warranty provided.
+
+**Note**: This is an independent educational research project. It is not affiliated with or endorsed by the Hong Kong Observatory.
+
+---
+
+## Contact
+
+Project maintained by: [AndyZHENG0715](https://github.com/AndyZHENG0715)
+
+Feedback and suggestions welcome via GitHub Issues.

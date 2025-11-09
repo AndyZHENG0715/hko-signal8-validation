@@ -1,16 +1,32 @@
-/.github
-/.playwright-mcp
-/.venv
-/.vscode
-/analyze_typhoon.py
-/DEPLOYMENT_GUIDE.md
-/docs
-/Exercise_1
-/export_web_data.py
-/generate_report_figures.py
-/IMPLEMENTATION_SUMMARY.md
-/persistence_sensitivity.py
-/reports
-/requirements.txt
-/stations_reference_network.txt
-/typhoon_data
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project-specific: Non-public folders
+Exercise_1/
+.playwright-mcp/
+.github/
+
+# Project-specific: Internal development files
+DEPLOYMENT_GUIDE.md
+IMPLEMENTATION_SUMMARY.md
+
+# Project-specific: Raw data and intermediate outputs
+typhoon_data/
+reports/
