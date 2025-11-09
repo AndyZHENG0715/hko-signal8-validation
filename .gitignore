@@ -1,0 +1,16 @@
+/.github
+/.playwright-mcp
+/.venv
+/.vscode
+/analyze_typhoon.py
+/DEPLOYMENT_GUIDE.md
+/docs
+/Exercise_1
+/export_web_data.py
+/generate_report_figures.py
+/IMPLEMENTATION_SUMMARY.md
+/persistence_sensitivity.py
+/reports
+/requirements.txt
+/stations_reference_network.txt
+/typhoon_data
