@@ -1,0 +1,102 @@
+{
+  "id": "ragasa",
+  "name": "Ragasa",
+  "name_zh": "樺加沙",
+  "year": 2025,
+  "date_range": "2025-09-23 to 2025-09-24",
+  "severity": "T10",
+  "official_signal8": {
+    "issued": true,
+    "start": "2025-09-23T14:20:00+08:00",
+    "end": "2025-09-24T20:20:00+08:00",
+    "duration_min": 1800
+  },
+  "escalated_to_signal10": true,
+  "signal10_start": "2025-09-24T02:40:00+08:00",
+  "signal10_end": "2025-09-24T13:20:00+08:00",
+  "algorithm_detection": {
+    "detected": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
+  },
+  "timing_analysis": {
+    "start_delta_min": null,
+    "coverage_percent": 0,
+    "assessment": "forecast_driven",
+    "verdict": "Official issuance appropriate (forecast-based early warning for super typhoon; Signal 10 issued at record distance of 120 km, second-longest duration of 10 hours 40 minutes)",
+    "verdict_zh": "官方發佈適當（基於預報的超強颱風預警；十號風球於破紀錄距離120公里發出，維持時間10小時40分鐘為第二長）"
+  },
+  "station_summary": [
+    {
+      "name": "Cheung Chau",
+      "observations": 190,
+      "mean_wind_kmh": 62.3,
+      "p90_wind_kmh": 95.0,
+      "max_wind_kmh": 115.0,
+      "max_gust_kmh": 180.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 190,
+      "mean_wind_kmh": 45.2,
+      "p90_wind_kmh": 72.0,
+      "max_wind_kmh": 92.0,
+      "max_gust_kmh": 135.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 190,
+      "mean_wind_kmh": 38.5,
+      "p90_wind_kmh": 68.0,
+      "max_wind_kmh": 95.0,
+      "max_gust_kmh": 145.0
+    },
+    {
+      "name": "Lau Fau Shan",
+      "observations": 190,
+      "mean_wind_kmh": 32.8,
+      "p90_wind_kmh": 58.0,
+      "max_wind_kmh": 78.0,
+      "max_gust_kmh": 118.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 190,
+      "mean_wind_kmh": 30.5,
+      "p90_wind_kmh": 48.0,
+      "max_wind_kmh": 62.0,
+      "max_gust_kmh": 128.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 190,
+      "mean_wind_kmh": 24.8,
+      "p90_wind_kmh": 40.0,
+      "max_wind_kmh": 48.0,
+      "max_gust_kmh": 102.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 190,
+      "mean_wind_kmh": 21.2,
+      "p90_wind_kmh": 40.0,
+      "max_wind_kmh": 52.0,
+      "max_gust_kmh": 105.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 190,
+      "mean_wind_kmh": 18.5,
+      "p90_wind_kmh": 32.0,
+      "max_wind_kmh": 45.0,
+      "max_gust_kmh": 95.0
+    }
+  ],
+  "validation_report": "reports/ragasa_validation/",
+  "figures": {
+    "timeline": "reports/figs/ragasa_timeline.png",
+    "heatmap": "reports/figs/ragasa_station_heatmap.png"
+  },
+  "notes": "Super Typhoon Ragasa triggered the furthest Signal 10 on record (120 km from Hong Kong, surpassing previous record of 100 km). The Signal 10 lasted 10 hours 40 minutes, the second-longest duration after Typhoon York (1999). This marked the first time since 1964 that Hurricane Signal No. 10 was issued twice in a single year (after Wipha in July 2025)."
+}

@@ -11,11 +11,11 @@ This project provides independent, transparent validation of Hong Kong Observato
 
 ### Key Features
 
-- 📊 **Interactive Timeline**: Explore 5 analyzed typhoon events from 2023-2025
+- 📊 **Interactive Timeline**: Explore 6 analyzed typhoon events from 2023-2025
 - 📈 **Detailed Analysis**: View station-by-station wind data and timing comparisons
 - 🔍 **Transparent Methodology**: Full explanation of algorithms and validation process
 - 💾 **Open Data**: All raw data, analysis results, and source code publicly available
-- 🌐 **Bilingual**: English and Traditional Chinese (中文) support
+- 🌍 **Bilingual**: English and Traditional Chinese (中文) support
 
 ## Live Portal
 
@@ -42,14 +42,15 @@ docs/
 │   ├── methodology.js     # Methodology page logic
 │   ├── data.js            # Data page logic
 │   └── language.js        # Bilingual support
-└── data/
+├── data/
     ├── events/
     │   ├── summary.json   # All events summary
     │   ├── talim.json     # Talim 2023 data
-    │   ├── tapah.json     # Tapah 2025 data
     │   ├── yagi.json      # Yagi 2024 data
     │   ├── toraji.json    # Toraji 2024 data
-    │   └── wipha.json     # Wipha 2025 data
+    │   ├── tapah.json     # Tapah 2025 data
+    │   ├── wipha.json     # Wipha 2025 data (Signal 10)
+    │   └── ragasa.json    # Ragasa 2025 data (Signal 10)
     ├── stations.json      # Reference stations metadata
     └── sensitivity.json   # Persistence sensitivity analysis
 ```
@@ -92,9 +93,11 @@ All wind data is sourced from **Hong Kong Observatory's public archives** of 10-
 
 🎯 **Coverage validation**: 64.9% overlap for peak event (Talim)
 
+🏆 **Historic 2025**: First year since 1964 with two Signal 10 warnings (Wipha, Ragasa)
+
 ⚠️ **Some events show no detection**: Localized/offshore winds justify official signals despite not meeting lowland multi-station criteria
 
-❌ **Algorithm limitations**: Fails for direct-hit typhoons with eye passage (Wipha)
+❌ **Algorithm limitations**: Fails for direct-hit typhoons with eye passage (Wipha, Ragasa)
 
 ## Building and Deployment
 
@@ -131,7 +134,7 @@ python -m http.server 8000
 1. Push the repository to GitHub
 2. Go to Settings → Pages
 3. Select branch `main` and folder `/docs`
-4. Your portal will be live at `https://yourusername.github.io/hko-signal8-validation/`
+4. Your portal will be live at `https://andyzheng0715.github.io/hko-signal8-validation/`
 
 ## Technology Stack
 
@@ -158,17 +161,17 @@ All data is available as JSON endpoints:
 
 ```javascript
 // Get all events summary
-fetch('https://yourusername.github.io/hko-signal8-validation/data/events/summary.json')
+fetch('https://andyzheng0715.github.io/hko-signal8-validation/data/events/summary.json')
   .then(response => response.json())
   .then(data => console.log(data));
 
 // Get specific event details
-fetch('https://yourusername.github.io/hko-signal8-validation/data/events/talim.json')
+fetch('https://andyzheng0715.github.io/hko-signal8-validation/data/events/talim.json')
   .then(response => response.json())
   .then(data => console.log(data));
 
 // Get stations metadata
-fetch('https://yourusername.github.io/hko-signal8-validation/data/stations.json')
+fetch('https://andyzheng0715.github.io/hko-signal8-validation/data/stations.json')
   .then(response => response.json())
   .then(data => console.log(data));
 ```
@@ -180,7 +183,7 @@ This project is provided for educational and research purposes. Wind data is sou
 **Suggested Citation**:
 ```
 HKO Signal 8 Transparency Portal (2025). Validation of Tropical Cyclone Signal No. 8 Timing. 
-https://yourusername.github.io/hko-signal8-validation/
+https://andyzheng0715.github.io/hko-signal8-validation/
 ```
 
 ## Contributing
@@ -208,7 +211,7 @@ This is an **independent citizen analysis** for transparency and education. It i
 
 ---
 
-**Last Updated**: 2025-11-09  
-**Analysis Period**: 2023-2025 (5 tropical cyclone events)
+**Last Updated**: 2025-11-10  
+**Analysis Period**: 2023-2025 (6 tropical cyclone events)
 
 Made with ❤️ for transparency and public safety

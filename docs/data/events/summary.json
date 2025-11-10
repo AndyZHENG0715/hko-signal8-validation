@@ -1,8 +1,10 @@
 {
   "generated_at": "2025-11-09T16:16:19.451438",
   "statistics": {
-    "total_events": 5,
-    "signal8_issued": 5,
+    "total_events": 6,
+    "signal8_issued": 6,
+    "signal10_issued": 2,
+    "historic_double_signal10": true,
     "algorithm_detected": 1,
     "avg_lead_time_min": 330,
     "reference_stations": 8
@@ -72,6 +74,19 @@
       "timing_delta_min": null,
       "assessment": "forecast_driven",
       "verdict": "Official issuance appropriate (forecast-based early warning)"
+    },
+    {
+      "id": "ragasa",
+      "name": "Ragasa",
+      "name_zh": "樺加沙",
+      "year": 2025,
+      "date_range": "2025-09-23 to 2025-09-24",
+      "severity": "T10",
+      "official_issued": true,
+      "algorithm_detected": false,
+      "timing_delta_min": null,
+      "assessment": "forecast_driven",
+      "verdict": "Official issuance appropriate (forecast-based early warning for super typhoon; Signal 10 issued at record distance)"
     }
   ]
 }

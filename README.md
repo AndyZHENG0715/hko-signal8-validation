@@ -17,9 +17,10 @@ This project provides independent, transparent validation of Hong Kong Observato
 
 - ✅ **HKO issues signals appropriately** according to published standards
 - ⏱️ **Forecast-based lead time** (average 330 minutes) provides crucial public safety warning
-- 📊 **5 typhoons analyzed** (2023-2025): Talim, Tapah, Yagi, Toraji, Wipha
+- 📊 **6 typhoons analyzed** (2023-2025): Talim, Yagi, Toraji, Tapah, Wipha, Ragasa
 - 🎯 **Observation-only algorithm** demonstrates the value of forecast-inclusive methodology
 - 🌍 **Full transparency**: All data, code, and methodology publicly available
+- 🏆 **Historic 2025**: First year since 1964 with two Signal 10 warnings (Wipha, Ragasa)
 
 ---
 
@@ -43,7 +44,7 @@ Python scripts for validation analysis:
 ### 📊 Reference Data
 - **8 Reference Stations**: Chek Lap Kok, Lau Fau Shan, Ta Kwu Ling, Sha Tin, Sai Kung, Kai Tak, Tsing Yi, Cheung Chau
 - **Data Source**: Hong Kong Observatory public archives (10-minute mean wind speeds)
-- **Analysis Period**: 2023-2025 (5 major typhoon events)
+- **Analysis Period**: 2023-2025 (6 major typhoon events)
 
 ---
 
@@ -125,9 +126,9 @@ Visit the **[live portal](https://AndyZHENG0715.github.io/GCAP3226/)** for inter
 - **Assessment**: ✅ **Forecast-driven** — Localized/offshore winds; lowland reference stations never reached sustained gale thresholds
 
 ### Yagi (2024-09-05 to 09-06)
-- **Official Signal 8**: Not issued
+- **Official Signal 8**: 18:20 Sep 5 – 12:40 Sep 6 (1100 minutes)
 - **Algorithm Detection**: None
-- **Assessment**: ✅ **Consistent** — Offshore super typhoon; no sustained gales at reference network
+- **Assessment**: ✅ **Forecast-driven** — Super Typhoon passed offshore; no sustained gales at lowland reference network
 
 ### Toraji (2024-11-13 to 11-14)
 - **Official Signal 8**: 23:10 – 10:20 (670 minutes)
@@ -135,9 +136,16 @@ Visit the **[live portal](https://AndyZHENG0715.github.io/GCAP3226/)** for inter
 - **Assessment**: ✅ **Forecast-driven** — Late-season weakening system; forecast-based precautionary issuance
 
 ### Wipha (2025-07-19 to 07-20)
-- **Official Signal 10**: 09:20 – 16:10
+- **Official Signal 8**: 00:20 – 19:40 (1160 minutes)
+- **Official Signal 10**: 09:20 – 16:10 (410 minutes)
 - **Algorithm Detection**: None (structural limitation)
 - **Assessment**: ⚠️ **Algorithm failure** — Eye passage disrupted persistence detection; multiple stations exceeded thresholds individually
+
+### Ragasa (2025-09-23 to 09-24)
+- **Official Signal 8**: 14:20 Sep 23 – 20:20 Sep 24 (1800 minutes)
+- **Official Signal 10**: 02:40 – 13:20 Sep 24 (640 minutes)
+- **Algorithm Detection**: None
+- **Assessment**: ✅ **Forecast-driven** — Record-breaking Signal 10 at 120 km distance (furthest on record); second-longest T10 duration (10h 40m)
 
 ---
 
