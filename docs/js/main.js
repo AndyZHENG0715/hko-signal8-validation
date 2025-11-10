@@ -136,9 +136,10 @@ function createEventCard(event) {
 
 // Get verdict badge text
 function getVerdictBadge(assessment) {
+    // Updated label to explicitly indicate Signal 8 issuance context for forecast-driven cases
     const badges = {
         'appropriate': '✅ Appropriate',
-        'forecast_driven': '⚠️ Forecast-Based',
+        'forecast_driven': '⚠️ Signal 8 Issued (Forecast-Driven)',
         'consistent': '✓ Consistent'
     };
     return badges[assessment] || assessment;

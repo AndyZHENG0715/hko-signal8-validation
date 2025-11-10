@@ -2,7 +2,7 @@
   "generated_at": "2025-11-09T16:16:19.451438",
   "statistics": {
     "total_events": 5,
-    "signal8_issued": 4,
+    "signal8_issued": 5,
     "algorithm_detected": 1,
     "avg_lead_time_min": 330,
     "reference_stations": 8
@@ -27,12 +27,12 @@
       "name_zh": "摩羯",
       "year": 2024,
       "date_range": "2024-09-05 to 2024-09-06",
-      "severity": "No Signal 8",
-      "official_issued": false,
+      "severity": "T8",
+      "official_issued": true,
       "algorithm_detected": false,
       "timing_delta_min": null,
-      "assessment": "consistent",
-      "verdict": "No Signal 8 issued, no persistent gales detected"
+      "assessment": "forecast_driven",
+      "verdict": "Official Signal 8 issued for Super Typhoon Yagi; validation algorithm detected no sustained lowland gales meeting HKO criteria during the warning period. This represents a forecast-driven warning issued in anticipation of worsening conditions."
     },
     {
       "id": "toraji",

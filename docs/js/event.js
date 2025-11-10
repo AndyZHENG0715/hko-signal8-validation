@@ -296,7 +296,7 @@ function getEventIcon(severity) {
 function getVerdictTitle(assessment) {
     const titles = {
         'appropriate': 'VERDICT: ✅ APPROPRIATE ISSUANCE',
-        'forecast_driven': 'VERDICT: ⚠️ FORECAST-BASED EARLY WARNING',
+        'forecast_driven': 'VERDICT: ⚠️ SIGNAL 8 ISSUED (FORECAST-DRIVEN)',
         'consistent': 'VERDICT: ✓ CONSISTENT (NO SIGNAL 8)'
     };
     return titles[assessment] || assessment.toUpperCase();
