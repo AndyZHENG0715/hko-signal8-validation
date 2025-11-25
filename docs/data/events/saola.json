@@ -1,0 +1,382 @@
+{
+  "id": "saola",
+  "name": "Saola",
+  "name_zh": "蘇拉",
+  "year": 2023,
+  "date_range": "2023-09-01 to 2023-09-02",
+  "severity": "T10",
+  "official_signal8": {
+    "issued": true,
+    "start": "2023-09-01 02:40",
+    "end": "2023-09-02 16:20",
+    "duration_min": 2260
+  },
+  "algorithm_detection": {
+    "detected": false,
+    "pattern_validated": true,
+    "start": "2023-09-01 20:20:00",
+    "end": null,
+    "duration_min": 0,
+    "peak_stations": 4,
+    "mean_wind_peak": 60.5
+  },
+  "verification_tier": "pattern_validated",
+  "timing_analysis": {
+    "start_delta_min": 1060,
+    "coverage_percent": 0,
+    "assessment": "pattern_driven",
+    "verdict": "Pattern-validated: wind-lull-wind pattern detected (initial burst at 20:20, lull 20:30-21:20, reemergence at 21:30).",
+    "verdict_zh": "模式驗證：檢測到 '達標-下降-再達標' 模式（初始爆發 20:20，回落 20:30-21:20，再增長 21:30）。"
+  },
+  "station_summary": [
+    {
+      "name": "Cheung Chau",
+      "observations": 888,
+      "mean_wind_kmh": 57.5,
+      "p90_wind_kmh": 106.0,
+      "max_wind_kmh": 121.0,
+      "max_gust_kmh": 171.0
+    },
+    {
+      "name": "Lau Fau Shan",
+      "observations": 888,
+      "mean_wind_kmh": 39.7,
+      "p90_wind_kmh": 68.0,
+      "max_wind_kmh": 80.0,
+      "max_gust_kmh": 122.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 888,
+      "mean_wind_kmh": 39.0,
+      "p90_wind_kmh": 72.0,
+      "max_wind_kmh": 92.0,
+      "max_gust_kmh": 138.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 888,
+      "mean_wind_kmh": 38.0,
+      "p90_wind_kmh": 66.0,
+      "max_wind_kmh": 74.0,
+      "max_gust_kmh": 105.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 888,
+      "mean_wind_kmh": 29.1,
+      "p90_wind_kmh": 46.0,
+      "max_wind_kmh": 55.0,
+      "max_gust_kmh": 117.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 690,
+      "mean_wind_kmh": 23.0,
+      "p90_wind_kmh": 41.0,
+      "max_wind_kmh": 51.0,
+      "max_gust_kmh": 114.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 888,
+      "mean_wind_kmh": 17.3,
+      "p90_wind_kmh": 41.0,
+      "max_wind_kmh": 50.0,
+      "max_gust_kmh": 107.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 888,
+      "mean_wind_kmh": 15.7,
+      "p90_wind_kmh": 32.0,
+      "max_wind_kmh": 46.0,
+      "max_gust_kmh": 97.0
+    }
+  ],
+  "validation_report": "reports/saola_validation/",
+  "figures": {
+    "timeline": "reports/figs/saola_timeline.png",
+    "heatmap": "reports/figs/saola_station_heatmap.png"
+  },
+  "t10_transparency": {
+    "intervals": 45,
+    "gale_coverage_intervals": 41,
+    "hurricane_coverage_intervals": 3,
+    "low_wind_intervals": 0,
+    "first_interval": "2023-09-01 20:20:00",
+    "last_interval": "2023-09-02 03:40:00",
+    "details": [
+      {
+        "datetime": "2023-09-01 20:20:00",
+        "count_ge_T8": 24,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 20:30:00",
+        "count_ge_T8": 15,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 20:40:00",
+        "count_ge_T8": 24,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 20:50:00",
+        "count_ge_T8": 15,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 21:00:00",
+        "count_ge_T8": 18,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 21:10:00",
+        "count_ge_T8": 9,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 21:20:00",
+        "count_ge_T8": 18,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 21:30:00",
+        "count_ge_T8": 28,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 21:40:00",
+        "count_ge_T8": 6,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 21:50:00",
+        "count_ge_T8": 24,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 22:00:00",
+        "count_ge_T8": 12,
+        "count_ge_T10": 4,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 22:10:00",
+        "count_ge_T8": 20,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 22:20:00",
+        "count_ge_T8": 15,
+        "count_ge_T10": 5,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 22:30:00",
+        "count_ge_T8": 18,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 22:40:00",
+        "count_ge_T8": 18,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 22:50:00",
+        "count_ge_T8": 12,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 23:00:00",
+        "count_ge_T8": 15,
+        "count_ge_T10": 5,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 23:10:00",
+        "count_ge_T8": 21,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 23:20:00",
+        "count_ge_T8": 24,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 23:30:00",
+        "count_ge_T8": 32,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 23:40:00",
+        "count_ge_T8": 12,
+        "count_ge_T10": 3,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-01 23:50:00",
+        "count_ge_T8": 18,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 00:00:00",
+        "count_ge_T8": 12,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 00:10:00",
+        "count_ge_T8": 10,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 00:20:00",
+        "count_ge_T8": 6,
+        "count_ge_T10": 3,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 00:30:00",
+        "count_ge_T8": 12,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 00:40:00",
+        "count_ge_T8": 8,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 00:50:00",
+        "count_ge_T8": 14,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 01:00:00",
+        "count_ge_T8": 14,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 01:10:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 01:20:00",
+        "count_ge_T8": 5,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 01:30:00",
+        "count_ge_T8": 5,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 01:40:00",
+        "count_ge_T8": 5,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 01:50:00",
+        "count_ge_T8": 7,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 02:00:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 02:10:00",
+        "count_ge_T8": 5,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 02:20:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 02:30:00",
+        "count_ge_T8": 6,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 02:40:00",
+        "count_ge_T8": 7,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 02:50:00",
+        "count_ge_T8": 6,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 03:00:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 03:10:00",
+        "count_ge_T8": 5,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 03:20:00",
+        "count_ge_T8": 5,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 03:30:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2023-09-02 03:40:00",
+        "count_ge_T8": 9,
+        "count_ge_T10": 0,
+        "low_wind": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "id": "koinu",
+  "name": "Koinu",
+  "name_zh": "小犬",
+  "year": 2023,
+  "date_range": "2023-10-08 to 2023-10-09",
+  "severity": "T8",
+  "official_signal8": {
+    "issued": true,
+    "start": "2023-10-08 12:40",
+    "end": "2023-10-09 11:40",
+    "duration_min": 1380
+  },
+  "algorithm_detection": {
+    "detected": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
+  },
+  "verification_tier": "unverified",
+  "timing_analysis": {
+    "start_delta_min": null,
+    "coverage_percent": 0,
+    "assessment": "forecast_driven",
+    "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period.",
+    "verdict_zh": "未經觀測驗證：官方 8 號期間未檢測到持續（≥30 分鐘）或 '達標-下降-再達標' 模式。"
+  },
+  "station_summary": [
+    {
+      "name": "Cheung Chau",
+      "observations": 551,
+      "mean_wind_kmh": 54.8,
+      "p90_wind_kmh": 68.0,
+      "max_wind_kmh": 74.0,
+      "max_gust_kmh": 94.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 551,
+      "mean_wind_kmh": 37.0,
+      "p90_wind_kmh": 45.0,
+      "max_wind_kmh": 48.0,
+      "max_gust_kmh": 83.0
+    },
+    {
+      "name": "Lau Fau Shan",
+      "observations": 551,
+      "mean_wind_kmh": 29.7,
+      "p90_wind_kmh": 37.0,
+      "max_wind_kmh": 42.0,
+      "max_gust_kmh": 59.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 551,
+      "mean_wind_kmh": 28.3,
+      "p90_wind_kmh": 36.0,
+      "max_wind_kmh": 38.0,
+      "max_gust_kmh": 59.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 551,
+      "mean_wind_kmh": 22.2,
+      "p90_wind_kmh": 27.0,
+      "max_wind_kmh": 36.0,
+      "max_gust_kmh": 67.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 551,
+      "mean_wind_kmh": 18.7,
+      "p90_wind_kmh": 21.0,
+      "max_wind_kmh": 24.0,
+      "max_gust_kmh": 61.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 551,
+      "mean_wind_kmh": 17.0,
+      "p90_wind_kmh": 23.0,
+      "max_wind_kmh": 26.0,
+      "max_gust_kmh": 49.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 551,
+      "mean_wind_kmh": 12.5,
+      "p90_wind_kmh": 17.0,
+      "max_wind_kmh": 20.0,
+      "max_gust_kmh": 44.0
+    }
+  ],
+  "validation_report": "reports/koinu_validation/",
+  "figures": {
+    "timeline": "reports/figs/koinu_timeline.png",
+    "heatmap": "reports/figs/koinu_station_heatmap.png"
+  }
+}

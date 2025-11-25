@@ -607,13 +607,18 @@ def compute_persistence_columns(
         else:
             coverage_ok = frac_ge_t8 >= coverage
 
+        # For persistence detection, we check if count_ge_T8 >= 4 directly (HKO standard: ≥4 of 8 stations)
+        # (not just recommended_signal label, which may be "Below T1" if area mean is low)
         label_ok = rec_sig in {"T8", "T10"}
+        # HKO standard: ≥4 of 8 reference stations ≥63 km/h
+        # This is the core criterion, regardless of recommended_signal label or coverage method
+        hko_standard_met = count_ge_t8 >= 4
         qualifying = (
             has_min_stations
-            and label_ok
-            and coverage_ok
+            and hko_standard_met  # HKO standard: ≥4 stations ≥63 km/h (primary check)
             and in_t8_window
-            and not in_t10_window
+            # NOTE: Removed "and not in_t10_window" to include T10 intervals in persistence detection
+            # T10 periods should be included in tier classification per PRD requirements
         )
 
         if qualifying:
@@ -852,11 +857,17 @@ def main(argv: Optional[List[str]] = None) -> int:
     opts.out_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Loading CSV files from: {opts.input_folder}")
+    # Resolve stations_file path if provided
+    stations_file_resolved = None
+    if opts.stations_file:
+        stations_file_resolved = opts.stations_file.resolve() if opts.stations_file.exists() else opts.stations_file
+        print(f"Using stations file: {stations_file_resolved}")
     df = load_all_csvs(
         opts.input_folder,
         station_filter=opts.station_filter,
-        stations_file=opts.stations_file,
+        stations_file=stations_file_resolved,
     )
+    print(f"Loaded {len(df)} rows from {df['station'].nunique()} unique stations")
 
     # Summaries
     print("Summarizing by time…")

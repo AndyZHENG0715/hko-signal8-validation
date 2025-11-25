@@ -100,6 +100,63 @@ TYPHOON_EVENTS = {
         "folder": "Ragasa",
         "data_folder": "ragasa_validation",
     },
+    "chaba": {
+        "name": "Chaba",
+        "name_zh": "暹芭",
+        "year": 2022,
+        "date_range": "2022-07-01 to 2022-07-02",
+        "official_signal8_start": "2022-07-01 19:10",
+        "official_signal8_end": "2022-07-02 16:20",
+        "severity": "T8",
+        "folder": "Chaba 220701-220702",
+        "data_folder": "chaba_validation",
+    },
+    "ma-on": {
+        "name": "Ma-on",
+        "name_zh": "馬鞍",
+        "year": 2022,
+        "date_range": "2022-08-24 to 2022-08-25",
+        "official_signal8_start": "2022-08-24 19:25",
+        "official_signal8_end": "2022-08-25 09:20",
+        "severity": "T8",
+        "folder": "Ma-on 220824-220825",
+        "data_folder": "ma-on_validation",
+    },
+    "nalgae": {
+        "name": "Nalgae",
+        "name_zh": "尼格",
+        "year": 2022,
+        "date_range": "2022-11-02 to 2022-11-03",
+        "official_signal8_start": "2022-11-02 13:40",
+        "official_signal8_end": "2022-11-03 05:20",
+        "severity": "T8",
+        "folder": "Nalgae 221102-221103",
+        "data_folder": "nalgae_validation",
+    },
+    "saola": {
+        "name": "Saola",
+        "name_zh": "蘇拉",
+        "year": 2023,
+        "date_range": "2023-09-01 to 2023-09-02",
+        "official_signal8_start": "2023-09-01 02:40",
+        "official_signal8_end": "2023-09-02 16:20",
+        "official_signal10_start": "2023-09-01 20:15",
+        "official_signal10_end": "2023-09-02 03:40",
+        "severity": "T10",
+        "folder": "Saola 230901-230902",
+        "data_folder": "saola_validation",
+    },
+    "koinu": {
+        "name": "Koinu",
+        "name_zh": "小犬",
+        "year": 2023,
+        "date_range": "2023-10-08 to 2023-10-09",
+        "official_signal8_start": "2023-10-08 12:40",
+        "official_signal8_end": "2023-10-09 11:40",
+        "severity": "T8",
+        "folder": "Koinu",
+        "data_folder": "koinu_validation",
+    },
 }
 
 # Reference stations
@@ -200,12 +257,22 @@ def calculate_duration_minutes(start_str: str, end_str: str) -> int:
 
 
 def parse_time_summary(csv_path: Path) -> Dict[str, Any]:
-    """Parse time_summary.csv to extract algorithm detection periods."""
+    """Parse time_summary.csv to extract algorithm detection periods.
+
+    Only considers rows where n_stations <= 8 (filtered to reference stations).
+    This ensures we use the correctly filtered data, not the unfiltered time_summary.
+    """
     if not csv_path.exists():
         return {"detected": False, "start": None, "end": None, "duration_min": 0}
 
     df = pd.read_csv(csv_path)
-    persistent = df[df["persistent_T8"]]
+    # Filter to only rows with n_stations <= 8 (the 8 reference stations)
+    # This ensures we use the correctly filtered data
+    df_filtered = df[df["n_stations"] <= 8].copy()
+    if df_filtered.empty:
+        # Fallback: if no filtered rows, use all data but this indicates a problem
+        df_filtered = df.copy()
+    persistent = df_filtered[df_filtered["persistent_T8"]]
 
     if len(persistent) == 0:
         return {"detected": False, "start": None, "end": None, "duration_min": 0}
@@ -244,6 +311,9 @@ def detect_pattern_validated(
         return False
     if "datetime" not in df.columns or "count_ge_T8" not in df.columns:
         return False
+    # Filter to only rows with n_stations <= 8 (the 8 reference stations)
+    if "n_stations" in df.columns:
+        df = df[df["n_stations"] <= 8].copy()
     # Parse datetimes
     try:
         df["_dt"] = pd.to_datetime(df["datetime"], errors="coerce")
@@ -580,7 +650,7 @@ def main():
         output_path = events_dir / f"{event_id}.json"
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(event_json, f, indent=2, ensure_ascii=False)
-        print(f"    ✓ {output_path}")
+        print(f"    OK {output_path}")
 
     # Generate summary JSON
     print("  Generating summary...")
@@ -588,7 +658,7 @@ def main():
     summary_path = events_dir / "summary.json"
     with open(summary_path, "w", encoding="utf-8") as f:
         json.dump(summary_json, f, indent=2, ensure_ascii=False)
-    print(f"    ✓ {summary_path}")
+    print(f"    OK {summary_path}")
 
     # Export reference stations
     print("  Exporting reference stations...")
@@ -600,7 +670,7 @@ def main():
             indent=2,
             ensure_ascii=False,
         )
-    print(f"    ✓ {stations_path}")
+    print(f"    OK {stations_path}")
 
     # Export sensitivity analysis
     print("  Parsing sensitivity analysis...")
@@ -608,9 +678,9 @@ def main():
     sensitivity_path = data_dir / "sensitivity.json"
     with open(sensitivity_path, "w", encoding="utf-8") as f:
         json.dump(sensitivity_data, f, indent=2, ensure_ascii=False)
-    print(f"    ✓ {sensitivity_path}")
+    print(f"    OK {sensitivity_path}")
 
-    print("\n✅ Export complete!")
+    print("\nExport complete!")
     print(f"   Generated {len(events_data)} event files")
     print(f"   Data directory: {data_dir}")
 

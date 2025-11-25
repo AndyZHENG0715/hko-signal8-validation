@@ -1,19 +1,61 @@
 {
-  "generated_at": "2025-11-24T12:21:00.954246",
+  "generated_at": "2025-11-25T11:31:46.605644",
   "statistics": {
-    "total_events": 6,
-    "signal8_issued": 6,
+    "total_events": 11,
+    "signal8_issued": 11,
     "algorithm_detected": 1,
-    "avg_lead_time_min": 390,
+    "avg_lead_time_min": 740,
     "reference_stations": 8,
     "tier_counts": {
       "verified": 1,
       "pattern_validated": 1,
-      "unverified": 4,
+      "unverified": 9,
       "no_signal": 0
     }
   },
   "events": [
+    {
+      "id": "chaba",
+      "name": "Chaba",
+      "name_zh": "暹芭",
+      "year": 2022,
+      "date_range": "2022-07-01 to 2022-07-02",
+      "severity": "T8",
+      "official_issued": true,
+      "algorithm_detected": false,
+      "verification_tier": "unverified",
+      "timing_delta_min": null,
+      "assessment": "forecast_driven",
+      "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
+    },
+    {
+      "id": "ma-on",
+      "name": "Ma-on",
+      "name_zh": "馬鞍",
+      "year": 2022,
+      "date_range": "2022-08-24 to 2022-08-25",
+      "severity": "T8",
+      "official_issued": true,
+      "algorithm_detected": false,
+      "verification_tier": "unverified",
+      "timing_delta_min": null,
+      "assessment": "forecast_driven",
+      "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
+    },
+    {
+      "id": "nalgae",
+      "name": "Nalgae",
+      "name_zh": "尼格",
+      "year": 2022,
+      "date_range": "2022-11-02 to 2022-11-03",
+      "severity": "T8",
+      "official_issued": true,
+      "algorithm_detected": false,
+      "verification_tier": "unverified",
+      "timing_delta_min": null,
+      "assessment": "forecast_driven",
+      "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
+    },
     {
       "id": "talim",
       "name": "Talim",
@@ -22,11 +64,39 @@
       "date_range": "2023-07-17",
       "severity": "T8",
       "official_issued": true,
-      "algorithm_detected": true,
-      "verification_tier": "verified",
-      "timing_delta_min": 390,
-      "assessment": "appropriate",
-      "verdict": "Verified: sustained T8-level winds detected after issuance (+390 min advance)."
+      "algorithm_detected": false,
+      "verification_tier": "unverified",
+      "timing_delta_min": null,
+      "assessment": "forecast_driven",
+      "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
+    },
+    {
+      "id": "saola",
+      "name": "Saola",
+      "name_zh": "蘇拉",
+      "year": 2023,
+      "date_range": "2023-09-01 to 2023-09-02",
+      "severity": "T10",
+      "official_issued": true,
+      "algorithm_detected": false,
+      "verification_tier": "pattern_validated",
+      "timing_delta_min": 1060,
+      "assessment": "pattern_driven",
+      "verdict": "Pattern-validated: wind-lull-wind pattern detected (initial burst at 20:20, lull 20:30-21:20, reemergence at 21:30)."
+    },
+    {
+      "id": "koinu",
+      "name": "Koinu",
+      "name_zh": "小犬",
+      "year": 2023,
+      "date_range": "2023-10-08 to 2023-10-09",
+      "severity": "T8",
+      "official_issued": true,
+      "algorithm_detected": false,
+      "verification_tier": "unverified",
+      "timing_delta_min": null,
+      "assessment": "forecast_driven",
+      "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
     },
     {
       "id": "yagi",
@@ -92,11 +162,11 @@
       "date_range": "2025-09-23 to 2025-09-24",
       "severity": "T10",
       "official_issued": true,
-      "algorithm_detected": false,
-      "verification_tier": "pattern_validated",
-      "timing_delta_min": null,
+      "algorithm_detected": true,
+      "verification_tier": "verified",
+      "timing_delta_min": 740,
       "assessment": "appropriate",
-      "verdict": "Pattern‑validated: wind met ≥4 stations, dipped (<4 for ≥2 intervals), then met again – structured wind re‑emergence."
+      "verdict": "Verified: sustained T8-level winds detected after issuance (+740 min advance)."
     }
   ]
 }

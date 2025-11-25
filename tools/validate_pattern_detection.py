@@ -13,6 +13,7 @@ Usage:
 
 The script reuses TYPHOON_EVENTS and detect_pattern_validated from export_web_data.py to ensure identical logic.
 """
+
 from __future__ import annotations
 import json
 from pathlib import Path
@@ -86,12 +87,20 @@ def analyze_event(event_id: str, meta: Dict[str, Any]) -> Dict[str, Any]:
     # Conflict if both raw conditions True but classification not verified
     # (detect_pattern_validated already suppresses pattern when persistence present; we re-run to be sure)
     raw_pattern_possible = _raw_pattern_possible(df, meta)
-    if record["persistent_detected"] and raw_pattern_possible and record["classification"] != "verified":
+    if (
+        record["persistent_detected"]
+        and raw_pattern_possible
+        and record["classification"] != "verified"
+    ):
         record["conflict"] = True
-        record["notes"] = "pattern + persistence simultaneously satisfied but classification not verified"
+        record["notes"] = (
+            "pattern + persistence simultaneously satisfied but classification not verified"
+        )
     # Additional note if pattern detection very short segments (pre/post only single intervals)
     if record["classification"] == "pattern_validated" and _short_pattern(df, meta):
-        record["notes"] = (record["notes"] + "; " if record["notes"] else "") + "short pre/post segment (potential borderline pattern)"
+        record["notes"] = (
+            record["notes"] + "; " if record["notes"] else ""
+        ) + "short pre/post segment (potential borderline pattern)"
     return record
 
 
@@ -167,7 +176,9 @@ def _short_pattern(df: pd.DataFrame, meta: Dict[str, Any]) -> bool:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Audit pattern vs persistence classification consistency.")
+    parser = argparse.ArgumentParser(
+        description="Audit pattern vs persistence classification consistency."
+    )
     parser.add_argument(
         "--out-file",
         default="reports/pattern_validation_audit.json",

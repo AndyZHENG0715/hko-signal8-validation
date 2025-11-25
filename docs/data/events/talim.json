@@ -12,20 +12,18 @@
     "duration_min": 940
   },
   "algorithm_detection": {
-    "detected": true,
-    "start": "2023-07-17 07:10:00",
-    "end": "2023-07-17 16:20:00",
-    "duration_min": 190,
-    "peak_stations": 8,
-    "mean_wind_peak": 38.0
+    "detected": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
   },
-  "verification_tier": "verified",
+  "verification_tier": "unverified",
   "timing_analysis": {
-    "start_delta_min": 390,
-    "coverage_percent": 20.2,
-    "assessment": "appropriate",
-    "verdict": "Verified: sustained T8-level winds detected after issuance (+390 min advance).",
-    "verdict_zh": "觀測驗證：持續 8 號級風在發佈後被檢測（提前 390 分鐘）。"
+    "start_delta_min": null,
+    "coverage_percent": 0,
+    "assessment": "forecast_driven",
+    "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period.",
+    "verdict_zh": "未經觀測驗證：官方 8 號期間未檢測到持續（≥30 分鐘）或 '達標-下降-再達標' 模式。"
   },
   "station_summary": [
     {

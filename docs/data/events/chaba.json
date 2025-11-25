@@ -1,0 +1,99 @@
+{
+  "id": "chaba",
+  "name": "Chaba",
+  "name_zh": "暹芭",
+  "year": 2022,
+  "date_range": "2022-07-01 to 2022-07-02",
+  "severity": "T8",
+  "official_signal8": {
+    "issued": true,
+    "start": "2022-07-01 19:10",
+    "end": "2022-07-02 16:20",
+    "duration_min": 1270
+  },
+  "algorithm_detection": {
+    "detected": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
+  },
+  "verification_tier": "unverified",
+  "timing_analysis": {
+    "start_delta_min": null,
+    "coverage_percent": 0,
+    "assessment": "forecast_driven",
+    "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period.",
+    "verdict_zh": "未經觀測驗證：官方 8 號期間未檢測到持續（≥30 分鐘）或 '達標-下降-再達標' 模式。"
+  },
+  "station_summary": [
+    {
+      "name": "Cheung Chau",
+      "observations": 276,
+      "mean_wind_kmh": 58.3,
+      "p90_wind_kmh": 77.0,
+      "max_wind_kmh": 87.0,
+      "max_gust_kmh": 107.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 276,
+      "mean_wind_kmh": 42.1,
+      "p90_wind_kmh": 51.0,
+      "max_wind_kmh": 59.0,
+      "max_gust_kmh": 93.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 276,
+      "mean_wind_kmh": 33.7,
+      "p90_wind_kmh": 44.0,
+      "max_wind_kmh": 56.0,
+      "max_gust_kmh": 73.0
+    },
+    {
+      "name": "Lau Fau Shan",
+      "observations": 276,
+      "mean_wind_kmh": 30.5,
+      "p90_wind_kmh": 40.0,
+      "max_wind_kmh": 51.0,
+      "max_gust_kmh": 79.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 276,
+      "mean_wind_kmh": 28.5,
+      "p90_wind_kmh": 39.0,
+      "max_wind_kmh": 47.0,
+      "max_gust_kmh": 83.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 276,
+      "mean_wind_kmh": 25.0,
+      "p90_wind_kmh": 36.0,
+      "max_wind_kmh": 41.0,
+      "max_gust_kmh": 80.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 276,
+      "mean_wind_kmh": 18.7,
+      "p90_wind_kmh": 24.0,
+      "max_wind_kmh": 34.0,
+      "max_gust_kmh": 68.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 276,
+      "mean_wind_kmh": 17.7,
+      "p90_wind_kmh": 24.0,
+      "max_wind_kmh": 33.0,
+      "max_gust_kmh": 58.0
+    }
+  ],
+  "validation_report": "reports/chaba_validation/",
+  "figures": {
+    "timeline": "reports/figs/chaba_timeline.png",
+    "heatmap": "reports/figs/chaba_station_heatmap.png"
+  }
+}

@@ -1,13 +1,14 @@
 #!/usr/bin/env pwsh
 # Regenerate all typhoon validation reports with refactored standards:
 # - 30-minute persistence (3 consecutive 10-min intervals)
-# - T8-only time filtering (excludes T10 periods for Wipha and Ragasa)
+# - Includes T10 intervals in persistence detection (bug fix: T10 periods now counted)
+# - Uses only 8 HKO reference stations (filtered via stations_reference_network.txt)
 
 $ErrorActionPreference = "Stop"
 
 Write-Host "==================================================================" -ForegroundColor Cyan
 Write-Host "  HKO Signal 8 Validation - Report Regeneration (Refactored)"      -ForegroundColor Cyan
-Write-Host "  Standards: 30-min persistence | T8-only intervals"                -ForegroundColor Cyan
+Write-Host "  Standards: 30-min persistence | Includes T10 intervals"            -ForegroundColor Cyan
 Write-Host "==================================================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -16,6 +17,7 @@ $commonArgs = @(
     "--stations-file", "stations_reference_network.txt",
     "--method", "coverage",
     "--min-count", "4",
+    "--min-stations", "8",  # HKO uses 8 reference stations
     "--persistence-periods", "3"
 )
 
@@ -88,7 +90,7 @@ Write-Host ""
 Write-Host "==================================================================" -ForegroundColor Green
 Write-Host "  ✓ All 6 event reports regenerated successfully!"                 -ForegroundColor Green
 Write-Host "  - Persistence: 30 minutes, 3 periods"                             -ForegroundColor Green
-Write-Host "  - Time filtering: T8-only intervals"                              -ForegroundColor Green
+Write-Host "  - Time filtering: Includes T10 intervals (bug fixed)"           -ForegroundColor Green
 Write-Host "  - Reference network: 8 stations, 4-of-8 criterion"                -ForegroundColor Green
 Write-Host "==================================================================" -ForegroundColor Green
 Write-Host ""

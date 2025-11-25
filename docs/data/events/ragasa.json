@@ -12,18 +12,20 @@
     "duration_min": 1800
   },
   "algorithm_detection": {
-    "detected": false,
-    "start": null,
-    "end": null,
-    "duration_min": 0
+    "detected": true,
+    "start": "2025-09-24 02:40:00",
+    "end": "2025-09-24 05:10:00",
+    "duration_min": 70,
+    "peak_stations": 4,
+    "mean_wind_peak": 55.875
   },
-  "verification_tier": "pattern_validated",
+  "verification_tier": "verified",
   "timing_analysis": {
-    "start_delta_min": null,
-    "coverage_percent": 0,
+    "start_delta_min": 740,
+    "coverage_percent": 3.9,
     "assessment": "appropriate",
-    "verdict": "Pattern‑validated: wind met ≥4 stations, dipped (<4 for ≥2 intervals), then met again – structured wind re‑emergence.",
-    "verdict_zh": "模式驗證：風力達標→下降（<4 連續≥2 個時段）→再次達標，呈現結構性再增長。"
+    "verdict": "Verified: sustained T8-level winds detected after issuance (+740 min advance).",
+    "verdict_zh": "觀測驗證：持續 8 號級風在發佈後被檢測（提前 740 分鐘）。"
   },
   "station_summary": [
     {

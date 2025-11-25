@@ -1,0 +1,99 @@
+{
+  "id": "ma-on",
+  "name": "Ma-on",
+  "name_zh": "馬鞍",
+  "year": 2022,
+  "date_range": "2022-08-24 to 2022-08-25",
+  "severity": "T8",
+  "official_signal8": {
+    "issued": true,
+    "start": "2022-08-24 19:25",
+    "end": "2022-08-25 09:20",
+    "duration_min": 835
+  },
+  "algorithm_detection": {
+    "detected": false,
+    "start": null,
+    "end": null,
+    "duration_min": 0
+  },
+  "verification_tier": "unverified",
+  "timing_analysis": {
+    "start_delta_min": null,
+    "coverage_percent": 0,
+    "assessment": "forecast_driven",
+    "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period.",
+    "verdict_zh": "未經觀測驗證：官方 8 號期間未檢測到持續（≥30 分鐘）或 '達標-下降-再達標' 模式。"
+  },
+  "station_summary": [
+    {
+      "name": "Lau Fau Shan",
+      "observations": 192,
+      "mean_wind_kmh": 11.2,
+      "p90_wind_kmh": 18.0,
+      "max_wind_kmh": 49.0,
+      "max_gust_kmh": 64.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 192,
+      "mean_wind_kmh": 11.0,
+      "p90_wind_kmh": 17.0,
+      "max_wind_kmh": 34.0,
+      "max_gust_kmh": 57.0
+    },
+    {
+      "name": "Cheung Chau",
+      "observations": 192,
+      "mean_wind_kmh": 9.8,
+      "p90_wind_kmh": 15.0,
+      "max_wind_kmh": 46.0,
+      "max_gust_kmh": 67.0
+    },
+    {
+      "name": "Sha Tin",
+      "observations": 192,
+      "mean_wind_kmh": 6.3,
+      "p90_wind_kmh": 12.0,
+      "max_wind_kmh": 19.0,
+      "max_gust_kmh": 39.0
+    },
+    {
+      "name": "Sai Kung",
+      "observations": 192,
+      "mean_wind_kmh": 5.7,
+      "p90_wind_kmh": 15.0,
+      "max_wind_kmh": 37.0,
+      "max_gust_kmh": 60.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 192,
+      "mean_wind_kmh": 5.3,
+      "p90_wind_kmh": 10.0,
+      "max_wind_kmh": 18.0,
+      "max_gust_kmh": 35.0
+    },
+    {
+      "name": "Kai Tak",
+      "observations": 192,
+      "mean_wind_kmh": 4.2,
+      "p90_wind_kmh": 9.0,
+      "max_wind_kmh": 21.0,
+      "max_gust_kmh": 44.0
+    },
+    {
+      "name": "Ta Kwu Ling",
+      "observations": 192,
+      "mean_wind_kmh": 4.2,
+      "p90_wind_kmh": 8.0,
+      "max_wind_kmh": 12.0,
+      "max_gust_kmh": 28.0
+    }
+  ],
+  "validation_report": "reports/ma-on_validation/",
+  "figures": {
+    "timeline": "reports/figs/ma-on_timeline.png",
+    "heatmap": "reports/figs/ma-on_station_heatmap.png"
+  }
+}
