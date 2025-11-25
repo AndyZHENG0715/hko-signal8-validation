@@ -167,6 +167,9 @@ function renderSummaryStats() {
 async function renderChart() {
     if (!eventData) return;
 
+    const chartContainer = document.getElementById('timeline-chart-container');
+    const chartCanvas = document.getElementById('timeline-chart');
+    
     try {
         // Determine path to CSV
         const isInDocsFolder = window.location.pathname.includes('/docs/');
@@ -174,7 +177,18 @@ async function renderChart() {
         const csvPath = `${basePath}${eventData.validation_report}time_summary.csv`;
 
         const response = await fetch(csvPath);
-        if (!response.ok) throw new Error(`Failed to fetch ${csvPath}`);
+        if (!response.ok) {
+            // CSV not available on GitHub Pages - show message
+            if (chartContainer) {
+                chartContainer.innerHTML = `
+                    <div style="padding: 2rem; text-align: center; color: #666;">
+                        <p><strong>Chart data unavailable</strong></p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Timeline chart requires CSV data files that are not available on GitHub Pages. Please refer to the static timeline and heatmap images below, or download the data files from the Data page.</p>
+                    </div>
+                `;
+            }
+            return;
+        }
         const csvText = await response.text();
         const lines = csvText.trim().split('\n');
         if (lines.length < 2) throw new Error('CSV appears empty');
@@ -384,12 +398,15 @@ async function renderChart() {
         });
     } catch (error) {
         console.error('Error loading or parsing CSV:', error);
-        const ctx = document.getElementById('timeline-chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: { labels: ['No Data'], datasets: [{ label: 'Stations ≥63 km/h', data: [0], borderColor: '#ccc', backgroundColor: 'rgba(200,200,200,0.15)' }] },
-            options: { plugins: { title: { display: true, text: 'Timeline data unavailable', color: '#dc3545' }, legend: { display: false } }, scales: { y: { beginAtZero: true }, x: {} } }
-        });
+        const chartContainer = document.getElementById('timeline-chart-container');
+        if (chartContainer) {
+            chartContainer.innerHTML = `
+                <div style="padding: 2rem; text-align: center; color: #666;">
+                    <p><strong>Chart data unavailable</strong></p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Timeline chart requires CSV data files that are not available on GitHub Pages. Please refer to the static timeline and heatmap images below, or download the data files from the Data page.</p>
+                </div>
+            `;
+        }
     }
 }
 

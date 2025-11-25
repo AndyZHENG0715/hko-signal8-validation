@@ -97,12 +97,23 @@ function updateMetrics() {
     const stationCount = document.getElementById('station-count');
     if (stationCount) stationCount.textContent = stats.reference_stations;
 
-    // Calculate peak coverage from Talim event
-    const talimData = eventsData['talim'];
+    // Calculate peak coverage from event with highest coverage
     const coveragePercent = document.getElementById('coverage-percent');
-    if (coveragePercent && talimData) {
-        const coverage = talimData.timing_analysis.coverage_percent;
-        coveragePercent.innerHTML = `${coverage}<span class="metric-unit">%</span>`;
+    if (coveragePercent && eventsData) {
+        let maxCoverage = 0;
+        let maxEvent = null;
+        for (const event of summaryData.events) {
+            const eventData = eventsData[event.id];
+            if (eventData && eventData.timing_analysis && eventData.timing_analysis.coverage_percent > maxCoverage) {
+                maxCoverage = eventData.timing_analysis.coverage_percent;
+                maxEvent = eventData;
+            }
+        }
+        if (maxEvent) {
+            coveragePercent.innerHTML = `${maxCoverage.toFixed(1)}<span class="metric-unit">%</span>`;
+        } else {
+            coveragePercent.innerHTML = `0<span class="metric-unit">%</span>`;
+        }
     }
 
     // Last updated
