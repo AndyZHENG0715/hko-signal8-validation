@@ -7,12 +7,12 @@ const T8_THRESHOLD = 63;
 document.addEventListener('DOMContentLoaded', async function() {
     const urlParams = new URLSearchParams(window.location.search);
     const eventId = urlParams.get('id');
-    
+
     if (!eventId) {
         window.location.href = 'index.html';
         return;
     }
-    
+
     await loadEventData(eventId);
     await loadStationsMetadata();
     renderEventDetail();
@@ -46,20 +46,20 @@ async function loadStationsMetadata() {
 // Render event detail
 function renderEventDetail() {
     if (!eventData) return;
-    
+
     // Update header
     const icon = getEventIcon(eventData.severity);
     document.getElementById('event-icon').textContent = icon;
-    document.getElementById('event-title').textContent = 
+    document.getElementById('event-title').textContent =
         `${eventData.name} ${eventData.year} (${eventData.name_zh})`;
     document.getElementById('event-date').textContent = eventData.date_range;
-    
+
     // Update verdict box
     const verdictBox = document.getElementById('verdict-box');
     const verdictIcon = document.getElementById('verdict-icon');
     const verdictTitle = document.getElementById('verdict-title');
     const verdictText = document.getElementById('verdict-text');
-    
+
     // Set verdict class
         // New verification tier logic
         const tier = eventData.verification_tier || eventData.timing_analysis.assessment;
@@ -79,7 +79,7 @@ function renderEventDetail() {
 
         verdictTitle.textContent = getVerdictTitle(tier);
         verdictText.textContent = eventData.timing_analysis.verdict;
-    
+
     // Apply background color to summary panel based on verdict
     const summaryPanel = document.querySelector('.summary-panel');
     summaryPanel.classList.remove('verdict-appropriate', 'verdict-forecast');
@@ -88,24 +88,24 @@ function renderEventDetail() {
     } else if (eventData.timing_analysis.assessment === 'forecast_driven') {
         summaryPanel.classList.add('verdict-forecast');
     }
-    
+
     // Render summary stats
     renderSummaryStats();
-    
+
     // Render T10 transparency if available
     if (eventData.t10_transparency) {
         renderT10Transparency();
     }
-    
+
     // Update figure paths
     const isInDocsFolder = window.location.pathname.includes('/docs/');
     const basePath = isInDocsFolder ? '../' : './';
     const timelineFigure = document.getElementById('timeline-figure');
     const heatmapFigure = document.getElementById('heatmap-figure');
-    
+
     timelineFigure.src = `${basePath}${eventData.figures.timeline}`;
     timelineFigure.style.display = ''; // Reset display style to show image
-    
+
     heatmapFigure.src = `${basePath}${eventData.figures.heatmap}`;
     heatmapFigure.style.display = ''; // Reset display style to show image
 }
@@ -113,11 +113,11 @@ function renderEventDetail() {
 // Render summary stats
 function renderSummaryStats() {
     const container = document.getElementById('summary-stats');
-    
+
     const stats = [
         {
             label: 'Official Signal 8',
-            value: eventData.official_signal8.issued 
+            value: eventData.official_signal8.issued
                 ? `${formatDuration(eventData.official_signal8.duration_min)}`
                 : 'Not Issued',
             na: !eventData.official_signal8.issued
@@ -154,7 +154,7 @@ function renderSummaryStats() {
             na: !eventData.algorithm_detection.detected
         }
     ];
-    
+
     container.innerHTML = stats.map(stat => `
         <div class="summary-stat">
             <div class="summary-stat-label">${stat.label}</div>
@@ -169,7 +169,7 @@ async function renderChart() {
 
     const chartContainer = document.getElementById('timeline-chart-container');
     const chartCanvas = document.getElementById('timeline-chart');
-    
+
     try {
         // Determine path to CSV
         const isInDocsFolder = window.location.pathname.includes('/docs/');
@@ -413,26 +413,26 @@ async function renderChart() {
 // Render station cards
 function renderStationCards() {
     if (!eventData || !eventData.station_summary) return;
-    
+
     const container = document.getElementById('station-grid');
-    
+
     // Sort stations by max wind speed (descending)
     const sortedStations = [...eventData.station_summary].sort(
         (a, b) => b.max_wind_kmh - a.max_wind_kmh
     );
-    
+
     container.innerHTML = sortedStations.map(station => {
         // Find matching station metadata
         const metadata = stationsData?.stations.find(s => s.name === station.name);
         const nameZh = metadata?.name_zh || '';
-        
+
         const exceedsT8 = station.max_wind_kmh >= T8_THRESHOLD;
-        
+
         return `
             <div class="station-card">
                 <h3>${station.name}</h3>
                 <div class="station-name-zh">${nameZh}</div>
-                
+
                 <div class="station-stats">
                     <div class="station-stat-row">
                         <span class="station-stat-label">Mean Wind</span>
@@ -490,20 +490,20 @@ function formatDuration(minutes) {
 // Render T10 transparency metrics
 function renderT10Transparency() {
     if (!eventData || !eventData.t10_transparency) return;
-    
+
     const t10 = eventData.t10_transparency;
     const container = document.getElementById('summary-stats');
-    
+
     // Create transparency section after existing stats
     const transparencySection = document.createElement('div');
     transparencySection.style.gridColumn = '1 / -1';
     transparencySection.style.marginTop = '1rem';
     transparencySection.style.paddingTop = '1rem';
     transparencySection.style.borderTop = '2px solid #e0e0e0';
-    
+
     const galeCoveragePct = Math.round(t10.gale_coverage_intervals / t10.intervals * 100);
     const hurricaneCoveragePct = Math.round(t10.hurricane_coverage_intervals / t10.intervals * 100);
-    
+
     transparencySection.innerHTML = `
         <h4 style="margin: 0 0 0.75rem 0; color: #004e89; font-size: 0.95rem;">Signal 10 Transparency Metrics</h4>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
@@ -529,16 +529,16 @@ function renderT10Transparency() {
             </div>
         </div>
         <p style="margin: 0.75rem 0 0 0; font-size: 0.85rem; color: #666; line-height: 1.5;">
-            <strong>Note:</strong> Transparency metrics show observed wind coverage during the official Signal 10 period. 
-            Gale coverage indicates intervals where ≥4 of 8 reference stations simultaneously recorded ≥63 km/h (gale force). 
-            Hurricane coverage indicates intervals where ≥4 stations simultaneously recorded ≥118 km/h (hurricane force). 
-            Low gale/hurricane coverage does not invalidate the signal; HKO uses forecast and expert judgment considering 
+            <strong>Note:</strong> Transparency metrics show observed wind coverage during the official Signal 10 period.
+            Gale coverage indicates intervals where ≥4 of 8 reference stations simultaneously recorded ≥63 km/h (gale force).
+            Hurricane coverage indicates intervals where ≥4 stations simultaneously recorded ≥118 km/h (hurricane force).
+            Low gale/hurricane coverage does not invalidate the signal; HKO uses forecast and expert judgment considering
             spatial heterogeneity, eye passage, and terrain effects beyond the lowland reference network.
         </p>
     `;
-    
+
     container.appendChild(transparencySection);
-    
+
     // Add Wind Pattern Analysis section
     renderT10WindPattern();
 }
@@ -546,40 +546,40 @@ function renderT10Transparency() {
 // Render T10 Wind Pattern Analysis (before/during/after)
 async function renderT10WindPattern() {
     if (!eventData || !eventData.t10_transparency) return;
-    
+
     try {
         // Fetch time_summary.csv to analyze before/during/after patterns
         const isInDocsFolder = window.location.pathname.includes('/docs/');
         const basePath = isInDocsFolder ? '../' : './';
         const csvPath = `${basePath}${eventData.validation_report}time_summary.csv`;
-        
+
         const response = await fetch(csvPath);
         const csvText = await response.text();
         const lines = csvText.trim().split('\n');
         const headers = lines[0].split(',');
-        
+
         const datetimeIdx = headers.indexOf('datetime');
         const countT8Idx = headers.indexOf('count_ge_T8');
         const inT8Idx = headers.indexOf('in_T8_window');
         const inT10Idx = headers.indexOf('in_T10_window');
-        
+
         const t10Start = new Date(eventData.t10_transparency.first_interval);
         const t10End = new Date(eventData.t10_transparency.last_interval);
         const t8Start = new Date(eventData.official_signal8.start);
         const t8End = new Date(eventData.official_signal8.end);
-        
+
         let beforeGaleCount = 0;
         let duringGaleCount = 0;
         let afterGaleCount = 0;
-        
+
         for (let i = 1; i < lines.length; i++) {
             const row = lines[i].split(',');
             if (row.length < headers.length) continue;
-            
+
             const datetime = new Date(row[datetimeIdx]);
             const countT8 = parseInt(row[countT8Idx], 10);
             const meetsT8 = countT8 >= 4;
-            
+
             if (datetime >= t8Start && datetime < t10Start) {
                 // Before T10 (within T8 period before T10 started)
                 if (meetsT8) beforeGaleCount++;
@@ -591,19 +591,19 @@ async function renderT10WindPattern() {
                 if (meetsT8) afterGaleCount++;
             }
         }
-        
+
         const duringTotal = eventData.t10_transparency.intervals;
-        
+
         // Calculate before/after totals
         const beforeTotal = Math.floor((t10Start - t8Start) / (10 * 60 * 1000));
         const afterTotal = Math.floor((t8End - t10End) / (10 * 60 * 1000));
-        
+
         // Create wind pattern analysis section
         const container = document.getElementById('summary-stats');
         const patternSection = document.createElement('div');
         patternSection.style.gridColumn = '1 / -1';
         patternSection.style.marginTop = '1.5rem';
-        
+
         patternSection.innerHTML = `
             <details style="background: #faf5ff; padding: 1rem; border-radius: 8px; border: 1px solid #e9d5ff;">
                 <summary style="cursor: pointer; font-weight: 600; color: #6b4c9a; font-size: 0.95rem; margin-bottom: 0.75rem;">
@@ -628,16 +628,16 @@ async function renderT10WindPattern() {
                         </div>
                     </div>
                     <p style="font-size: 0.85rem; color: #444; line-height: 1.6; margin: 0; padding: 0.75rem; background: #fffbeb; border-left: 3px solid #f59e0b; border-radius: 4px;">
-                        <strong>Signal Justification:</strong> While the T10 period may have included calm intervals (e.g., due to storm structure or eye passage), 
-                        the presence of sustained gale-force winds both before and after this period demonstrates that HKO's "wind condition is expected to persist" 
+                        <strong>Signal Justification:</strong> While the T10 period may have included calm intervals (e.g., due to storm structure or eye passage),
+                        the presence of sustained gale-force winds both before and after this period demonstrates that HKO's "wind condition is expected to persist"
                         criterion was met. The signal issuance appropriately reflects the overall dangerous wind environment throughout the event.
                     </p>
                 </div>
             </details>
         `;
-        
+
         container.appendChild(patternSection);
-        
+
     } catch (error) {
         console.error('Error rendering wind pattern analysis:', error);
     }
@@ -655,14 +655,14 @@ function formatDateRange(start, end) {
 function toggleAccordion(index) {
     const items = document.querySelectorAll('.accordion-item');
     const item = items[index];
-    
+
     // Close all other items
     items.forEach((otherItem, i) => {
         if (i !== index) {
             otherItem.classList.remove('active');
         }
     });
-    
+
     // Toggle current item
     item.classList.toggle('active');
 }
