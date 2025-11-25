@@ -47,40 +47,56 @@ function showError(message) {
 async function loadData() {
     try {
         const summaryResponse = await fetch('data/events/summary.json');
+        if (!summaryResponse.ok) {
+            throw new Error(`Failed to load summary.json: ${summaryResponse.status} ${summaryResponse.statusText}`);
+        }
         summaryData = await summaryResponse.json();
-        
+
+        if (!summaryData || !summaryData.events) {
+            throw new Error('Invalid summary.json structure');
+        }
+
         // Load individual event details
         eventsData = {};
         for (const event of summaryData.events) {
-            const response = await fetch(`data/events/${event.id}.json`);
-            eventsData[event.id] = await response.json();
+            try {
+                const response = await fetch(`data/events/${event.id}.json`);
+                if (!response.ok) {
+                    console.warn(`Failed to load ${event.id}.json: ${response.status}`);
+                    continue;
+                }
+                eventsData[event.id] = await response.json();
+            } catch (err) {
+                console.error(`Error loading ${event.id}.json:`, err);
+            }
         }
-        
+
         console.log('Data loaded successfully:', summaryData);
     } catch (error) {
         console.error('Error loading data:', error);
+        throw error; // Re-throw to be caught by DOMContentLoaded handler
     }
 }
 
 // Update key metrics
 function updateMetrics() {
     if (!summaryData || !eventsData) return;
-    
+
     const stats = summaryData.statistics;
-    
+
     // Safely update metrics with null checks
     const totalTyphoons = document.getElementById('total-typhoons');
     if (totalTyphoons) totalTyphoons.textContent = stats.total_events;
-    
+
     const avgLeadTime = document.getElementById('avg-lead-time');
     if (avgLeadTime && stats.avg_lead_time_min) {
-        avgLeadTime.innerHTML = 
+        avgLeadTime.innerHTML =
             `${stats.avg_lead_time_min} <span class="metric-unit">min</span>`;
     }
-    
+
     const stationCount = document.getElementById('station-count');
     if (stationCount) stationCount.textContent = stats.reference_stations;
-    
+
     // Calculate peak coverage from Talim event
     const talimData = eventsData['talim'];
     const coveragePercent = document.getElementById('coverage-percent');
@@ -88,12 +104,12 @@ function updateMetrics() {
         const coverage = talimData.timing_analysis.coverage_percent;
         coveragePercent.innerHTML = `${coverage}<span class="metric-unit">%</span>`;
     }
-    
+
     // Last updated
     const lastUpdated = document.getElementById('last-updated');
     if (lastUpdated) {
         const updatedDate = new Date(summaryData.generated_at);
-        lastUpdated.textContent = 
+        lastUpdated.textContent =
             `Last updated: ${updatedDate.toISOString().split('T')[0]}`;
     }
 }
@@ -101,10 +117,10 @@ function updateMetrics() {
 // Render typhoon timeline
 function renderTimeline() {
     if (!summaryData || !eventsData) return;
-    
+
     const container = document.getElementById('typhoon-events');
     container.innerHTML = '';
-    
+
     summaryData.events.forEach(event => {
         const eventData = eventsData[event.id];
         const card = createEventCard(eventData);
@@ -120,7 +136,7 @@ function createEventCard(event) {
     card.onclick = () => {
         window.location.href = `event.html?id=${event.id}`;
     };
-    
+
     // Determine icon from verification tier (tier overrides raw severity icon)
     let icon = '🌪️';
     if (tier === 'verified') icon = '🟢';
@@ -137,7 +153,7 @@ function createEventCard(event) {
     } else if (tier === 'no_signal') {
         verdictClass = 'verdict-consistent';
     }
-    
+
     card.innerHTML = `
         <div class="event-header">
             <div class="event-name">
@@ -151,7 +167,7 @@ function createEventCard(event) {
                 ${getVerificationBadge(tier)}
             </div>
         </div>
-        
+
         <div class="event-stats">
             <div class="event-stat">
                 <div class="event-stat-label">Official Signal 8 Duration</div>
@@ -179,7 +195,7 @@ function createEventCard(event) {
             </div>
         </div>
     `;
-    
+
     return card;
 }
 
@@ -202,7 +218,7 @@ function getVerificationBadge(tier) {
 
 // Utility: Scroll to timeline
 function scrollToTimeline() {
-    document.getElementById('timeline').scrollIntoView({ 
+    document.getElementById('timeline').scrollIntoView({
         behavior: 'smooth',
         block: 'start'
     });
@@ -211,7 +227,7 @@ function scrollToTimeline() {
 // Update Key Findings section
 function updateKeyFindings() {
     if (!summaryData || !eventsData) return;
-    
+
     // New tier counts
     const tierCounts = summaryData.statistics.tier_counts || {
         verified: 0,
@@ -219,30 +235,30 @@ function updateKeyFindings() {
         unverified: 0,
         no_signal: 0
     };
-    
+
     const appropriateEl = document.getElementById('appropriate-count');
     if (appropriateEl) appropriateEl.textContent = tierCounts.verified;
     const forecastEl = document.getElementById('forecast-count');
     if (forecastEl) forecastEl.textContent = tierCounts.unverified;
     const patternEl = document.getElementById('pattern-count');
     if (patternEl) patternEl.textContent = tierCounts.pattern_validated;
-    
+
     // Calculate coverage statistics
     const coverages = summaryData.events
         .map(e => eventsData[e.id].timing_analysis.coverage_percent)
         .filter(c => c !== null && c !== undefined);
-    
+
     const avgCoverage = coverages.length ? coverages.reduce((sum, c) => sum + c, 0) / coverages.length : 0;
-    
+
     const avgCoverageEl = document.getElementById('avg-coverage');
     if (avgCoverageEl) avgCoverageEl.textContent = `${avgCoverage.toFixed(1)}%`;
-    
+
     // Find highest and lowest coverage
     let highestEvent = null;
     let lowestEvents = [];
     let maxCoverage = -1;
     let minCoverage = 101;
-    
+
     summaryData.events.forEach(event => {
         const coverage = eventsData[event.id].timing_analysis.coverage_percent;
         if (coverage > maxCoverage) {
@@ -256,12 +272,12 @@ function updateKeyFindings() {
             lowestEvents.push(event);
         }
     });
-    
+
     const highestEl = document.getElementById('highest-coverage');
     if (highestEl && highestEvent) {
         highestEl.textContent = `${highestEvent.name} (${maxCoverage}%)`;
     }
-    
+
     const lowestEl = document.getElementById('lowest-coverage');
     if (lowestEl && lowestEvents.length > 0) {
         const names = lowestEvents.map(e => e.name).join(', ');
