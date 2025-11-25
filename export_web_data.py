@@ -18,6 +18,16 @@ from datetime import datetime
 from typing import Dict, List, Any
 import pandas as pd
 
+# ----------------------------------------------------------------------------------
+# NOTE: Observation-only classification tiers (added Phase 2)
+#   Tier 1 (verified): ≥4 stations ≥63 km/h for ≥3 consecutive intervals (persistent_T8 True)
+#   Tier 2 (pattern_validated): pattern inside official window:
+#       ≥4 stations → lull (<4 stations for ≥2 consecutive intervals) → ≥4 stations again
+#       (Does not require persistence >=3 intervals; avoids "eye" wording.)
+#   Tier 3 (unverified): Neither persistence nor pattern detected.
+#   no_signal: Official Signal 8 not issued.
+# ----------------------------------------------------------------------------------
+
 # Event metadata
 TYPHOON_EVENTS = {
     "talim": {
@@ -47,15 +57,15 @@ TYPHOON_EVENTS = {
         "name_zh": "摩羯",
         "year": 2024,
         "date_range": "2024-09-05 to 2024-09-06",
-        "official_signal8_start": None,
-        "official_signal8_end": None,
-        "severity": "No Signal 8",
+        "official_signal8_start": "2024-09-05 18:20",
+        "official_signal8_end": "2024-09-06 12:40",
+        "severity": "T8",
         "folder": "Yagi",
         "data_folder": "yagi_validation",
     },
     "toraji": {
         "name": "Toraji",
-        "name_zh": "潭美",
+        "name_zh": "桃芝",
         "year": 2024,
         "date_range": "2024-11-13 to 2024-11-14",
         "official_signal8_start": "2024-11-13 23:10",
@@ -71,9 +81,24 @@ TYPHOON_EVENTS = {
         "date_range": "2025-07-19 to 2025-07-20",
         "official_signal8_start": "2025-07-20 00:20",
         "official_signal8_end": "2025-07-20 19:40",
+        "official_signal10_start": "2025-07-20 09:20",
+        "official_signal10_end": "2025-07-20 16:10",
         "severity": "T10",
         "folder": "Wipha 7.19 2230 - 7.21 0010",
         "data_folder": "wipha_validation",
+    },
+    "ragasa": {
+        "name": "Ragasa",
+        "name_zh": "樺加沙",
+        "year": 2025,
+        "date_range": "2025-09-23 to 2025-09-24",
+        "official_signal8_start": "2025-09-23 14:20",
+        "official_signal8_end": "2025-09-24 20:20",
+        "official_signal10_start": "2025-09-24 02:40",
+        "official_signal10_end": "2025-09-24 13:20",
+        "severity": "T10",
+        "folder": "Ragasa",
+        "data_folder": "ragasa_validation",
     },
 }
 
@@ -199,6 +224,58 @@ def parse_time_summary(csv_path: Path) -> Dict[str, Any]:
     }
 
 
+def detect_pattern_validated(
+    csv_path: Path, official_start: str, official_end: str
+) -> bool:
+    """Detect Tier 2 (pattern_validated) wind-lull-wind pattern.
+
+    Pattern definition (inside official Signal 8 window):
+      ≥4 stations (count_ge_T8 >=4) at least once before a lull,
+      then a lull segment of ≥2 consecutive intervals with count_ge_T8 <4,
+      then ≥4 stations again after the lull.
+
+    Returns True if such a pattern is found when persistent detection (Tier 1) is absent.
+    """
+    if not csv_path.exists() or not official_start or not official_end:
+        return False
+    try:
+        df = pd.read_csv(csv_path)
+    except Exception:
+        return False
+    if "datetime" not in df.columns or "count_ge_T8" not in df.columns:
+        return False
+    # Parse datetimes
+    try:
+        df["_dt"] = pd.to_datetime(df["datetime"], errors="coerce")
+        start_dt = pd.to_datetime(official_start)
+        end_dt = pd.to_datetime(official_end)
+    except Exception:
+        return False
+    window_df = df[(df["_dt"] >= start_dt) & (df["_dt"] <= end_dt)].copy()
+    if window_df.empty:
+        return False
+    # Quick exclusion: if Tier 1 (persistent_T8) already present, Tier 2 not needed here
+    if "persistent_T8" in window_df.columns and window_df["persistent_T8"].any():
+        return False
+    meets = window_df["count_ge_T8"] >= 4
+    # State machine
+    initial_met = False
+    calm_run = 0
+    for meets_flag in meets.tolist():
+        if meets_flag:
+            # If we have initial met and a calm run of >=2 before, pattern confirmed
+            if initial_met and calm_run >= 2:
+                return True
+            # Otherwise establish initial met (or continue before lull)
+            initial_met = True
+            calm_run = 0  # reset calm run after second segment detection attempt failed
+        else:
+            if initial_met:
+                calm_run += 1
+            # If not initial met yet, lulls before first met don't count
+    return False
+
+
 def parse_station_summary(csv_path: Path) -> List[Dict[str, Any]]:
     """Parse station_summary.csv."""
     if not csv_path.exists():
@@ -254,23 +331,43 @@ def generate_event_json(event_id: str, event_meta: Dict) -> Dict[str, Any]:
                 (algo_detection["duration_min"] / official_duration) * 100, 1
             )
 
-    # Determine assessment
+    # Observation-based verification tier classification
     if not event_meta["official_signal8_start"]:
-        assessment = "consistent"
-        verdict = "No Signal 8 issued, no persistent gales detected"
-        verdict_zh = "未發出8號信號，未檢測到持續烈風"
-    elif not algo_detection["detected"]:
-        assessment = "forecast_driven"
-        verdict = "Official issuance appropriate (forecast-based early warning)"
-        verdict_zh = "官方發佈適當（基於預報的預警）"
-    elif timing_delta and timing_delta > 0:
-        assessment = "appropriate"
-        verdict = f"Appropriate issuance with {timing_delta} min forecast lead time"
-        verdict_zh = f"適當發佈，預報提前 {timing_delta} 分鐘"
+        verification_tier = "no_signal"
+        verdict = "No Signal 8 issued"
+        verdict_zh = "未發出 8 號信號"
     else:
-        assessment = "appropriate"
-        verdict = "Appropriate timing alignment"
-        verdict_zh = "時間對齊適當"
+        pattern_validated = detect_pattern_validated(
+            time_summary_path,
+            event_meta["official_signal8_start"],
+            event_meta["official_signal8_end"],
+        )
+        if algo_detection["detected"]:
+            verification_tier = "verified"
+            if timing_delta and timing_delta > 0:
+                verdict = f"Verified: sustained T8-level winds detected after issuance (+{timing_delta} min advance)."
+                verdict_zh = f"觀測驗證：持續 8 號級風在發佈後被檢測（提前 {timing_delta} 分鐘）。"
+            else:
+                verdict = "Verified: sustained T8-level winds met 30‑min requirement."
+                verdict_zh = "觀測驗證：持續達到 30 分鐘 8 號級風。"
+        elif pattern_validated:
+            verification_tier = "pattern_validated"
+            verdict = "Pattern‑validated: wind met ≥4 stations, dipped (<4 for ≥2 intervals), then met again – structured wind re‑emergence."
+            verdict_zh = "模式驗證：風力達標→下降（<4 連續≥2 個時段）→再次達標，呈現結構性再增長。"
+        else:
+            verification_tier = "unverified"
+            verdict = "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
+            verdict_zh = "未經觀測驗證：官方 8 號期間未檢測到持續（≥30 分鐘）或 '達標-下降-再達標' 模式。"
+
+    # Backward-compatible assessment mapping (legacy front-end still consuming 'assessment')
+    # Map tiers to existing classes until UI updated fully:
+    tier_to_assessment = {
+        "verified": "appropriate",
+        "pattern_validated": "appropriate",  # will gain its own styling later
+        "unverified": "forecast_driven",
+        "no_signal": "consistent",
+    }
+    assessment = tier_to_assessment.get(verification_tier, "forecast_driven")
 
     event_json = {
         "id": event_id,
@@ -286,6 +383,7 @@ def generate_event_json(event_id: str, event_meta: Dict) -> Dict[str, Any]:
             "duration_min": official_duration,
         },
         "algorithm_detection": algo_detection,
+        "verification_tier": verification_tier,
         "timing_analysis": {
             "start_delta_min": timing_delta,
             "coverage_percent": coverage_percent,
@@ -300,6 +398,59 @@ def generate_event_json(event_id: str, event_meta: Dict) -> Dict[str, Any]:
             "heatmap": f"reports/figs/{event_id}_station_heatmap.png",
         },
     }
+
+    # Optional T10 transparency augmentation (only for events with official Signal 10 and generated CSV)
+    t10_path = data_folder / "t10_analysis.csv"
+    if t10_path.exists():
+        try:
+            t10_df = pd.read_csv(t10_path)
+            if not t10_df.empty:
+                transparency_details = []
+                for _, r in t10_df.iterrows():
+                    transparency_details.append(
+                        {
+                            "datetime": str(r.get("datetime")),
+                            "count_ge_T8": int(r.get("count_ge_T8", 0)),
+                            "count_ge_T10": int(r.get("count_ge_T10", 0)),
+                            "low_wind": bool(r.get("t10_low_wind_flag", False)),
+                        }
+                    )
+                event_json["t10_transparency"] = {
+                    "intervals": int(t10_df.shape[0]),
+                    "gale_coverage_intervals": int(
+                        t10_df["t10_meets_t8_coverage"].sum()
+                    ),
+                    "hurricane_coverage_intervals": int(
+                        t10_df["t10_meets_t10_coverage"].sum()
+                    ),
+                    "low_wind_intervals": int(t10_df["t10_low_wind_flag"].sum()),
+                    "first_interval": str(t10_df.iloc[0]["datetime"]),
+                    "last_interval": str(t10_df.iloc[-1]["datetime"]),
+                    "details": transparency_details,
+                }
+        except Exception as exc:
+            print(f"Warning: failed to parse {t10_path}: {exc}")
+
+    eye_path = data_folder / "eye_passage_analysis.csv"
+    if eye_path.exists():
+        try:
+            eye_df = pd.read_csv(eye_path)
+            if not eye_df.empty:
+                segments = []
+                for _, r in eye_df.iterrows():
+                    segments.append(
+                        {
+                            "segment_start": str(r.get("segment_start")),
+                            "segment_end": str(r.get("segment_end")),
+                            "n_calm_intervals": int(r.get("n_calm_intervals", 0)),
+                            "qualifies_eye_passage": bool(
+                                r.get("qualifies_eye_passage", False)
+                            ),
+                        }
+                    )
+                event_json["eye_passage_segments"] = segments
+        except Exception as exc:
+            print(f"Warning: failed to parse {eye_path}: {exc}")
 
     return event_json
 
@@ -319,8 +470,9 @@ def generate_summary_json(events_data: Dict[str, Dict]) -> Dict[str, Any]:
                 "severity": event_data["severity"],
                 "official_issued": event_data["official_signal8"]["issued"],
                 "algorithm_detected": event_data["algorithm_detection"]["detected"],
+                "verification_tier": event_data.get("verification_tier"),
                 "timing_delta_min": event_data["timing_analysis"]["start_delta_min"],
-                "assessment": event_data["timing_analysis"]["assessment"],
+                "assessment": event_data["timing_analysis"]["assessment"],  # legacy
                 "verdict": event_data["timing_analysis"]["verdict"],
             }
         )
@@ -339,6 +491,22 @@ def generate_summary_json(events_data: Dict[str, Dict]) -> Dict[str, Any]:
         if deltas:
             avg_lead_time = round(sum(deltas) / len(deltas))
 
+    # Tier counts
+    tier_counts = {
+        "verified": sum(
+            1 for e in events_list if e.get("verification_tier") == "verified"
+        ),
+        "pattern_validated": sum(
+            1 for e in events_list if e.get("verification_tier") == "pattern_validated"
+        ),
+        "unverified": sum(
+            1 for e in events_list if e.get("verification_tier") == "unverified"
+        ),
+        "no_signal": sum(
+            1 for e in events_list if e.get("verification_tier") == "no_signal"
+        ),
+    }
+
     return {
         "generated_at": datetime.now().isoformat(),
         "statistics": {
@@ -347,6 +515,7 @@ def generate_summary_json(events_data: Dict[str, Dict]) -> Dict[str, Any]:
             "algorithm_detected": detected_events,
             "avg_lead_time_min": avg_lead_time,
             "reference_stations": len(REFERENCE_STATIONS),
+            "tier_counts": tier_counts,
         },
         "events": events_list,
     }

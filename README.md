@@ -7,7 +7,21 @@
 
 ## Overview
 
-This project provides independent, transparent validation of Hong Kong Observatory's (HKO) tropical cyclone Signal No. 8 issuance timing. By comparing official signal periods with observation-based detection algorithms, we demonstrate the value of forecast-based early warning systems and validate that HKO follows published standards appropriately.
+This project provides independent, transparent validation of Hong Kong Observatory's (HKO) Tropical Cyclone Signal No. 8 issuance timing. We surface observation-based evidence without assuming appropriateness by default. A separate advanced (forecast/model) audit is retained for technical users.
+
+### Dual Validation Tracks
+| Track | Purpose | Data Basis | Audience |
+|-------|---------|------------|----------|
+| Observation (Primary) | Independent verification of official Signal 8 periods | Actual 10‑min mean winds at HKO's 8 reference stations | Public / transparency |
+| Forecast Audit (Advanced) | Modeled adherence to published criteria | Parametric (Holland) wind model + terrain factors | Researchers |
+
+The public portal uses ONLY observation data. The advanced audit is published separately for those who wish to examine modeled adherence.
+
+### 3‑Tier Observation Classification
+1. **Verified (Tier 1)** – ≥4 of 8 stations ≥63 km/h for ≥3 consecutive 10‑min intervals (≈30 min) inside the official Signal 8 window.
+2. **Pattern‑Validated (Tier 2)** – Pattern inside the official window: ≥4 stations → lull (<4 for ≥2 consecutive intervals) → ≥4 stations again. (No “eye” wording – not every lull is an eye passage.)
+3. **Unverified (Tier 3)** – Neither persistence nor wind‑lull‑wind pattern detected by observation-only algorithm.
+4. **No Signal** – Official Signal 8 not issued.
 
 ### 🌐 Live Portal
 
@@ -15,12 +29,17 @@ This project provides independent, transparent validation of Hong Kong Observato
 
 ### Key Findings
 
-- ✅ **HKO issues signals appropriately** according to published standards
-- ⏱️ **Forecast-based lead time** (average 330 minutes) provides crucial public safety warning
-- 📊 **6 typhoons analyzed** (2023-2025): Talim, Yagi, Toraji, Tapah, Wipha, Ragasa
-- 🎯 **Observation-only algorithm** demonstrates the value of forecast-inclusive methodology
-- 🌍 **Full transparency**: All data, code, and methodology publicly available
-- 🏆 **Historic 2025**: First year since 1964 with two Signal 10 warnings (Wipha, Ragasa)
+Current sample (6 typhoons, 2023–2025) – will expand with additional historical & future events:
+
+- ✅ **Verified (Tier 1)**: Talim (sustained ≥30 min T8-level winds)
+- ⚠️ **Pattern-Validated (Tier 2)**: (None yet – logic implementation in progress)
+- ❓ **Unverified (Tier 3)**: Yagi, Tapah, Toraji, Wipha, Ragasa (no sustained or wind‑lull‑wind pattern)
+- 🔬 **Advanced audit retained** (forecast/model) for technical comparison
+
+Other highlights:
+- ⏱️ **Early Warning Advantage**: time between official Signal 8 issuance and first sustained (Tier 1) detection; reflects forecast-based preparation window before multi-station gales are concurrently observed.
+- 🌍 **Transparency-first**: All source, raw data, and derived JSON published.
+- 🏆 **Historic 2025**: Two official Signal 10 warnings (Wipha, Ragasa) – coverage variability documented.
 
 ---
 
@@ -98,27 +117,27 @@ Visit the **[live portal](https://AndyZHENG0715.github.io/GCAP3226/)** for inter
 2. Predict wind speeds at 8 reference stations
 3. Issue Signal 8 when **≥4 stations expected** to reach gale-force winds (≥63 km/h)
 4. Consider persistence: winds must be sustained, not transient squalls
-5. Provide lead time for public preparation
+5. Provide early warning advantage for public preparation (issuance before full observation confirmation)
 
 ### Our Validation Algorithm (Observation-Only)
 1. Observe actual 10-minute mean wind speeds
-2. Count stations currently ≥63 km/h
-3. Require **≥4 stations for ≥2 consecutive periods** (20 minutes)
+2. Count stations currently ≥63 km/h (gale force) at the 8 reference stations
+3. Require **≥4 stations for ≥3 consecutive periods** (30 minutes) inside the official Signal 8 window (persistence scoring excludes the Signal 10 eye window; transparency retains all data)
 4. Retrospectively validate HKO's issuance timing
 5. Compare algorithm detection with official signal periods
 
 ### Key Difference
-**HKO uses forecast** (expected conditions) while **algorithm uses observations** (actual measurements). This creates an intentional timing gap representing forecast-based early warning value.
+Official issuance may incorporate forecast expectations and expert judgment beyond what has materialized at lowland stations. Our classification uses only actual 10‑minute mean readings from the official 8 reference stations. Timing gaps and unverified periods are surfaced for public scrutiny – they are not automatically labelled correct or incorrect.
 
 ---
 
-## Key Findings
+## Example Event
 
 ### Talim (2023-07-17)
 - **Official Signal 8**: 00:40 – 16:20 (940 minutes)
 - **Algorithm Detection**: 06:10 – 16:30 (620 minutes)
 - **Timing Delta**: +330 minutes (algorithm detected 5.5h after official)
-- **Assessment**: ✅ **Appropriate issuance** — HKO's forecast-based lead time provided crucial early warning
+- **Assessment**: ✅ **Appropriate issuance** — HKO's forecast-based early warning advantage provided crucial public preparation time
 
 ### Tapah (2025-09-07 to 09-08)
 - **Official Signal 8**: 21:20 – 13:10 (950 minutes)
@@ -138,26 +157,27 @@ Visit the **[live portal](https://AndyZHENG0715.github.io/GCAP3226/)** for inter
 ### Wipha (2025-07-19 to 07-20)
 - **Official Signal 8**: 00:20 – 19:40 (1160 minutes)
 - **Official Signal 10**: 09:20 – 16:10 (410 minutes)
-- **Algorithm Detection**: None (structural limitation)
-- **Assessment**: ⚠️ **Algorithm failure** — Eye passage disrupted persistence detection; multiple stations exceeded thresholds individually
+- **Algorithm Detection**: None (persistence not satisfied)
+- **Transparency**: `t10_analysis.csv` shows sub-threshold 4-of-8 gale coverage and no hurricane-force 4-of-8; no calm segment met eye detection criteria under current thresholds
+- **Assessment**: ⚠️ **Observation-only under-representation** — Eye passage and spatial heterogeneity prevented ≥4 concurrent gales; highlights forecast & expert judgement value
 
 ### Ragasa (2025-09-23 to 09-24)
 - **Official Signal 8**: 14:20 Sep 23 – 20:20 Sep 24 (1800 minutes)
 - **Official Signal 10**: 02:40 – 13:20 Sep 24 (640 minutes)
-- **Algorithm Detection**: None
-- **Assessment**: ✅ **Forecast-driven** — Record-breaking Signal 10 at 120 km distance (furthest on record); second-longest T10 duration (10h 40m)
+- **Algorithm Detection**: None (no 30‑min 4‑of‑8 gale persistence outside eye window)
+- **Transparency**: `t10_analysis.csv` shows intermittent gale counts reaching 4 but hurricane-force coverage never ≥4 concurrently; no calm eye segment confirmed (low-wind criterion not met)
+- **Assessment**: ✅ **Forecast-driven** — Record-breaking far‑field Signal 10; emphasizes limitations of lowland-only observation network for eye & maximum wind structure
 
 ---
 
-## Conclusion
+## Interpretation Guidance
+Use tiers as transparency markers:
 
-**HKO issues Typhoon Signal No. 8 appropriately according to published standards.** Timing differences between official issuance and observation-only algorithm detection reflect:
+- **Verified** – Observation confirms sustained conditions matching published criterion language (≥4 stations, expected to persist).
+- **Pattern-Validated** – Structured re‑emergence pattern even without full 30‑min persistence; merits deeper meteorological review.
+- **Unverified** – Observation data alone cannot confirm standard adherence; prompts constructive inquiry.
 
-1. **Forecast-based lead time** (intentional early warning for public safety)
-2. **Spatial coverage beyond lowland stations** (high-ground/offshore considerations)
-3. **Meteorological judgment** (track, intensity, expected persistence)
-
-The observation-only algorithm demonstrates the **value of HKO's forecast-inclusive methodology** rather than evidence of premature issuance.
+The project does not assert motive; it surfaces data for public discussion (e.g. safety vs. economic impact of early issuance).
 
 ---
 
@@ -175,12 +195,14 @@ All project components are publicly available:
 
 ## Technical Details
 
-### Analysis Features
-- **Persistence Detection**: Filters transient spikes vs. sustained winds
-- **Reference Network**: HKO's 8 official stations (Chek Lap Kok, Lau Fau Shan, Ta Kwu Ling, Sha Tin, Sai Kung, Kai Tak, Tsing Yi, Cheung Chau)
-- **Configurable Thresholds**: T1 (22), T3 (41), T8 (63), T10 (118 km/h)
-- **Multiple Aggregation Methods**: Coverage, percentile, mean
-- **Sensitivity Analysis**: Tests 1-4 consecutive period requirements
+### Analysis Features (Observation Track)
+* **Tier 1 Persistence Detection** – ≥4 stations ≥63 km/h for ≥3 consecutive intervals (≈30 min)
+* **Tier 2 Pattern Detection** – ≥4 stations → lull (<4 for ≥2 intervals) → ≥4 stations again (inside official window)
+* **Reference Network** – Official HKO 8 stations (Chek Lap Kok, Lau Fau Shan, Ta Kwu Ling, Sha Tin, Sai Kung, Kai Tak, Tsing Yi, Cheung Chau)
+* **Thresholds** – T1 (22), T3 (41), T8 (63), T10 (118 km/h)
+* **Window Annotation** – `in_T8_window`, `in_T10_window` for transparency (timeline not filtered)
+* **Signal 10 Transparency** – `t10_analysis.csv` + optional calm segment diagnostics
+* **Sensitivity Analysis** – Persistence parameter benchmarking (1–4 intervals)
 
 ### Web Portal Features
 - **Bilingual Support**: English and Traditional Chinese (繁體中文)
@@ -191,7 +213,7 @@ All project components are publicly available:
 
 ---
 
-## References
+## References (Official sources – to be re-fetched for updated wording)
 
 - **Hong Kong Observatory**: Reference for the Issue of No.3 and No.8 Signals  
   [https://www.hko.gov.hk/en/informtc/tcsignal3_ref.htm](https://www.hko.gov.hk/en/informtc/tcsignal3_ref.htm)
@@ -205,7 +227,7 @@ All project components are publicly available:
 
 For personal and educational use. No warranty provided.
 
-**Note**: This is an independent educational research project. It is not affiliated with or endorsed by the Hong Kong Observatory.
+**Note**: Independent educational research project. Not affiliated with or endorsed by the Hong Kong Observatory.
 
 ---
 

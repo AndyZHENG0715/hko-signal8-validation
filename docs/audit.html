@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast Audit - HKO Signal 8 Transparency Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/audit.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Main Navigation -->
+    <nav class="main-nav" role="navigation" aria-label="Primary">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="nav-logo">
+                    <span class="logo-icon">🌪️</span>
+                    <span class="logo-text">HKO Signal 8 Portal</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link" data-en="Home" data-zh="主頁">Home</a>
+                    <a href="methodology.html" class="nav-link" data-en="Methodology" data-zh="方法論">Methodology</a>
+                    <a href="compare.html" class="nav-link" data-en="Compare" data-zh="比較">Compare</a>
+                    <a href="data.html" class="nav-link" data-en="Data" data-zh="數據">Data</a>
+                    <a href="audit.html" class="nav-link active" data-en="Audit" data-zh="審核">Audit</a>
+                    <a href="about.html" class="nav-link" data-en="About" data-zh="關於">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
+        <button id="lang-zh" onclick="switchLanguage('zh')">中</button>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="index.html" data-en="Home" data-zh="主頁">Home</a></li>
+                <li class="breadcrumb-separator">/</li>
+                <li class="breadcrumb-item active" data-en="Forecast Audit" data-zh="預報審核">Forecast Audit</li>
+            </ol>
+        </div>
+    </nav>
+
+    <main id="main-content" class="container">
+        <!-- Page Header -->
+        <section class="page-header" style="padding-top:0;">
+            <h1 data-en="Forecast-Based Signal Audit" data-zh="基於預報的信號審核">Forecast-Based Signal Audit</h1>
+            <p data-en="Examining how issuance decisions align with published HKO criteria and expected persistence" data-zh="檢視發佈決策如何與天文台公佈的標準及預期持續性一致">Examining how issuance decisions align with published HKO criteria and expected persistence</p>
+        </section>
+
+        <!-- Intro -->
+        <section class="audit-intro">
+            <p data-en="This section analyzes the forecast-side rationale for issuing Signal No. 8 based on expected lowland wind coverage and persistence. Unlike the observation tiers (Verified / Pattern-Validated / Unverified), the audit examines whether the decision context matched published criteria at the time of issuance." data-zh="本部分分析基於預期低地風力覆蓋與持續性的發出八號風球預報端理由。不同於觀測層級（已驗證 / 模式驗證 / 未驗證），審核重點在於發佈時的決策背景是否與公佈標準一致。">This section analyzes the forecast-side rationale for issuing Signal No. 8 based on expected lowland wind coverage and persistence. Unlike the observation tiers (Verified / Pattern-Validated / Unverified), the audit examines whether the decision context matched published criteria at the time of issuance.</p>
+            <div class="disclaimer-box" data-en="Important: This is research transparency only. HKO applies expert judgement that integrates more data sources than our simplified model (e.g., mesoscale analysis, pressure gradients, offshore station trends)." data-zh="重要：此僅為研究透明度。天文台的專業判斷整合了比我們簡化模型更多的數據來源（如中尺度分析、氣壓梯度、離岸測站趨勢）。">Important: This is research transparency only. HKO applies expert judgement that integrates more data sources than our simplified model (e.g., mesoscale analysis, pressure gradients, offshore station trends).</div>
+        </section>
+
+        <!-- Grid Sections -->
+        <section class="audit-grid">
+            <div class="audit-card">
+                <h3 data-en="Published Criteria Snapshot" data-zh="公佈標準摘要">Published Criteria Snapshot</h3>
+                <ul class="criteria-list">
+                    <li data-en="Signal 3: ≥4 of 8 reference stations 41–62 km/h and expected to persist" data-zh="三號信號：8個參考測站中≥4個達41–62 km/h且預期持續">Signal 3: ≥4 of 8 reference stations 41–62 km/h and expected to persist</li>
+                    <li data-en="Signal 8: ≥4 of 8 reference stations ≥63 km/h (gale) with expected persistence (not transient squall spikes)" data-zh="八號信號：8個參考測站中≥4個達≥63 km/h（烈風）並預期具持續性（非瞬時陣風）">Signal 8: ≥4 of 8 reference stations ≥63 km/h (gale) with expected persistence (not transient squall spikes)</li>
+                    <li data-en="Signal 9: Rapid increase during No. 8 (expert judgement)" data-zh="九號信號：在八號期間風力迅速增強（專業判斷）">Signal 9: Rapid increase during No. 8 (expert judgement)</li>
+                    <li data-en="Signal 10: ≥118 km/h 'generally in Hong Kong' (territory-wide); project interpretation uses ≥2 stations ≥118 km/h OR center <50 km" data-zh="十號信號：≥118 km/h『廣泛在香港』；本項目詮釋：≥2測站≥118 km/h或中心<50 km">Signal 10: ≥118 km/h 'generally in Hong Kong' (territory-wide); project interpretation uses ≥2 stations ≥118 km/h OR center <50 km</li>
+                </ul>
+            </div>
+            <div class="audit-card">
+                <h3 data-en="Model Inputs" data-zh="模型輸入">Model Inputs</h3>
+                <ul class="criteria-list">
+                    <li data-en="Reference station 10-min mean wind time series" data-zh="參考測站10分鐘平均風速時間序列">Reference station 10-min mean wind time series</li>
+                    <li data-en="Official signal issuance & cancellation timestamps" data-zh="官方信號發佈與取消時間戳">Official signal issuance & cancellation timestamps</li>
+                    <li data-en="Configured persistence window (default 30 min)" data-zh="設定的持續性窗口（默認30分鐘）">Configured persistence window (default 30 min)</li>
+                    <li data-en="Expected station coverage fraction at issuance (from forecast context)" data-zh="發佈時預期的測站覆蓋比例（來自預報背景）">Expected station coverage fraction at issuance (from forecast context)</li>
+                </ul>
+            </div>
+            <div class="audit-card">
+                <h3 data-en="Algorithm Logic" data-zh="演算法邏輯">Algorithm Logic</h3>
+                <p style="font-size:.75rem;" data-en="The audit script estimates whether the minimum station count and persistence criteria would have been reasonable based on shortly pre-issuance intervals. It flags: (a) lead-time gap, (b) initial coverage sufficiency, (c) persistence plausibility." data-zh="審核腳本估計在發佈前不久的時間段中最少測站數與持續性標準是否合理。它標記：(a) 提前時間差；(b) 初始覆蓋是否足夠；(c) 持續性可能性。">The audit script estimates whether the minimum station count and persistence criteria would have been reasonable based on shortly pre-issuance intervals. It flags: (a) lead-time gap, (b) initial coverage sufficiency, (c) persistence plausibility.</p>
+                <p style="font-size:.75rem;" data-en="Code reference: hko_compliant_algorithm.py & run_hko_audit.py" data-zh="代碼參考：hko_compliant_algorithm.py 與 run_hko_audit.py">Code reference: hko_compliant_algorithm.py & run_hko_audit.py</p>
+            </div>
+            <div class="audit-card">
+                <h3 data-en="Outputs" data-zh="輸出結果">Outputs</h3>
+                <ul class="criteria-list">
+                    <li data-en="audit_report.json (structured compliance flags & metrics)" data-zh="audit_report.json（結構化符合性標記與指標）">audit_report.json (structured compliance flags & metrics)</li>
+                    <li data-en="audit_summary.md (human-readable summary)" data-zh="audit_summary.md（易讀摘要）">audit_summary.md (human-readable summary)</li>
+                    <li data-en="Early warning time and coverage comparisons vs observation detection" data-zh="與觀測檢測比較的提前預警時間與覆蓋">Early warning time and coverage comparisons vs observation detection</li>
+                </ul>
+                <div class="download-links">
+                    <a href="../audit_report.json" data-en="Download JSON" data-zh="下載JSON">Download JSON</a>
+                    <a href="../audit_summary.md" data-en="Download Summary" data-zh="下載摘要">Download Summary</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Limitations -->
+        <section class="limitations-box" style="margin-top:1.4rem;">
+            <h3 style="margin-top:0; font-size:.85rem;" data-en="Interpretation & Limitations" data-zh="詮釋與局限">Interpretation & Limitations</h3>
+            <ul>
+                <li data-en="Does not reproduce full HKO forecaster workflow" data-zh="不重現天文台完整預報員流程">Does not reproduce full HKO forecaster workflow</li>
+                <li data-en="No mesoscale model ingestion or pressure gradient analysis" data-zh="不包含中尺度模式或氣壓梯度分析">No mesoscale model ingestion or pressure gradient analysis</li>
+                <li data-en="Offshore / high-elevation station context excluded" data-zh="排除離岸/高地測站背景">Offshore / high-elevation station context excluded</li>
+                <li data-en="Eye passage & structural evolution handled by simplified assumptions" data-zh="風眼通過與結構演變以簡化假設處理">Eye passage & structural evolution handled by simplified assumptions</li>
+                <li data-en="Flags are informational—not a correctness verdict" data-zh="標記僅供資訊——非正確性判決">Flags are informational—not a correctness verdict</li>
+            </ul>
+        </section>
+
+        <div class="disclaimer-box" style="margin-top:1rem;" data-en="Observation verification tiers remain the public-facing classification. Forecast audit materials are provided for advanced transparency only." data-zh="觀測驗證層級仍為面向公眾的分類。預報審核內容僅為進階透明度提供。">Observation verification tiers remain the public-facing classification. Forecast audit materials are provided for advanced transparency only.</div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top:2rem;">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-en="Quick Links" data-zh="快速連結">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-en="Home" data-zh="主頁">Home</a></li>
+                        <li><a href="methodology.html" data-en="Methodology" data-zh="方法論">Methodology</a></li>
+                        <li><a href="compare.html" data-en="Compare" data-zh="比較">Compare</a></li>
+                        <li><a href="data.html" data-en="Data" data-zh="數據">Data</a></li>
+                        <li><a href="audit.html" data-en="Audit" data-zh="審核">Audit</a></li>
+                        <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Transparency" data-zh="透明度">Transparency</h4>
+                    <p style="font-size:.7rem;" data-en="All datasets & code open source." data-zh="所有數據與代碼開源。">All datasets & code open source.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/language.js"></script>
+</body>
+</html>

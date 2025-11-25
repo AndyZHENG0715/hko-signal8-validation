@@ -1,0 +1,157 @@
+{
+  "audit_timestamp": "2025-11-18T12:11:41.691643",
+  "methodology": {
+    "wind_model": "Holland (2010) parametric model",
+    "terrain_factors": {
+      "exposed_coastal": 0.85,
+      "semi_sheltered": 0.7,
+      "inland_valleys": 0.6
+    },
+    "signal8_criteria": "≥4 of 8 stations ≥63 km/h (including ≥118) for ≥3 periods (~30 min)",
+    "signal10_criteria": "≥118 km/h generally in HK (≥2 stations OR center <50km)"
+  },
+  "events": {
+    "Talim": {
+      "signal8": {
+        "event": "Talim",
+        "signal_level": 8,
+        "verdict": "ADHERENT",
+        "adherence": true,
+        "algo_decision": "ISSUE",
+        "algo_reason": "Forecast: 4 stations ≥63 km/h, Current: 0 stations, Persistence: ≥3 periods confirmed",
+        "qualifying_stations": [
+          "Chek Lap Kok",
+          "Lau Fau Shan",
+          "Cheung Chau",
+          "Tsing Yi"
+        ],
+        "official_decision": "ISSUED",
+        "official_time": "2023-07-17T00:40:00+08:00",
+        "explanation": "Both algorithm and HKO issued Signal 8. Standards met."
+      }
+    },
+    "Yagi": {
+      "signal8": {
+        "event": "Yagi",
+        "signal_level": 8,
+        "verdict": "ADHERENT",
+        "adherence": true,
+        "algo_decision": "ISSUE",
+        "algo_reason": "Forecast: 8 stations ≥63 km/h, Current: 0 stations, Persistence: ≥3 periods confirmed",
+        "qualifying_stations": [
+          "Sha Tin",
+          "Tsing Yi",
+          "Chek Lap Kok",
+          "Lau Fau Shan",
+          "Kai Tak",
+          "Sai Kung",
+          "Ta Kwu Ling",
+          "Cheung Chau"
+        ],
+        "official_decision": "ISSUED",
+        "official_time": "2024-09-05T18:20:00+08:00",
+        "explanation": "Both algorithm and HKO issued Signal 8. Standards met."
+      }
+    },
+    "Toraji": {
+      "signal8": {
+        "event": "Toraji",
+        "signal_level": 8,
+        "verdict": "FALSE_ISSUANCE",
+        "adherence": false,
+        "algo_decision": "DONT_ISSUE",
+        "algo_reason": "Forecast: 1 stations, Current: 0 stations (need ≥4)",
+        "qualifying_stations": [],
+        "official_decision": "ISSUED",
+        "official_time": "2025-06-02T00:40:00+08:00",
+        "explanation": "HKO issued Signal 8 but algorithm criteria not met."
+      }
+    },
+    "Wipha": {
+      "signal8": {
+        "event": "Wipha",
+        "signal_level": 8,
+        "verdict": "ADHERENT",
+        "adherence": true,
+        "algo_decision": "ISSUE",
+        "algo_reason": "Forecast: 4 stations ≥63 km/h, Current: 0 stations, Persistence: ≥3 periods confirmed",
+        "qualifying_stations": [
+          "Chek Lap Kok",
+          "Lau Fau Shan",
+          "Cheung Chau",
+          "Tsing Yi"
+        ],
+        "official_decision": "ISSUED",
+        "official_time": "2025-07-20T00:20:00+08:00",
+        "explanation": "Both algorithm and HKO issued Signal 8. Standards met."
+      },
+      "signal10": {
+        "event": "Wipha",
+        "signal_level": 10,
+        "verdict": "ADHERENT",
+        "adherence": true,
+        "algo_decision": "ISSUE",
+        "algo_reason": "Hurricane force expected: 2 stations ≥118 km/h, max 146 km/h, center 2 km from HK | Interpretation: ≥2 stations ≥118 km/h or center <50 km; HKO expert judgement may differ",
+        "qualifying_stations": [
+          "Cheung Chau",
+          "Lau Fau Shan"
+        ],
+        "official_decision": "ISSUED",
+        "official_time": "2025-07-20T09:20:00+08:00",
+        "explanation": "Both algorithm and HKO issued Signal 10. Standards met."
+      }
+    },
+    "Tapah": {
+      "signal8": {
+        "event": "Tapah",
+        "signal_level": 8,
+        "verdict": "ADHERENT",
+        "adherence": true,
+        "algo_decision": "ISSUE",
+        "algo_reason": "Forecast: 4 stations ≥63 km/h, Current: 0 stations, Persistence: ≥3 periods confirmed",
+        "qualifying_stations": [
+          "Chek Lap Kok",
+          "Lau Fau Shan",
+          "Cheung Chau",
+          "Tsing Yi"
+        ],
+        "official_decision": "ISSUED",
+        "official_time": "2025-09-07T16:20:00+08:00",
+        "explanation": "Both algorithm and HKO issued Signal 8. Standards met."
+      }
+    },
+    "Ragasa": {
+      "signal8": {
+        "event": "Ragasa",
+        "signal_level": 8,
+        "verdict": "FALSE_ISSUANCE",
+        "adherence": false,
+        "algo_decision": "DONT_ISSUE",
+        "algo_reason": "Forecast: 3 stations, Current: 1 stations (need ≥4)",
+        "qualifying_stations": [],
+        "official_decision": "ISSUED",
+        "official_time": "2025-09-23T14:20:00+08:00",
+        "explanation": "HKO issued Signal 8 but algorithm criteria not met."
+      },
+      "signal10": {
+        "event": "Ragasa",
+        "signal_level": 10,
+        "verdict": "FALSE_ISSUANCE",
+        "adherence": false,
+        "algo_decision": "DONT_ISSUE",
+        "algo_reason": "Max forecast: 94 km/h, Max current: 115 km/h, Hurricane stations: 0/2 needed | Interpretation: ≥2 stations ≥118 km/h or center <50 km; HKO expert judgement may differ",
+        "qualifying_stations": [],
+        "official_decision": "ISSUED",
+        "official_time": "2025-09-24T02:40:00+08:00",
+        "explanation": "HKO issued Signal 10 but algorithm criteria not met."
+      }
+    }
+  },
+  "summary": {
+    "total_decisions": 8,
+    "adherent_decisions": 5,
+    "adherence_rate": 0.625,
+    "false_issuances": 3,
+    "delays": 0
+  }
+}

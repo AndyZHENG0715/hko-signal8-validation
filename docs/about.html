@@ -9,91 +9,122 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Main Navigation -->
+    <nav class="main-nav" role="navigation" aria-label="Primary">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="nav-logo">
+                    <span class="logo-icon">🌪️</span>
+                    <span class="logo-text">HKO Signal 8 Portal</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link" data-en="Home" data-zh="主頁">Home</a>
+                    <a href="methodology.html" class="nav-link" data-en="Methodology" data-zh="方法論">Methodology</a>
+                    <a href="compare.html" class="nav-link" data-en="Compare" data-zh="比較">Compare</a>
+                    <a href="data.html" class="nav-link" data-en="Data" data-zh="數據">Data</a>
+                    <a href="audit.html" class="nav-link" data-en="Audit" data-zh="審核">Audit</a>
+                    <a href="about.html" class="nav-link active" data-en="About" data-zh="關於">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <!-- Language Toggle -->
     <div class="language-toggle">
         <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
         <button id="lang-zh" onclick="switchLanguage('zh')">中</button>
     </div>
 
-    <!-- Navigation -->
-    <nav class="nav-bar">
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
         <div class="container">
-            <a href="index.html" class="nav-back">← <span data-en="Back to Home" data-zh="返回主頁">Back to Home</span></a>
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="index.html" data-en="Home" data-zh="主頁">Home</a></li>
+                <li class="breadcrumb-separator">/</li>
+                <li class="breadcrumb-item active" data-en="About" data-zh="關於">About</li>
+            </ol>
         </div>
     </nav>
+
+    <main id="main-content">
 
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1 data-en="About This Project" data-zh="關於本項目">About This Project</h1>
-            <p data-en="Independent validation for transparency and public understanding" data-zh="旨在透明度和公眾理解的獨立驗證">
-                Independent validation for transparency and public understanding
-            </p>
+            <p data-en="Independent transparency portal — observation verification + forecast audit" data-zh="獨立透明平台——觀測驗證 + 預報審核">Independent transparency portal — observation verification + forecast audit</p>
         </div>
     </section>
 
-    <!-- Project Purpose -->
     <section class="content-section">
         <div class="container">
+            <!-- Purpose -->
             <div class="content-card">
-                <h2 data-en="🎯 Project Purpose" data-zh="🎯 項目目的">🎯 Project Purpose</h2>
-                <p data-en="This project provides independent, data-driven validation of Hong Kong Observatory's (HKO) Signal No. 8 issuance timing during tropical cyclone events. Our goal is to enhance transparency and public understanding of how typhoon warnings work, not to criticize HKO operations." data-zh="本項目提供對香港天文台（HKO）在熱帶氣旋事件期間發出八號風球時機的獨立、數據驅動驗證。我們的目標是提高颱風警報如何運作的透明度和公眾理解，而非批評天文台的運作。">
-                    This project provides independent, data-driven validation of Hong Kong Observatory's (HKO) Signal No. 8 issuance timing during tropical cyclone events. Our goal is to enhance transparency and public understanding of how typhoon warnings work, not to criticize HKO operations.
-                </p>
-                <p data-en="By comparing official signal periods with observation-based detection algorithms, we demonstrate the value of forecast-based early warning systems and validate that HKO follows published standards appropriately." data-zh="通過比較官方信號期間與基於觀測的檢測演算法，我們展示了基於預報的預警系統的價值，並驗證天文台適當地遵守已公布的標準。">
-                    By comparing official signal periods with observation-based detection algorithms, we demonstrate the value of forecast-based early warning systems and validate that HKO follows published standards appropriately.
-                </p>
+                <h2 data-en="🎯 Purpose" data-zh="🎯 目的">🎯 Purpose</h2>
+                <p data-en="We provide a neutral, data-driven view of how often lowland reference station winds met multi‑station thresholds after Hong Kong Observatory (HKO) issued Signal No. 8." data-zh="我們提供中立、數據驅動的視角：天文台發出八號風球後，低地參考測站的多站風力門檻被觀測達成的頻率。">We provide a neutral, data-driven view of how often lowland reference station winds met multi‑station thresholds after Hong Kong Observatory (HKO) issued Signal No. 8.</p>
+                <p data-en="Forecast decisions are not judged here; early issuance intentionally gives the public preparation time. We separate what was forecast (audit) from what was later observed (verification tiers)." data-zh="此處不評價預報決策；提前發佈旨在提供公眾準備時間。我們分離『預報審核』與後續『觀測驗證層級』。">Forecast decisions are not judged here; early issuance intentionally gives the public preparation time. We separate what was forecast (audit) from what was later observed (verification tiers).</p>
             </div>
 
+            <!-- Dual Tracks -->
             <div class="content-card">
-                <h2 data-en="🔬 Methodology" data-zh="🔬 方法論">🔬 Methodology</h2>
-                <p data-en="We analyze HKO's publicly available 10-minute mean wind speed data from 8 reference stations during typhoon events. Our algorithm applies simple criteria: Signal 8 conditions are detected when ≥4 stations simultaneously report sustained winds ≥63 km/h for ≥2 consecutive 10-minute periods." data-zh="我們分析天文台在颱風事件期間從8個參考測站公開提供的10分鐘平均風速數據。我們的演算法應用簡單標準：當≥4個測站同時報告持續風力≥63 km/h持續≥2個連續10分鐘期間時，檢測到8號風球條件。">
-                    We analyze HKO's publicly available 10-minute mean wind speed data from 8 reference stations during typhoon events. Our algorithm applies simple criteria: Signal 8 conditions are detected when ≥4 stations simultaneously report sustained winds ≥63 km/h for ≥2 consecutive 10-minute periods.
-                </p>
-                <p data-en="This retrospective, observation-only approach intentionally differs from HKO's operational forecast-based system to highlight the value of early warning lead time." data-zh="這種回顧性、僅基於觀測的方法有意與天文台基於預報的業務系統不同，以突出預警提前時間的價值。">
-                    This retrospective, observation-only approach intentionally differs from HKO's operational forecast-based system to highlight the value of early warning lead time.
-                </p>
+                <h2 data-en="🔄 Dual Tracks" data-zh="🔄 雙軌">🔄 Dual Tracks</h2>
+                <ul style="font-size:.85rem; line-height:1.5;">
+                    <li data-en="Observation Verification: Classifies what actually happened using 30‑min persistence & wind‑lull‑wind pattern." data-zh="觀測驗證：使用30分鐘持續與『達標‑回落‑再達標』模式分類已發生的情況。">Observation Verification: Classifies what actually happened using 30‑min persistence & wind‑lull‑wind pattern.</li>
+                    <li data-en="Forecast Audit: Separately reviews issuance context vs published criteria (see Audit page)." data-zh="預報審核：獨立檢視發佈背景與已公布標準（見審核頁）。">Forecast Audit: Separately reviews issuance context vs published criteria (see Audit page).</li>
+                </ul>
             </div>
 
+            <!-- Verification Tiers -->
+            <div class="content-card">
+                <h2 data-en="🧭 Verification Tiers" data-zh="🧭 驗證層級">🧭 Verification Tiers</h2>
+                <ul style="font-size:.85rem; line-height:1.5;">
+                    <li data-en="Tier 1 VERIFIED: ≥4 of 8 stations ≥63 km/h for ≥3 consecutive 10‑min intervals (≈30 min)." data-zh="第一級 已驗證：8個測站中≥4個≥63 km/h 並連續≥3個 10 分鐘時段（約30分鐘）。">Tier 1 VERIFIED: ≥4 of 8 stations ≥63 km/h for ≥3 consecutive 10‑min intervals (≈30 min).</li>
+                    <li data-en="Tier 2 PATTERN‑VALIDATED: ≥4 stations → lull (<4 for ≥2 intervals) → ≥4 stations again (structured re‑emergence)." data-zh="第二級 模式驗證：≥4測站→回落（<4連續≥2時段）→再次≥4測站（結構性再增長）。">Tier 2 PATTERN‑VALIDATED: ≥4 stations → lull (<4 for ≥2 intervals) → ≥4 stations again (structured re‑emergence).</li>
+                    <li data-en="Tier 3 UNVERIFIED: Neither persistence nor pattern detected (forecast/expert judgement only)." data-zh="第三級 未驗證：未檢測到持續或模式（僅依賴預報/專業判斷）。">Tier 3 UNVERIFIED: Neither persistence nor pattern detected (forecast/expert judgement only).</li>
+                </ul>
+                <p style="font-size:.7rem; color:#555;" data-en="Tiers describe observations only and do not imply correctness or incorrectness of issuance." data-zh="層級僅描述觀測，不代表發佈正確與否。">Tiers describe observations only and do not imply correctness or incorrectness of issuance.</p>
+            </div>
+
+            <!-- Early Warning Advantage -->
+            <div class="content-card">
+                <h2 data-en="⏱️ Early Warning Time" data-zh="⏱️ 提前預警時間">⏱️ Early Warning Time</h2>
+                <p data-en="Issuing signals before multi‑station confirmation creates a safety buffer: schools suspend, construction secures cranes, marine operations reposition, households prepare." data-zh="在多站觀測確認前發佈信號創造安全緩衝：學校停課、工地加固吊機、海事運作重新部署、家庭準備。">Issuing signals before multi‑station confirmation creates a safety buffer: schools suspend, construction secures cranes, marine operations reposition, households prepare.</p>
+                <p data-en="Waiting for perfect observational proof would reduce preparation time. Issuing too late would risk under‑response. Advantage minutes quantify this preparation window." data-zh="若等待完美觀測證據會減少準備時間；過晚發佈則可能反應不足。『優勢分鐘』量化此準備窗口。">Waiting for perfect observational proof would reduce preparation time. Issuing too late would risk under‑response. Advantage minutes quantify this preparation window.</p>
+            </div>
+
+            <!-- Data & Methods -->
+            <div class="content-card">
+                <h2 data-en="📊 Data & Methods" data-zh="📊 數據與方法">📊 Data & Methods</h2>
+                <ul style="font-size:.85rem; line-height:1.5;">
+                    <li data-en="10‑minute mean winds from 8 lowland HKO reference stations" data-zh="8個低地天文台參考測站的10分鐘平均風速">10‑minute mean winds from 8 lowland HKO reference stations</li>
+                    <li data-en="Persistence = consecutive intervals (default 3 ≈ 30 min) meeting ≥4 station threshold" data-zh="持續性 = 連續時段（默認3 ≈30分鐘）達到≥4測站門檻">Persistence = consecutive intervals (default 3 ≈ 30 min) meeting ≥4 station threshold</li>
+                    <li data-en="Pattern = wind re‑emergence structure (meet → lull ≥2 → meet)" data-zh="模式 = 風力再增長結構（達標→回落≥2→再達標）">Pattern = wind re‑emergence structure (meet → lull ≥2 → meet)</li>
+                    <li data-en="Outputs: per‑event JSON, summary JSON, charts, sensitivity analysis" data-zh="輸出：單事件JSON、摘要JSON、圖表、靈敏度分析">Outputs: per‑event JSON, summary JSON, charts, sensitivity analysis</li>
+                    <li data-en="Code open source — see repository root and methodology page for details" data-zh="程式碼開源——詳見倉庫根目錄與方法論頁">Code open source — see repository root and methodology page for details</li>
+                </ul>
+            </div>
+
+            <!-- Limitations -->
             <div class="content-card">
                 <h2 data-en="⚖️ Limitations" data-zh="⚖️ 局限性">⚖️ Limitations</h2>
-                <ul>
-                    <li data-en="Our algorithm does NOT incorporate forecast data, cyclone track predictions, or nowcasting" data-zh="我們的演算法不包含預報數據、氣旋路徑預測或臨近預報">
-                        Our algorithm does NOT incorporate forecast data, cyclone track predictions, or nowcasting
-                    </li>
-                    <li data-en="We exclude high-ground and offshore stations that HKO considers for operational decisions" data-zh="我們排除了天文台在業務決策中考慮的高地和離岸測站">
-                        We exclude high-ground and offshore stations that HKO considers for operational decisions
-                    </li>
-                    <li data-en="Eye passage continuity is not modeled, causing detection failures for direct-hit typhoons" data-zh="未建模風眼通過的連續性，導致直接襲擊颱風的檢測失敗">
-                        Eye passage continuity is not modeled, causing detection failures for direct-hit typhoons
-                    </li>
-                    <li data-en="This is validation research only—not a forecasting or real-time warning system" data-zh="這僅是驗證研究——不是預報或實時警報系統">
-                        This is validation research only—not a forecasting or real-time warning system
-                    </li>
+                <ul style="font-size:.85rem; line-height:1.5;">
+                    <li data-en="Retrospective only (not real‑time forecasting or nowcasting)" data-zh="僅回顧性（非即時預報或臨近預報）">Retrospective only (not real‑time forecasting or nowcasting)</li>
+                    <li data-en="Excludes offshore / high‑elevation stations used operationally" data-zh="排除業務上使用的離岸/高地測站">Excludes offshore / high‑elevation stations used operationally</li>
+                    <li data-en="Does not ingest full mesoscale guidance or pressure analyses" data-zh="不攝取完整中尺度指引或氣壓分析">Does not ingest full mesoscale guidance or pressure analyses</li>
+                    <li data-en="Eye passage calm segmentation handled separately (see figures if generated)" data-zh="風眼平靜段單獨處理（若已生成圖表可查看）">Eye passage calm segmentation handled separately (see figures if generated)</li>
+                    <li data-en="Unverified ≠ incorrect — may reflect forecast factors beyond lowland winds" data-zh="未驗證 ≠ 錯誤——可能反映低地風以外的預報因素">Unverified ≠ incorrect — may reflect forecast factors beyond lowland winds</li>
                 </ul>
             </div>
 
+            <!-- Transparency -->
             <div class="content-card">
-                <h2 data-en="✅ Key Findings" data-zh="✅ 主要發現">✅ Key Findings</h2>
-                <ul>
-                    <li data-en="HKO's Signal 8 issuances are appropriate and consistent with published standards" data-zh="天文台的8號風球發出是適當的，並與已公布的標準一致">
-                        HKO's Signal 8 issuances are appropriate and consistent with published standards
-                    </li>
-                    <li data-en="Timing differences reflect valuable forecast-based early warning lead time (avg. 330 min for Talim 2023)" data-zh="時間差反映了有價值的基於預報的預警提前時間（泰利2023年平均330分鐘）">
-                        Timing differences reflect valuable forecast-based early warning lead time (avg. 330 min for Talim 2023)
-                    </li>
-                    <li data-en="Non-detection in some events (Tapah, Toraji) consistent with localized/offshore wind patterns" data-zh="某些事件（塔巴、潭美）中的未檢測與局部/離岸風模式一致">
-                        Non-detection in some events (Tapah, Toraji) consistent with localized/offshore wind patterns
-                    </li>
-                    <li data-en="Algorithm failures (Wipha eye passage) highlight limitations of simple observation-only logic" data-zh="演算法失敗（韋帕風眼通過）突顯了簡單僅基於觀測邏輯的局限性">
-                        Algorithm failures (Wipha eye passage) highlight limitations of simple observation-only logic
-                    </li>
-                </ul>
+                <h2 data-en="🔍 Transparency & Updates" data-zh="🔍 透明度與更新">🔍 Transparency & Updates</h2>
+                <p data-en="All JSON and figures regenerate from scripts. No manual editing of exported data." data-zh="所有JSON與圖表由腳本重新生成。導出數據不進行手動修改。">All JSON and figures regenerate from scripts. No manual editing of exported data.</p>
+                <p data-en="Last data export:" data-zh="最近數據導出：">Last data export: <span id="last-updated">—</span></p>
             </div>
-
-            <div class="content-card">
-                <h2 data-en="🏆 Historic Significance (2025)" data-zh="🏆 歷史意義（2025年）">🏆 Historic Significance (2025)</h2>
-                <p data-en="2025 marked an unprecedented year in Hong Kong's tropical cyclone warning history:" data-zh="2025年標誌著香港熱帶氣旋警報歷史上前所未有的一年：">
+        </div>
+    </section>
                     2025 marked an unprecedented year in Hong Kong's tropical cyclone warning history:
                 </p>
                 <ul>
@@ -106,7 +137,7 @@
                     <li data-en="<strong>Second-Longest Signal 10 Duration (Ragasa):</strong> The Signal 10 warning lasted 10 hours 40 minutes, the second-longest duration on record after Tropical Storm York's 11 hours in 1999" data-zh="<strong>第二長十號風球持續時間（樺加沙）：</strong>十號風球警告持續了10小時40分鐘，是有記錄以來第二長的持續時間，僅次於1999年熱帶風暴約克的11小時">
                         <strong>Second-Longest Signal 10 Duration (Ragasa):</strong> The Signal 10 warning lasted 10 hours 40 minutes, the second-longest duration on record after Tropical Storm York's 11 hours in 1999
                     </li>
-                    <li data-en="<strong>Late-Season Extremes (Toraji):</strong> Toraji (November 13-14, 2024) represented the latest Signal 8 issuance of the year in recent decades, highlighting extended typhoon season activity" data-zh="<strong>季末極端事件（潭美）：</strong>潭美（2024年11月13-14日）是近幾十年來一年中最晚發出的八號風球，突顯了延長的颱風季節活動">
+                    <li data-en="<strong>Late-Season Extremes (Toraji):</strong> Toraji (November 13-14, 2024) represented the latest Signal 8 issuance of the year in recent decades, highlighting extended typhoon season activity" data-zh="<strong>季末極端事件（桃芝）：</strong>桃芝（2024年11月13-14日）是近幾十年來一年中最晚發出的八號風球，突顯了延長的颱風季節活動">
                         <strong>Late-Season Extremes (Toraji):</strong> Toraji (November 13-14, 2024) represented the latest Signal 8 issuance of the year in recent decades, highlighting extended typhoon season activity
                     </li>
                 </ul>
@@ -118,8 +149,8 @@
             <div class="content-card">
                 <h2 data-en="🔄 Last Updated" data-zh="🔄 最後更新">🔄 Last Updated</h2>
                 <p><strong id="last-updated">2025-11-09</strong></p>
-                <p data-en="Analysis includes 5 tropical cyclone events from 2023-2025: Talim, Tapah, Yagi, Toraji, and Wipha." data-zh="分析包括2023-2025年的5個熱帶氣旋事件：泰利、塔巴、摩羯、潭美和韋帕。">
-                    Analysis includes 5 tropical cyclone events from 2023-2025: Talim, Tapah, Yagi, Toraji, and Wipha.
+                <p data-en="Analysis includes 6 tropical cyclone events from 2023-2025: Talim, Yagi, Toraji, Tapah, Wipha (Signal 10), and Ragasa (Signal 10)." data-zh="分析包括2023-2025年的6個熱帶氣旋事件：泰利、摩羯、桃芝、塔巴、韋帕（十號風球）和樺加沙（十號風球）。">
+                    Analysis includes 6 tropical cyclone events from 2023-2025: Talim, Yagi, Toraji, Tapah, Wipha (Signal 10), and Ragasa (Signal 10).
                 </p>
             </div>
 
@@ -154,6 +185,7 @@
         </div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -163,7 +195,10 @@
                     <ul>
                         <li><a href="index.html" data-en="Home" data-zh="主頁">Home</a></li>
                         <li><a href="methodology.html" data-en="Methodology" data-zh="方法論">Methodology</a></li>
-                        <li><a href="data.html" data-en="Data Download" data-zh="數據下載">Data Download</a></li>
+                        <li><a href="compare.html" data-en="Compare" data-zh="比較">Compare</a></li>
+                        <li><a href="data.html" data-en="Data" data-zh="數據">Data</a></li>
+                        <li><a href="audit.html" data-en="Audit" data-zh="審核">Audit</a></li>
+                        <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
                     </ul>
                 </div>
             </div>

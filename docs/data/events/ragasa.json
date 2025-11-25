@@ -7,90 +7,88 @@
   "severity": "T10",
   "official_signal8": {
     "issued": true,
-    "start": "2025-09-23T14:20:00+08:00",
-    "end": "2025-09-24T20:20:00+08:00",
+    "start": "2025-09-23 14:20",
+    "end": "2025-09-24 20:20",
     "duration_min": 1800
   },
-  "escalated_to_signal10": true,
-  "signal10_start": "2025-09-24T02:40:00+08:00",
-  "signal10_end": "2025-09-24T13:20:00+08:00",
   "algorithm_detection": {
     "detected": false,
     "start": null,
     "end": null,
     "duration_min": 0
   },
+  "verification_tier": "pattern_validated",
   "timing_analysis": {
     "start_delta_min": null,
     "coverage_percent": 0,
-    "assessment": "forecast_driven",
-    "verdict": "Official issuance appropriate (forecast-based early warning for super typhoon; Signal 10 issued at record distance of 120 km, second-longest duration of 10 hours 40 minutes)",
-    "verdict_zh": "官方發佈適當（基於預報的超強颱風預警；十號風球於破紀錄距離120公里發出，維持時間10小時40分鐘為第二長）"
+    "assessment": "appropriate",
+    "verdict": "Pattern‑validated: wind met ≥4 stations, dipped (<4 for ≥2 intervals), then met again – structured wind re‑emergence.",
+    "verdict_zh": "模式驗證：風力達標→下降（<4 連續≥2 個時段）→再次達標，呈現結構性再增長。"
   },
   "station_summary": [
     {
       "name": "Cheung Chau",
-      "observations": 190,
-      "mean_wind_kmh": 62.3,
-      "p90_wind_kmh": 95.0,
-      "max_wind_kmh": 115.0,
-      "max_gust_kmh": 180.0
-    },
-    {
-      "name": "Chek Lap Kok",
-      "observations": 190,
-      "mean_wind_kmh": 45.2,
-      "p90_wind_kmh": 72.0,
-      "max_wind_kmh": 92.0,
-      "max_gust_kmh": 135.0
+      "observations": 192,
+      "mean_wind_kmh": 71.1,
+      "p90_wind_kmh": 109.9,
+      "max_wind_kmh": 122.0,
+      "max_gust_kmh": 167.0
     },
     {
       "name": "Sai Kung",
-      "observations": 190,
-      "mean_wind_kmh": 38.5,
+      "observations": 192,
+      "mean_wind_kmh": 50.0,
+      "p90_wind_kmh": 78.0,
+      "max_wind_kmh": 100.0,
+      "max_gust_kmh": 149.0
+    },
+    {
+      "name": "Chek Lap Kok",
+      "observations": 192,
+      "mean_wind_kmh": 50.0,
       "p90_wind_kmh": 68.0,
-      "max_wind_kmh": 95.0,
-      "max_gust_kmh": 145.0
+      "max_wind_kmh": 86.0,
+      "max_gust_kmh": 123.0
     },
     {
       "name": "Lau Fau Shan",
-      "observations": 190,
-      "mean_wind_kmh": 32.8,
-      "p90_wind_kmh": 58.0,
-      "max_wind_kmh": 78.0,
-      "max_gust_kmh": 118.0
+      "observations": 192,
+      "mean_wind_kmh": 43.6,
+      "p90_wind_kmh": 66.9,
+      "max_wind_kmh": 85.0,
+      "max_gust_kmh": 121.0
     },
     {
       "name": "Kai Tak",
-      "observations": 190,
-      "mean_wind_kmh": 30.5,
-      "p90_wind_kmh": 48.0,
-      "max_wind_kmh": 62.0,
-      "max_gust_kmh": 128.0
-    },
-    {
-      "name": "Tsing Yi",
-      "observations": 190,
-      "mean_wind_kmh": 24.8,
-      "p90_wind_kmh": 40.0,
-      "max_wind_kmh": 48.0,
-      "max_gust_kmh": 102.0
+      "observations": 188,
+      "mean_wind_kmh": 33.9,
+      "p90_wind_kmh": 51.0,
+      "max_wind_kmh": 59.0,
+      "max_gust_kmh": 130.0
     },
     {
       "name": "Ta Kwu Ling",
-      "observations": 190,
-      "mean_wind_kmh": 21.2,
+      "observations": 192,
+      "mean_wind_kmh": 26.8,
       "p90_wind_kmh": 40.0,
-      "max_wind_kmh": 52.0,
-      "max_gust_kmh": 105.0
+      "max_wind_kmh": 50.0,
+      "max_gust_kmh": 127.0
+    },
+    {
+      "name": "Tsing Yi",
+      "observations": 192,
+      "mean_wind_kmh": 26.5,
+      "p90_wind_kmh": 38.0,
+      "max_wind_kmh": 46.0,
+      "max_gust_kmh": 111.0
     },
     {
       "name": "Sha Tin",
-      "observations": 190,
-      "mean_wind_kmh": 18.5,
-      "p90_wind_kmh": 32.0,
-      "max_wind_kmh": 45.0,
-      "max_gust_kmh": 95.0
+      "observations": 192,
+      "mean_wind_kmh": 23.5,
+      "p90_wind_kmh": 35.0,
+      "max_wind_kmh": 41.0,
+      "max_gust_kmh": 109.0
     }
   ],
   "validation_report": "reports/ragasa_validation/",
@@ -98,5 +96,404 @@
     "timeline": "reports/figs/ragasa_timeline.png",
     "heatmap": "reports/figs/ragasa_station_heatmap.png"
   },
-  "notes": "Super Typhoon Ragasa triggered the furthest Signal 10 on record (120 km from Hong Kong, surpassing previous record of 100 km). The Signal 10 lasted 10 hours 40 minutes, the second-longest duration after Typhoon York (1999). This marked the first time since 1964 that Hurricane Signal No. 10 was issued twice in a single year (after Wipha in July 2025)."
+  "t10_transparency": {
+    "intervals": 65,
+    "gale_coverage_intervals": 17,
+    "hurricane_coverage_intervals": 0,
+    "low_wind_intervals": 0,
+    "first_interval": "2025-09-24 02:40:00",
+    "last_interval": "2025-09-24 13:20:00",
+    "details": [
+      {
+        "datetime": "2025-09-24 02:40:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 02:50:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 03:00:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 03:10:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 03:20:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 03:30:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 03:40:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 03:50:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 04:00:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 04:10:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 04:20:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 04:30:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 04:40:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 04:50:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 05:00:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 05:10:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 05:20:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 05:30:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 05:40:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 05:50:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 06:00:00",
+        "count_ge_T8": 6,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 06:10:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 06:20:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 06:30:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 06:40:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 06:50:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 07:00:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 07:10:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 07:20:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 07:30:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 07:40:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 07:50:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 08:00:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 08:10:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 08:20:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 1,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 08:30:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 08:40:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 08:50:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 09:00:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 09:10:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 09:20:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 09:30:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 1,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 09:40:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 09:50:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 10:00:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 10:10:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 10:20:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 10:30:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 1,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 10:40:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 1,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 10:50:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 11:00:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 11:10:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 11:20:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 11:30:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 11:40:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 11:50:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 12:00:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 12:10:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 12:20:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 12:30:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 12:40:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 12:50:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 13:00:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 13:10:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-09-24 13:20:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      }
+    ]
+  }
 }

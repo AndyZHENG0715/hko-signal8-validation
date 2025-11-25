@@ -53,6 +53,12 @@ EVENTS = {
         "official_start": pd.Timestamp("2025-07-20 00:20:00"),
         "official_end": pd.Timestamp("2025-07-20 19:40:00"),
     },
+    "Ragasa": {
+        "input": BASE / "typhoon_data" / "Ragasa",
+        "time_summary": REPORTS / "ragasa_validation" / "time_summary.csv",
+        "official_start": pd.Timestamp("2025-09-23 14:20:00"),
+        "official_end": pd.Timestamp("2025-09-24 20:20:00"),
+    },
 }
 
 # Reuse standardization from analyze_typhoon (simplified version)

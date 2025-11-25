@@ -82,6 +82,17 @@ class Options:
     persistence_periods: (
         int  # consecutive 10-min periods required for persistent T8 classification
     )
+    signal_times: Optional[
+        str
+    ]  # JSON string with T8/T10 timing for window annotation (NOT filtering)
+    calm_mean_threshold: float  # km/h threshold to consider interval calm inside T10
+    eye_min_calm_intervals: (
+        int  # minimum consecutive calm intervals to treat as candidate eye passage
+    )
+    eye_prepost_window: (
+        int  # number of intervals before/after calm segment to inspect for coverage
+    )
+    eye_min_t10_coverage_intervals: int  # minimum hurricane-force coverage intervals before AND after to confirm eye passage
 
 
 # ---------------------------
@@ -156,10 +167,55 @@ def parse_args(argv: Optional[List[str]] = None) -> Options:
     parser.add_argument(
         "--persistence-periods",
         type=int,
-        default=2,
+        default=3,
         help=(
             "Consecutive 10-min periods meeting T8-level coverage required to treat T8/T10 as persistent. "
+            "Default 3 = 30 minutes (aligns with HKO 'expected to persist' criterion). "
             "Set to 1 for legacy instantaneous behavior."
+        ),
+    )
+    parser.add_argument(
+        "--signal-times",
+        type=str,
+        default=None,
+        help=(
+            "Optional JSON string with official signal timing to annotate T8/T10 windows (no filtering; transparency preserved). "
+            'Format: {"signal8_start": "YYYY-MM-DD HH:MM", "signal8_end": "YYYY-MM-DD HH:MM", '
+            '"signal10_start": "...", "signal10_end": "..."} '
+            "(signal10 keys optional; if present, T10 window annotated for transparency reporting). "
+            "Alternatively, supply a path to a JSON file containing that object to avoid shell quoting issues."
+        ),
+    )
+    parser.add_argument(
+        "--calm-mean-threshold",
+        type=float,
+        default=25.0,
+        help=(
+            "Mean wind (km/h) below which an interval inside the T10 window may be considered calm for eye passage detection (default 25)."
+        ),
+    )
+    parser.add_argument(
+        "--eye-min-calm-intervals",
+        type=int,
+        default=2,
+        help=(
+            "Minimum consecutive calm intervals (inside T10) to consider a candidate eye passage segment (default 2 = 20 min)."
+        ),
+    )
+    parser.add_argument(
+        "--eye-prepost-window",
+        type=int,
+        default=6,
+        help=(
+            "Number of intervals (10-min snapshots) before and after a calm segment to examine for hurricane-force coverage (default 6 = 60 min)."
+        ),
+    )
+    parser.add_argument(
+        "--eye-min-t10-coverage-intervals",
+        type=int,
+        default=2,
+        help=(
+            "Minimum number of intervals (before AND after) with ≥4 stations ≥118 km/h required to confirm eye passage (default 2)."
         ),
     )
 
@@ -176,6 +232,11 @@ def parse_args(argv: Optional[List[str]] = None) -> Options:
     stations_file = Path(args.stations_file) if args.stations_file else None
     plot = bool(args.plot)
     persistence_periods = int(args.persistence_periods)
+    signal_times = args.signal_times  # JSON string or None
+    calm_mean_threshold = float(args.calm_mean_threshold)
+    eye_min_calm_intervals = int(args.eye_min_calm_intervals)
+    eye_prepost_window = int(args.eye_prepost_window)
+    eye_min_t10_coverage_intervals = int(args.eye_min_t10_coverage_intervals)
 
     if method not in AGGREGATION_METHODS:
         parser.error(
@@ -200,6 +261,11 @@ def parse_args(argv: Optional[List[str]] = None) -> Options:
         stations_file=stations_file,
         plot=plot,
         persistence_periods=persistence_periods,
+        signal_times=signal_times,
+        calm_mean_threshold=calm_mean_threshold,
+        eye_min_calm_intervals=eye_min_calm_intervals,
+        eye_prepost_window=eye_prepost_window,
+        eye_min_t10_coverage_intervals=eye_min_t10_coverage_intervals,
     )
 
 
@@ -526,6 +592,8 @@ def compute_persistence_columns(
         rec_sig = str(row.get("recommended_signal", ""))
         n_stations = int(row.get("n_stations", 0))
         count_ge_t8 = int(row.get("count_ge_T8", 0))
+        in_t8_window = bool(row.get("in_T8_window", True))
+        in_t10_window = bool(row.get("in_T10_window", False))
 
         # Determine count/fraction condition only if we have enough stations
         has_min_stations = n_stations >= min_stations
@@ -540,7 +608,13 @@ def compute_persistence_columns(
             coverage_ok = frac_ge_t8 >= coverage
 
         label_ok = rec_sig in {"T8", "T10"}
-        qualifying = has_min_stations and label_ok and coverage_ok
+        qualifying = (
+            has_min_stations
+            and label_ok
+            and coverage_ok
+            and in_t8_window
+            and not in_t10_window
+        )
 
         if qualifying:
             run_len += 1
@@ -558,6 +632,147 @@ def compute_persistence_columns(
     df["persistent_T8"] = persistent_flags
     df["transient_spike_T8"] = transient_flags
     return df
+
+
+# ---------------------------
+# T10 transparency & eye passage detection
+# ---------------------------
+def compute_t10_transparency(
+    time_df: pd.DataFrame,
+    calm_mean_threshold: float,
+    eye_min_calm_intervals: int,
+    eye_prepost_window: int,
+    eye_min_t10_coverage_intervals: int,
+) -> Dict[str, pd.DataFrame]:
+    """Compute transparency metrics during T10 window & detect eye passage segments.
+
+    Returns dict with:
+      - 't10_analysis': per-interval flags within T10 window
+      - 'eye_passage_analysis': per calm segment summary
+    """
+    if time_df.empty or "in_T10_window" not in time_df.columns:
+        return {"t10_analysis": pd.DataFrame(), "eye_passage_analysis": pd.DataFrame()}
+
+    t10_df = time_df[time_df["in_T10_window"]].copy()
+    if t10_df.empty:
+        return {"t10_analysis": pd.DataFrame(), "eye_passage_analysis": pd.DataFrame()}
+
+    t10_df["t10_meets_t8_coverage"] = t10_df["count_ge_T8"] >= 4
+    t10_df["t10_meets_t10_coverage"] = t10_df["count_ge_T10"] >= 4
+    t10_df["t10_low_wind_flag"] = (t10_df["area_mean_kmh"] < calm_mean_threshold) & (
+        ~t10_df["t10_meets_t8_coverage"]
+    )
+
+    # Identify contiguous calm segments
+    segments: List[Dict[str, object]] = []
+    in_segment = False
+    seg_start = None
+    seg_end = None
+    seg_len = 0
+    for _, row in t10_df.iterrows():
+        is_calm = bool(row["t10_low_wind_flag"])
+        dt = row["datetime"]
+        if is_calm:
+            if not in_segment:
+                in_segment = True
+                seg_start = dt
+                seg_len = 1
+            else:
+                seg_len += 1
+            seg_end = dt
+        else:
+            if in_segment:
+                segments.append(
+                    {
+                        "segment_start": seg_start,
+                        "segment_end": seg_end,
+                        "n_calm_intervals": seg_len,
+                    }
+                )
+                in_segment = False
+                seg_start = None
+                seg_end = None
+                seg_len = 0
+    if in_segment and seg_start is not None and seg_end is not None:
+        segments.append(
+            {
+                "segment_start": seg_start,
+                "segment_end": seg_end,
+                "n_calm_intervals": seg_len,
+            }
+        )
+
+    eye_rows: List[Dict[str, object]] = []
+    for seg in segments:
+        n_calm = int(seg["n_calm_intervals"])
+        if n_calm < eye_min_calm_intervals:
+            continue
+        seg_start_dt = seg["segment_start"]
+        seg_end_dt = seg["segment_end"]
+        pre_window = t10_df[t10_df["datetime"] < seg_start_dt].tail(eye_prepost_window)
+        post_window = t10_df[t10_df["datetime"] > seg_end_dt].head(eye_prepost_window)
+        pre_t10_cov = int(pre_window["t10_meets_t10_coverage"].sum())
+        post_t10_cov = int(post_window["t10_meets_t10_coverage"].sum())
+        pre_t8_cov = int(pre_window["t10_meets_t8_coverage"].sum())
+        post_t8_cov = int(post_window["t10_meets_t8_coverage"].sum())
+        qualifies_eye = (
+            pre_t10_cov >= eye_min_t10_coverage_intervals
+            and post_t10_cov >= eye_min_t10_coverage_intervals
+        )
+        commentary = (
+            "Eye passage confirmed: hurricane-force coverage before and after calm"
+            if qualifies_eye
+            else "Calm during T10 without sufficient surrounding hurricane-force coverage"
+        )
+        eye_rows.append(
+            {
+                "segment_start": seg_start_dt,
+                "segment_end": seg_end_dt,
+                "n_calm_intervals": n_calm,
+                "pre_window_intervals": len(pre_window),
+                "post_window_intervals": len(post_window),
+                "pre_t8_coverage_intervals": pre_t8_cov,
+                "post_t8_coverage_intervals": post_t8_cov,
+                "pre_t10_coverage_intervals": pre_t10_cov,
+                "post_t10_coverage_intervals": post_t10_cov,
+                "qualifies_eye_passage": qualifies_eye,
+                "commentary": commentary,
+            }
+        )
+
+    t10_analysis = t10_df[
+        [
+            "datetime",
+            "area_mean_kmh",
+            "count_ge_T8",
+            "count_ge_T10",
+            "t10_meets_t8_coverage",
+            "t10_meets_t10_coverage",
+            "t10_low_wind_flag",
+        ]
+    ].copy()
+
+    eye_passage_analysis = (
+        pd.DataFrame(eye_rows).sort_values("segment_start")
+        if eye_rows
+        else pd.DataFrame(
+            columns=[
+                "segment_start",
+                "segment_end",
+                "n_calm_intervals",
+                "pre_window_intervals",
+                "post_window_intervals",
+                "pre_t8_coverage_intervals",
+                "post_t8_coverage_intervals",
+                "pre_t10_coverage_intervals",
+                "post_t10_coverage_intervals",
+                "qualifies_eye_passage",
+                "commentary",
+            ]
+        )
+    )
+
+    return {"t10_analysis": t10_analysis, "eye_passage_analysis": eye_passage_analysis}
 
 
 # ---------------------------
@@ -654,7 +869,37 @@ def main(argv: Optional[List[str]] = None) -> int:
         percentile=opts.percentile,
         min_stations=opts.min_stations,
     )
-    # Augment with persistence columns (does not alter recommendation logic)
+    # Annotate (do not filter) official windows if provided
+    timing = None
+    if opts.signal_times:
+        import json
+        from pathlib import Path as _P
+
+        try:
+            # Allow passing a JSON file path instead of raw JSON string (simplifies PowerShell quoting)
+            raw_sig = opts.signal_times
+            if raw_sig and _P(raw_sig).exists():
+                timing_text = _P(raw_sig).read_text(encoding="utf-8")
+                timing = json.loads(timing_text)
+            else:
+                timing = json.loads(raw_sig)
+            t8_start = pd.to_datetime(timing["signal8_start"])
+            t8_end = pd.to_datetime(timing["signal8_end"])
+            time_df["in_T8_window"] = (time_df["datetime"] >= t8_start) & (
+                time_df["datetime"] <= t8_end
+            )
+            if "signal10_start" in timing and "signal10_end" in timing:
+                t10_start = pd.to_datetime(timing["signal10_start"])
+                t10_end = pd.to_datetime(timing["signal10_end"])
+                time_df["in_T10_window"] = (time_df["datetime"] >= t10_start) & (
+                    time_df["datetime"] <= t10_end
+                )
+            else:
+                time_df["in_T10_window"] = False
+        except Exception as e:
+            print(f"ERROR: Failed to parse --signal-times JSON: {e}")
+            return 1
+    # Augment with persistence columns (restricted to T8 window, excludes T10)
     time_df = compute_persistence_columns(
         time_df,
         persistence_periods=opts.persistence_periods,
@@ -662,6 +907,21 @@ def main(argv: Optional[List[str]] = None) -> int:
         coverage=opts.coverage,
         min_stations=opts.min_stations,
     )
+
+    # Transparency: T10 coverage & eye passage (only if T10 window annotated)
+    if timing and "signal10_start" in timing and "signal10_end" in timing:
+        transparency = compute_t10_transparency(
+            time_df,
+            calm_mean_threshold=opts.calm_mean_threshold,
+            eye_min_calm_intervals=opts.eye_min_calm_intervals,
+            eye_prepost_window=opts.eye_prepost_window,
+            eye_min_t10_coverage_intervals=opts.eye_min_t10_coverage_intervals,
+        )
+    else:
+        transparency = {
+            "t10_analysis": pd.DataFrame(),
+            "eye_passage_analysis": pd.DataFrame(),
+        }
 
     print("Summarizing by station…")
     station_df = summarize_by_station(df)
@@ -673,6 +933,18 @@ def main(argv: Optional[List[str]] = None) -> int:
     station_df.to_csv(station_csv, index=False)
     print(f"Wrote: {time_csv}")
     print(f"Wrote: {station_csv}")
+
+    # Optional transparency outputs (only if T10 window annotated and data exists)
+    t10_df = transparency.get("t10_analysis") if transparency else None
+    eye_df = transparency.get("eye_passage_analysis") if transparency else None
+    if t10_df is not None and not t10_df.empty:
+        t10_csv = opts.out_dir / "t10_analysis.csv"
+        t10_df.to_csv(t10_csv, index=False)
+        print(f"Wrote: {t10_csv}")
+    if eye_df is not None and not eye_df.empty:
+        eye_csv = opts.out_dir / "eye_passage_analysis.csv"
+        eye_df.to_csv(eye_csv, index=False)
+        print(f"Wrote: {eye_csv}")
 
     if opts.plot:
         plot_path = opts.out_dir / "area_speed_and_signal.png"
@@ -711,6 +983,20 @@ def main(argv: Optional[List[str]] = None) -> int:
                     f"  Persistent signal recommendation: Below T8 (consecutive qualifying periods: {consec} < {opts.persistence_periods})"
                 )
 
+        # T10 transparency (last interval) if applicable
+        if bool(last_row.get("in_T10_window", False)):
+            meets_t8 = int(last_row.get("count_ge_T8", 0)) >= 4
+            meets_t10 = int(last_row.get("count_ge_T10", 0)) >= 4
+            print("  T10 transparency (last interval):")
+            print(
+                f"    Stations ≥63 km/h: {int(last_row.get('count_ge_T8', 0))} / {int(last_row.get('n_stations', 0))} "
+                f"({'meets 4-of-8' if meets_t8 else 'below 4-of-8'})"
+            )
+            print(
+                f"    Stations ≥118 km/h: {int(last_row.get('count_ge_T10', 0))} / {int(last_row.get('n_stations', 0))} "
+                f"({'meets 4-of-8 hurricane-force' if meets_t10 else 'below hurricane-force coverage'})"
+            )
+
         # Peak signal over the period
         label_to_thr = {
             lbl: thr for lbl, thr in _sorted_threshold_items(DEFAULT_THRESHOLDS_KMH)
@@ -727,7 +1013,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(f"  First reached at: {peak_time}")
         print(f"  Number of 10-min snapshots at this level: {n_peak}")
 
-        # Persistence summary
+        # Persistence summary (restricted to T8 window)
         if not time_df.empty and opts.persistence_periods > 1:
             max_consec = (
                 int(time_df["consecutive_periods_above_T8"].max())
@@ -753,6 +1039,19 @@ def main(argv: Optional[List[str]] = None) -> int:
                 print(
                     f"  No sustained T8/T10 (max consecutive qualifying periods: {max_consec} < {opts.persistence_periods})"
                 )
+
+        # Eye passage summary if available
+        eye_passage_df = transparency.get("eye_passage_analysis")
+        if eye_passage_df is not None and not eye_passage_df.empty:
+            print("\nEye passage segments during T10:")
+            for _, seg in eye_passage_df.iterrows():
+                print(
+                    f"  Calm segment {seg['segment_start']} to {seg['segment_end']} "
+                    f"({int(seg['n_calm_intervals'])} intervals) | Pre T10 cov: {int(seg['pre_t10_coverage_intervals'])} "
+                    f"Post T10 cov: {int(seg['post_t10_coverage_intervals'])} | Eye confirmed: {'YES' if seg['qualifies_eye_passage'] else 'NO'}"
+                )
+        elif timing and "signal10_start" in timing:
+            print("\nNo qualifying eye passage calm segments detected.")
 
     return 0
 

@@ -7,25 +7,23 @@
   "severity": "T10",
   "official_signal8": {
     "issued": true,
-    "start": "2025-07-20T00:20:00+08:00",
-    "end": "2025-07-20T19:40:00+08:00",
+    "start": "2025-07-20 00:20",
+    "end": "2025-07-20 19:40",
     "duration_min": 1160
   },
-  "escalated_to_signal10": true,
-  "signal10_start": "2025-07-20T09:20:00+08:00",
-  "signal10_end": "2025-07-20T16:10:00+08:00",
   "algorithm_detection": {
     "detected": false,
     "start": null,
     "end": null,
     "duration_min": 0
   },
+  "verification_tier": "unverified",
   "timing_analysis": {
     "start_delta_min": null,
     "coverage_percent": 0,
     "assessment": "forecast_driven",
-    "verdict": "Official issuance appropriate (forecast-based early warning)",
-    "verdict_zh": "官方發佈適當（基於預報的預警）"
+    "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period.",
+    "verdict_zh": "未經觀測驗證：官方 8 號期間未檢測到持續（≥30 分鐘）或 '達標-下降-再達標' 模式。"
   },
   "station_summary": [
     {
@@ -97,5 +95,267 @@
   "figures": {
     "timeline": "reports/figs/wipha_timeline.png",
     "heatmap": "reports/figs/wipha_station_heatmap.png"
+  },
+  "t10_transparency": {
+    "intervals": 42,
+    "gale_coverage_intervals": 1,
+    "hurricane_coverage_intervals": 0,
+    "low_wind_intervals": 0,
+    "first_interval": "2025-07-20 09:20:00",
+    "last_interval": "2025-07-20 16:10:00",
+    "details": [
+      {
+        "datetime": "2025-07-20 09:20:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 09:30:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 09:40:00",
+        "count_ge_T8": 4,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 09:50:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 10:00:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 10:10:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 10:20:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 10:30:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 10:40:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 10:50:00",
+        "count_ge_T8": 3,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 11:00:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 11:10:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 11:20:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 11:30:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 11:40:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 11:50:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 12:00:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 12:10:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 12:20:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 12:30:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 12:40:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 12:50:00",
+        "count_ge_T8": 2,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 13:00:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 13:10:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 13:20:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 13:30:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 13:40:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 13:50:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 14:00:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 14:10:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 14:20:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 14:30:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 14:40:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 14:50:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 15:00:00",
+        "count_ge_T8": 1,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 15:10:00",
+        "count_ge_T8": 0,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 15:20:00",
+        "count_ge_T8": 0,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 15:30:00",
+        "count_ge_T8": 0,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 15:40:00",
+        "count_ge_T8": 0,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 15:50:00",
+        "count_ge_T8": 0,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 16:00:00",
+        "count_ge_T8": 0,
+        "count_ge_T10": 0,
+        "low_wind": false
+      },
+      {
+        "datetime": "2025-07-20 16:10:00",
+        "count_ge_T8": 0,
+        "count_ge_T10": 0,
+        "low_wind": false
+      }
+    ]
   }
 }

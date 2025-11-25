@@ -7,7 +7,7 @@
 
 ## Overview
 
-This project provides independent, transparent validation of Hong Kong Observatory's (HKO) tropical cyclone Signal No. 8 issuance timing. By comparing official signal periods with observation-based detection algorithms, we demonstrate the value of forecast-based early warning systems and validate that HKO follows published standards appropriately.
+This project provides independent, transparent comparison between official Tropical Cyclone Signal No. 8 issuance and observation‑only detection. It surfaces timing gaps (the Early Warning Advantage) and classification tiers without judging appropriateness; forecast‑based issuance often precedes sustained lowland station winds, providing preparation time.
 
 ### Key Features
 
@@ -73,23 +73,30 @@ All wind data is sourced from **Hong Kong Observatory's public archives** of 10-
 1. Typhoon track and intensity forecast (12-24h ahead)
 2. Wind speed prediction at reference stations
 3. Expect ≥4 of 8 stations to reach gale-force winds (≥63 km/h)
-4. Issue Signal 8 with lead time for public preparation
+4. Issue Signal 8 to create early warning advantage for public preparation
 5. Monitor and update as conditions change
 
 ### Our Validation Algorithm (Observation-Only)
 1. Observe actual 10-minute mean wind speeds
 2. Count stations currently ≥63 km/h
-3. Require ≥4 stations for ≥2 consecutive periods (persistence check)
+3. Require ≥4 stations for ≥3 consecutive periods (30‑minute persistence) inside the official Signal 8 window (persistence scoring excludes the Signal 10 eye window; transparency retains all data)
 4. Compare detection timing with official signal periods
-5. Generate validation report
+5. Annotate official Signal 8 & 10 windows for transparency
+6. Generate validation report
 
-**Key Difference**: HKO uses **forecast** (what is expected), our algorithm validates using **observation** (what actually happened). Timing differences represent valuable early warning lead time.
+**Key Difference**: HKO uses **forecast** (what is expected); our algorithm validates using **observation** (what actually happened). Timing differences represent the **Early Warning Advantage** (forecast issuance preceding observation confirmation). The algorithm also annotates official Signal 8 and Signal 10 windows for full transparency and produces hurricane-force coverage & eye passage diagnostics.
+
+#### Transparency Extensions
+- Signal window annotation: `in_T8_window`, `in_T10_window` (no filtering; full timeline retained)
+- T10 coverage table: `t10_analysis.csv` (per-interval stations ≥63 km/h and ≥118 km/h + low-wind flags)
+- Eye passage detection: `eye_passage_analysis.csv` (calm segments with pre/post hurricane-force coverage counts)
+- Persistence excludes the Signal 10 window to avoid calm-eye bias; transparency still records all intervals.
 
 ## Key Findings
 
-✅ **HKO Signal 8 issuances are appropriate** and consistent with published standards
+✅ **Forecast-based issuance provides preparation time**: official signals often precede sustained multi-station gale confirmation
 
-⏱️ **Average lead time**: 330 minutes for Talim 2023 (forecast advantage)
+⏱️ **Average Early Warning Advantage**: 330 minutes for Talim 2023 (forecast advantage)
 
 🎯 **Coverage validation**: 64.9% overlap for peak event (Talim)
 

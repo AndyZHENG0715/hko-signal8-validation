@@ -1,13 +1,17 @@
 {
-  "generated_at": "2025-11-09T16:16:19.451438",
+  "generated_at": "2025-11-24T12:21:00.954246",
   "statistics": {
     "total_events": 6,
     "signal8_issued": 6,
-    "signal10_issued": 2,
-    "historic_double_signal10": true,
     "algorithm_detected": 1,
-    "avg_lead_time_min": 330,
-    "reference_stations": 8
+    "avg_lead_time_min": 390,
+    "reference_stations": 8,
+    "tier_counts": {
+      "verified": 1,
+      "pattern_validated": 1,
+      "unverified": 4,
+      "no_signal": 0
+    }
   },
   "events": [
     {
@@ -19,9 +23,10 @@
       "severity": "T8",
       "official_issued": true,
       "algorithm_detected": true,
-      "timing_delta_min": 330,
+      "verification_tier": "verified",
+      "timing_delta_min": 390,
       "assessment": "appropriate",
-      "verdict": "Appropriate issuance with 330 min forecast lead time"
+      "verdict": "Verified: sustained T8-level winds detected after issuance (+390 min advance)."
     },
     {
       "id": "yagi",
@@ -32,22 +37,24 @@
       "severity": "T8",
       "official_issued": true,
       "algorithm_detected": false,
+      "verification_tier": "unverified",
       "timing_delta_min": null,
       "assessment": "forecast_driven",
-      "verdict": "Official Signal 8 issued for Super Typhoon Yagi; validation algorithm detected no sustained lowland gales meeting HKO criteria during the warning period. This represents a forecast-driven warning issued in anticipation of worsening conditions."
+      "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
     },
     {
       "id": "toraji",
       "name": "Toraji",
-      "name_zh": "潭美",
+      "name_zh": "桃芝",
       "year": 2024,
       "date_range": "2024-11-13 to 2024-11-14",
       "severity": "T8",
       "official_issued": true,
       "algorithm_detected": false,
+      "verification_tier": "unverified",
       "timing_delta_min": null,
       "assessment": "forecast_driven",
-      "verdict": "Official issuance appropriate (forecast-based early warning)"
+      "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
     },
     {
       "id": "tapah",
@@ -58,9 +65,10 @@
       "severity": "T8",
       "official_issued": true,
       "algorithm_detected": false,
+      "verification_tier": "unverified",
       "timing_delta_min": null,
       "assessment": "forecast_driven",
-      "verdict": "Official issuance appropriate (forecast-based early warning)"
+      "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
     },
     {
       "id": "wipha",
@@ -71,9 +79,10 @@
       "severity": "T10",
       "official_issued": true,
       "algorithm_detected": false,
+      "verification_tier": "unverified",
       "timing_delta_min": null,
       "assessment": "forecast_driven",
-      "verdict": "Official issuance appropriate (forecast-based early warning)"
+      "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period."
     },
     {
       "id": "ragasa",
@@ -84,9 +93,10 @@
       "severity": "T10",
       "official_issued": true,
       "algorithm_detected": false,
+      "verification_tier": "pattern_validated",
       "timing_delta_min": null,
-      "assessment": "forecast_driven",
-      "verdict": "Official issuance appropriate (forecast-based early warning for super typhoon; Signal 10 issued at record distance)"
+      "assessment": "appropriate",
+      "verdict": "Pattern‑validated: wind met ≥4 stations, dipped (<4 for ≥2 intervals), then met again – structured wind re‑emergence."
     }
   ]
 }

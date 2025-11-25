@@ -1,5 +1,9 @@
 /* Methodology Page Styles */
 
+body {
+    padding-top: 70px;
+}
+
 .nav-bar {
     background: var(--bg-white);
     padding: 15px 0;

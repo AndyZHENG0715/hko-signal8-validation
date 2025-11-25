@@ -1,5 +1,9 @@
 /* Event Detail Page Styles */
 
+body {
+    padding-top: 70px;
+}
+
 .nav-bar {
     background: var(--bg-white);
     padding: 15px 0;
@@ -59,6 +63,15 @@
     box-shadow: var(--shadow);
 }
 
+/* Background colors based on verdict */
+.summary-panel.verdict-appropriate {
+    background: #f0f9f4;
+}
+
+.summary-panel.verdict-forecast {
+    background: #fffbeb;
+}
+
 .summary-panel h2 {
     font-size: 28px;
     margin-bottom: 30px;
@@ -69,10 +82,11 @@
     display: flex;
     gap: 20px;
     padding: 30px;
-    background: var(--bg-light);
+    background: var(--bg-white);
     border-radius: 12px;
     margin-bottom: 30px;
     border-left: 5px solid var(--success-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .verdict-box.forecast {
@@ -84,7 +98,7 @@
 }
 
 .verdict-icon {
-    font-size: 48px;
+    font-size: 56px;
     flex-shrink: 0;
 }
 
@@ -93,7 +107,7 @@
 }
 
 .verdict-title {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 10px;
@@ -136,9 +150,23 @@
     font-size: 20px;
 }
 
+/* Info icon tooltips */
+.info-icon {
+    display: inline-block;
+    cursor: help;
+    font-size: 14px;
+    opacity: 0.7;
+    margin-left: 4px;
+    transition: opacity 0.2s;
+}
+
+.info-icon:hover {
+    opacity: 1;
+}
+
 /* Chart Section */
 .chart-section {
-    padding: 60px 0;
+    padding: 80px 0;
     background: var(--bg-white);
 }
 
@@ -175,7 +203,7 @@
 /* Station Section */
 .station-section {
     padding: 60px 0;
-    background: var(--bg-light);
+    background: #f9fafb;
 }
 
 .station-grid {
@@ -357,6 +385,10 @@
         text-align: center;
     }
     
+    .verdict-icon {
+        font-size: 48px;
+    }
+    
     .station-grid {
         grid-template-columns: 1fr;
     }
@@ -367,6 +399,20 @@
     
     .chart-container {
         padding: 15px;
+        overflow-x: auto;
+    }
+    
+    .chart-legend {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    /* Make nav buttons thumb-friendly */
+    .nav-back {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -380,8 +426,20 @@
         padding: 15px;
     }
     
-    .chart-legend {
-        flex-direction: column;
-        align-items: flex-start;
+    /* Stack summary stat labels better on small screens */
+    .summary-stat-label {
+        font-size: 11px;
+        line-height: 1.3;
+    }
+    
+    .summary-stat-value {
+        font-size: 24px;
+    }
+    
+    /* Improve section spacing on mobile */
+    .chart-section,
+    .station-section,
+    .explanation-section {
+        padding: 40px 0;
     }
 }

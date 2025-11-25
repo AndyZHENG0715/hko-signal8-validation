@@ -1,0 +1,15 @@
+/* Audit Page Specific Styles */
+.audit-intro {background:#ffffff; border:1px solid #e0e6eb; padding:1.2rem 1.4rem; border-radius:12px; box-shadow:var(--shadow-sm); margin-bottom:1.5rem;}
+.audit-grid {display:grid; gap:1.2rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.audit-card {background:#ffffff; border:1px solid #e0e6eb; padding:1rem 1.1rem; border-radius:10px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:.4rem;}
+.audit-card h3 {margin:0; font-size:.95rem; font-weight:600; letter-spacing:.02em; color:#004e89;}
+.criteria-list {font-size:.8rem; line-height:1.4; padding-left:1rem;}
+.criteria-list li {margin:.35rem 0;}
+.download-links {display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.6rem;}
+.download-links a {background:var(--secondary-color); color:#fff; text-decoration:none; padding:.5rem .75rem; border-radius:6px; font-size:.7rem; font-weight:500;}
+.download-links a:hover {background:#00385f;}
+.disclaimer-box {background:#fffbeb; border-left:4px solid #f59e0b; padding:.7rem .9rem; font-size:.7rem; line-height:1.5; border-radius:6px; margin-top:1rem; color:#654e00;}
+.limitations-box {background:#f8f9fa; border:1px solid #e0e6eb; padding:.8rem 1rem; border-radius:10px; font-size:.75rem;}
+.limitations-box ul {padding-left:1rem;}
+.limitations-box li {margin:.4rem 0;}
+@media (max-width:700px){.audit-grid{grid-template-columns:1fr;} }

@@ -11,12 +11,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div>
+            <div class="loading-spinner"></div>
+            <div class="loading-message">Loading typhoon data...</div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav" role="navigation" aria-label="Primary">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="nav-logo">
+                    <span class="logo-icon">🌪️</span>
+                    <span class="logo-text">HKO Signal 8 Portal</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link active" data-en="Home" data-zh="主頁">Home</a>
+                    <a href="methodology.html" class="nav-link" data-en="Methodology" data-zh="方法論">Methodology</a>
+                    <a href="compare.html" class="nav-link" data-en="Compare" data-zh="比較">Compare</a>
+                    <a href="data.html" class="nav-link" data-en="Data" data-zh="數據">Data</a>
+                    <a href="audit.html" class="nav-link" data-en="Audit" data-zh="審核">Audit</a>
+                    <a href="about.html" class="nav-link" data-en="About" data-zh="關於">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <!-- Language Toggle -->
     <div class="language-toggle">
         <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
         <button id="lang-zh" onclick="switchLanguage('zh')">中</button>
     </div>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -37,21 +67,21 @@
             <div class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-icon">🌪️</div>
-                    <div class="metric-value" id="total-typhoons">5</div>
+                    <div class="metric-value" id="total-typhoons">6</div>
                     <div class="metric-label" data-en="Typhoons Analyzed" data-zh="已分析颱風">Typhoons Analyzed</div>
                     <div class="metric-sublabel" data-en="2023-2025" data-zh="2023-2025年">2023-2025</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-icon">⏱️</div>
-                    <div class="metric-value" id="avg-lead-time">330 <span class="metric-unit">min</span></div>
-                    <div class="metric-label" data-en="Average Lead Time" data-zh="平均提前時間">Average Lead Time</div>
-                    <div class="metric-sublabel" data-en="Forecast advantage" data-zh="預報優勢">Forecast advantage</div>
+                    <div class="metric-value" id="avg-lead-time"><span class="metric-unit">min</span></div>
+                    <div class="metric-label" data-en="HKO Early Warning Time" data-zh="天文台提前預警時間">HKO Early Warning Time</div>
+                    <div class="metric-sublabel" data-en="Avg. time before gale detected" data-zh="烈風檢測前的平均時間">Avg. time before gale detected</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-icon">🎯</div>
-                    <div class="metric-value" id="coverage-percent">64.9<span class="metric-unit">%</span></div>
-                    <div class="metric-label" data-en="Peak Coverage" data-zh="最高覆蓋率">Peak Coverage</div>
-                    <div class="metric-sublabel" data-en="Talim 2023" data-zh="泰利 2023">Talim 2023</div>
+                    <div class="metric-value" id="coverage-percent"><span class="metric-unit">%</span></div>
+                    <div class="metric-label" data-en="Peak Wind Coverage" data-zh="最高風力覆蓋率">Peak Wind Coverage</div>
+                    <div class="metric-sublabel" data-en="% signal period with gales (Talim)" data-zh="烈風期間佔信號期百分比 (泰利)">% signal period with gales (Talim)</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-icon">📍</div>
@@ -86,6 +116,84 @@
         </div>
     </section>
 
+    <!-- Key Findings Summary -->
+    <section class="key-findings">
+        <div class="container">
+            <h2 class="section-title" data-en="Key Findings" data-zh="主要發現">Key Findings</h2>
+            <p class="section-subtitle" data-en="Overall analysis summary across all typhoon events" data-zh="所有颱風事件的整體分析摘要">Overall analysis summary across all typhoon events</p>
+            
+            <div class="findings-grid">
+                <div class="finding-card">
+                    <h3 data-en="Observation Verification Tiers" data-zh="觀測驗證層級">Observation Verification Tiers</h3>
+                    <div class="finding-stats">
+                        <div class="finding-stat">
+                            <div class="finding-icon">✅</div>
+                            <div class="finding-value" id="appropriate-count">0</div>
+                            <div class="finding-label" data-en="Verified" data-zh="已驗證">Verified</div>
+                        </div>
+                        <div class="finding-stat">
+                            <div class="finding-icon">⚠️</div>
+                            <div class="finding-value" id="pattern-count">0</div>
+                            <div class="finding-label" data-en="Pattern‑Validated" data-zh="模式驗證">Pattern‑Validated</div>
+                        </div>
+                        <div class="finding-stat">
+                            <div class="finding-icon">❓</div>
+                            <div class="finding-value" id="forecast-count">0</div>
+                            <div class="finding-label" data-en="Unverified" data-zh="未驗證">Unverified</div>
+                        </div>
+                    </div>
+                    <p class="finding-note" data-en="Tiers classify observed wind only; early warning before confirmation remains a positive forecast advantage." data-zh="層級僅分類已觀測風力；在觀測確認前的提前預警仍是正面的預報優勢。">
+                        Tiers classify observed wind only; early warning before confirmation remains a positive forecast advantage.
+                    </p>
+                </div>
+                
+                <div class="finding-card">
+                    <h3 data-en="Wind Coverage Statistics" data-zh="風力覆蓋統計">Wind Coverage Statistics</h3>
+                    <div class="finding-stats">
+                        <div class="finding-stat">
+                            <div class="finding-value" id="avg-coverage">%</div>
+                            <div class="finding-label" data-en="Average Coverage" data-zh="平均覆蓋率">Average Coverage</div>
+                        </div>
+                    </div>
+                    <div class="finding-range">
+                        <div class="range-item">
+                            <span class="range-label" data-en="Highest:" data-zh="最高：">Highest:</span>
+                            <span class="range-value" id="highest-coverage">-</span>
+                        </div>
+                        <div class="range-item">
+                            <span class="range-label" data-en="Lowest:" data-zh="最低：">Lowest:</span>
+                            <span class="range-value" id="lowest-coverage">Yagi, Toraji, Tapah, Wipha, Ragasa (0%)</span>
+                        </div>
+                    </div>
+                    <p class="finding-note" data-en="Coverage = (observed gale minutes) / (signal duration) × 100%. Higher coverage indicates stronger alignment between forecast and observation." data-zh="覆蓋率 = (觀測烈風分鐘數) / (信號持續時間) × 100%。更高的覆蓋率表示預報與觀測之間更強的一致性。">
+                        Coverage = (observed gale minutes) / (signal duration) × 100%. Higher coverage indicates stronger alignment between forecast and observation.
+                    </p>
+                </div>
+                
+                <div class="finding-card">
+                    <h3 data-en="Signal 10 Transparency" data-zh="十號風球透明度">Signal 10 Transparency</h3>
+                    <div class="finding-stats">
+                        <div class="finding-stat">
+                            <div class="finding-value">2</div>
+                            <div class="finding-label" data-en="Events with T10" data-zh="十號風球事件">Events with T10</div>
+                        </div>
+                    </div>
+                    <div class="t10-summary" id="t10-summary">
+                        <div class="t10-event">
+                            <strong>Wipha 2025:</strong> 1/42 intervals (2.4%) with gale coverage during T10
+                        </div>
+                        <div class="t10-event">
+                            <strong>Ragasa 2025:</strong> 17/65 intervals (26.2%) with gale coverage during T10
+                        </div>
+                    </div>
+                    <p class="finding-note" data-en="Low gale coverage during T10 reflects eye passage dynamics and spatial heterogeneity; signals remain justified by pre/post-T10 persistence." data-zh="十號風球期間較低的烈風覆蓋反映了風眼通過動態和空間異質性；信號仍由十號風球前後的持續性證明其合理性。">
+                        Low gale coverage during T10 reflects eye passage dynamics and spatial heterogeneity; signals remain justified by pre/post-T10 persistence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Typhoon Timeline -->
     <section class="typhoon-timeline" id="timeline">
         <div class="container">
@@ -98,6 +206,7 @@
         </div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -112,7 +221,9 @@
                     <h4 data-en="Quick Links" data-zh="快速連結">Quick Links</h4>
                     <ul>
                         <li><a href="methodology.html" data-en="Methodology" data-zh="方法論">Methodology</a></li>
-                        <li><a href="data.html" data-en="Data Download" data-zh="數據下載">Data Download</a></li>
+                        <li><a href="compare.html" data-en="Compare" data-zh="比較">Compare</a></li>
+                        <li><a href="data.html" data-en="Data" data-zh="數據">Data</a></li>
+                        <li><a href="audit.html" data-en="Audit" data-zh="審核">Audit</a></li>
                         <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
                         <li><a href="https://andyzheng0715.github.io/hko-signal8-validation/" data-en="GitHub" data-zh="GitHub">GitHub</a></li>
                     </ul>

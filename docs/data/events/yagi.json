@@ -7,8 +7,8 @@
   "severity": "T8",
   "official_signal8": {
     "issued": true,
-    "start": "2024-09-05T18:20:00+08:00",
-    "end": "2024-09-06T12:40:00+08:00",
+    "start": "2024-09-05 18:20",
+    "end": "2024-09-06 12:40",
     "duration_min": 1100
   },
   "algorithm_detection": {
@@ -17,12 +17,13 @@
     "end": null,
     "duration_min": 0
   },
+  "verification_tier": "unverified",
   "timing_analysis": {
     "start_delta_min": null,
     "coverage_percent": 0,
     "assessment": "forecast_driven",
-    "verdict": "Official Signal 8 issued for Super Typhoon Yagi; validation algorithm detected no sustained lowland gales meeting HKO criteria during the warning period. This represents a forecast-driven warning issued in anticipation of worsening conditions.",
-    "verdict_zh": "已發出八號信號；驗證算法在整個警告期間未檢測到符合天文台標準的持續低地烈風。此為基於預報的預警發佈。"
+    "verdict": "Unverified by observation: no sustained (≥30 min) nor wind‑lull‑wind pattern detected during official Signal 8 period.",
+    "verdict_zh": "未經觀測驗證：官方 8 號期間未檢測到持續（≥30 分鐘）或 '達標-下降-再達標' 模式。"
   },
   "station_summary": [
     {
