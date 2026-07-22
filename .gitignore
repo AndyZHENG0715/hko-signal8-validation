@@ -30,3 +30,5 @@ IMPLEMENTATION_SUMMARY.md
 # Project-specific: Raw data and intermediate outputs
 typhoon_data/
 reports/
+# Large submission files
+submission/*.pdf
