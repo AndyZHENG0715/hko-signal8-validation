@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Poster - HKO Signal 8 Transparency</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/poster.css">
+    <!-- Google Fonts for scientific look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">HKO Transparency</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="data.html">Data</a>
+                <a href="methodology.html">Methodology</a>
+                <a href="poster.html" class="active">Poster</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="poster-container">
+        <header class="poster-header">
+            <h1>Transparency in Typhoon Signal Issuance</h1>
+            <h2>Validating HKO Signal 8 Decisions with Open Data</h2>
+            <div class="authors">
+                <p><strong>Group GCAP3226</strong> | Hong Kong Baptist University</p>
+            </div>
+        </header>
+
+        <div class="poster-grid">
+            <!-- Column 1 -->
+            <div class="poster-col">
+                <section class="poster-section">
+                    <h3>01. Introduction</h3>
+                    <p>The Hong Kong Observatory (HKO) issues tropical cyclone warning signals based on wind conditions. However, the "expected to persist" criterion introduces subjectivity. This project aims to <strong>quantify the gap between official signals and observed ground-level data</strong> using an automated, transparent algorithm.</p>
+                </section>
+
+                <section class="poster-section">
+                    <h3>02. Methodology</h3>
+                    <div class="method-box">
+                        <h4>Data Source</h4>
+                        <p>HKO Open Data API (10-minute mean winds).</p>
+                    </div>
+                    <div class="method-box">
+                        <h4>Reference Network</h4>
+                        <p>8 stations: Cheung Chau, Chek Lap Kok, Kai Tak, Lau Fau Shan, Sai Kung, Sha Tin, Ta Kwu Ling, Tsing Yi.</p>
+                    </div>
+                    <div class="method-box">
+                        <h4>Algorithm</h4>
+                        <p><strong>Signal 8 Criteria:</strong> ≥4 stations with wind speed ≥63 km/h.</p>
+                        <p><strong>Persistence:</strong> Must sustain for ≥30 minutes (3 consecutive periods).</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Column 2 (Center - Visuals) -->
+            <div class="poster-col wide">
+                <section class="poster-section">
+                    <h3>03. Key Results: Timing & Sensitivity</h3>
+                    <div class="chart-container">
+                        <img src="images/sensitivity_plot.png" alt="Sensitivity Analysis Plot" class="poster-img">
+                        <p class="caption">Fig 1. Effect of persistence settings on Signal 8 start/end timing (Typhoon Talim).</p>
+                    </div>
+                    <div class="results-highlight">
+                        <div class="stat-card">
+                            <h4>+6.5 Hours</h4>
+                            <p>Delay in algorithmic detection vs. Official Start (Talim)</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>10 Mins</h4>
+                            <p>Lag in algorithmic End Time vs. Official End</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>0 / 8</h4>
+                            <p>Stations meeting T8 criteria for Typhoon Tapah (Strict Miss)</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="poster-col">
+                <section class="poster-section">
+                    <h3>04. Analysis</h3>
+                    <p><strong>Forecast vs. Observation:</strong> The 6.5-hour delay in Talim confirms that HKO signals are largely <em>predictive</em>. Purely observation-based algorithms will always lag behind safety-first operational decisions.</p>
+                    <p><strong>The "Tapah" Edge Case:</strong> Official T8 was issued, but our algorithm found no station reaching 63 km/h (Max: 60.4 km/h at Cheung Chau). This highlights the role of human discretion in borderline cases.</p>
+                </section>
+
+                <section class="poster-section">
+                    <h3>05. Conclusion</h3>
+                    <p>Our "HKO Compliant Algorithm" provides a rigorous baseline for validation. While it confirms clear-cut events like Talim, it reveals that <strong>operational flexibility</strong> is essential for borderline cases and early warnings. A strict automated system would be too late and too rigid for public safety.</p>
+                </section>
+                
+                <section class="poster-section footer-section">
+                    <h4>Future Work</h4>
+                    <p>Incorporate predictive models and expand the station network to include offshore reference points.</p>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
